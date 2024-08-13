@@ -3,7 +3,11 @@ import "./globals.css";
 import Sidebar from "./components/sidebar";
 import SiteHeader from "./components/siteHeader";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+})
 
 export const metadata = {
   title: "Create Next App",
@@ -17,7 +21,7 @@ export default function RootLayout({ children }) {
         <Sidebar />
         <main className="ml-[250px]">
           <SiteHeader />
-          <div className="bg-[#f5f7fa] site-main-section">
+          <div className="bg-[#f5f7fa] site-main-section px-7">
             {children}
           </div>
 
