@@ -40,7 +40,7 @@ module.exports = {
           lineHeight: '17px',
           fontWeight: '600',
         }],
-        '': ['10px', {
+        'p': ['10px', {
           lineHeight: '12',
           fontWeight: '500',
         }],
@@ -48,8 +48,9 @@ module.exports = {
       spacing: {
         '24px' : '24px', 
         '37px' : '37px',
+        '50px': '50px',
         '133px' : '133px',
-        '37px' : '37px',
+        
       },
       borderRadius: {
         '6': '6px',
