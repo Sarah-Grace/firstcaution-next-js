@@ -12,7 +12,7 @@ module.exports = {
           1: '#B1B1B1',
           2: '#868686',
         },
-        bg: {
+        bgc: {
           1: '#f5f7fa',
           2: '#EEEEEE',
           3: '#F9F9F9',
@@ -41,7 +41,7 @@ module.exports = {
           fontWeight: '600',
         }],
         'p': ['10px', {
-          lineHeight: '12',
+          lineHeight: '12px',
           fontWeight: '500',
         }],
       },
@@ -54,7 +54,11 @@ module.exports = {
       },
       borderRadius: {
         '6': '6px',
-        '8': '8px'
+        '8': '8px',
+        '10': '10px'
+      },
+      boxShadow: {
+        'c1': '0px 4px 9.5px 0px #0000003D'
       }
     },
   },
