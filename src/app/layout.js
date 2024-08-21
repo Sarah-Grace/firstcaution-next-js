@@ -24,7 +24,7 @@ export default function RootLayout({ children }) {
         <Sidebar />
         <main className="ml-[250px]">
           <SiteHeader />
-          <div className="bg-[#f5f7fa] site-main-section px-7">
+          <div className="bg-[#f5f7fa] site-main-section px-10">
             {children}
           </div>
 

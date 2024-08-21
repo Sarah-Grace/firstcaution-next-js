@@ -1,11 +1,56 @@
 import CardHeader from "../components/CardHeader"
 import Image from "next/image"
 import BillListItem from "../components/billListItem"
+import DepositListItem from "../components/depositListItem";
+import MessageListItem from "../components/messageListItem";
 
 function Home() {
+  const myDepositList = [
+    {
+      icon: "/images/icons/granted.png",
+      title: "Granted Amount",
+      amount: "CHF 450.00"
+    },
+    {
+      icon: "/images/icons/flexible.png",
+      title: "Flexible Deposit",
+      amount: "CHF 460.00"
+    },
+    {
+      icon: "/images/icons/annual.png",
+      title: "Annual Premium",
+      amount: "CHF 450.00"
+    },
+    {
+      icon: "/images/icons/promo.png",
+      title: "Promo Code",
+      amount: "DISCOUNT 20"
+    }
+  ];
+  const MessagesList = [
+    {
+      avatar: "/images/icons/user-1.png",
+      name: "Cody Fisher",
+      chat: "Lorem ipsum dolor sit amet ...", 
+      time: "10:45 PM"
+    },
+    {
+      avatar: "/images/icons/user-2.png",
+      name: "Cody Fisher",
+      chat: "Lorem ipsum dolor sit amet ...", 
+      time: "10:45 PM"
+    },
+    {
+      avatar: "/images/icons/user-3.png",
+      name: "Cody Fisher",
+      chat: "Lorem ipsum dolor sit amet ...", 
+      time: "10:45 PM"
+    },
+];
+console.log(MessagesList)
   return (
     <div className="container">
-      <div className="flex gap-6">
+      <div className="flex gap-6 pb-10">
         <div className="basis-3/5">
           <div className="bg-secondary p-5 mt-5 rounded-10 shadow-c1">
             <CardHeader textColor="white" link="#" title="My Contracts" />
@@ -48,17 +93,40 @@ function Home() {
                 </div>
             </div>
           </div>
+          <div className="flex justify-between pt-[25px] px-5 pb-8 mt-5 border border-[#E6EFF5] rounded-10 bg-[#E1F0FF]">
+              <div className="max-w-[316]">
+                <h2 className="text-h2 leading-6 mb-4 text-heading">
+                  Firstees
+                </h2>
+                <h3 className="text-sm font-normal leading-[17px] mb-10">
+                  Share your experiences, tips, or ask questions with the Firstcaution community.
+                </h3>
+              </div>
+          </div>
         </div>
         <div className="basis-2/5">
           <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
             <CardHeader textColor="" link="#" title="My Bills" />
-            <BillListItem />
+            <div>
+              <div className="mb-2">
+                <BillListItem icon="/images/icons/open-bill.png" billType="Open Bills" billTypeDescription="Track unpaid bills quickly" billCount="10" />
+              </div>
+              <div>
+                <BillListItem icon="/images/icons/paid-bill.png" billType="Paid bills" billTypeDescription="Review your payment records" billCount="13" />
+              </div>
+            </div>
           </div>
           <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
             <CardHeader textColor="" link="#" title="My Deposit" />
+            {myDepositList.map((listItem, index) => {
+              return <DepositListItem key={index} icon={listItem.icon} title={listItem.title} amount={listItem.amount} />
+            })}
           </div>
           <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
             <CardHeader textColor="" link="#" title="Message" />
+            {MessagesList.map((listItem, index) => {
+              return <MessageListItem key={index} avatar={listItem.avatar} name={listItem.name} chat={listItem.chat} time={listItem.time} />
+            })}
           </div>
         </div>
       </div>

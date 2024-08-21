@@ -1,0 +1,25 @@
+import React from 'react'
+import Image from 'next/image'
+
+function DepositListItem({icon, title, amount}) {
+  return (
+    <div className='flex items-center gap-[17px] px-5 py-[11px] border-b last:border-0 border-[#EAEAEA] mb-2'>
+        <div className='flex-[0_0_24px] '>
+            <Image
+                src={icon}
+                alt=""
+                width={24}
+                height={24}
+            />
+        </div>
+        <div className='flex-auto'>
+            <h4 className='text-sm font-medium leading-[23px] text-grey-2'>{title}</h4>
+        </div>
+        <div>
+            <h4 className='text-sm font-medium leading-[23px] text-content'>{amount}</h4>
+        </div>
+    </div>
+  )
+}
+
+export default DepositListItem

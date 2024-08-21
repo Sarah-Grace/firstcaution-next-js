@@ -6,7 +6,7 @@ import Image from 'next/image'
 function SiteHeader() {
     
   return (
-    <div className="h-24 w-full border-b border-[#E6EFF5] flex items-center justify-between px-7 ">
+    <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 sticky top-0 z-10">
         <h1 className='text-h1'>Overview</h1>
         <div className='flex justify-center items-center gap-8'>
             <form action="">
@@ -16,7 +16,7 @@ function SiteHeader() {
                     </span>
                     <input 
                         type="search" 
-                        className="leading-[50px] w-[255px] rounded-[40px] bg-[#F5F5F5] pl-[60px] pr-[25px] focus-visible:border-0" 
+                        className="text-[15px] leading-[50px] w-[255px] rounded-[40px] bg-[#F5F5F5] pl-[60px] pr-[25px] focus-visible:border-0" 
                         placeholder='Search for something'
                     /> 
                 </div>
