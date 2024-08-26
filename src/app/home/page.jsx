@@ -3,7 +3,6 @@ import Image from "next/image"
 import BillListItem from "../components/billListItem"
 import DepositListItem from "../components/depositListItem";
 import MessageListItem from "../components/messageListItem";
-import Link from "next/link";
 import CustomBanner from "../components/customBanner";
 import FirstCoinBanner from "../components/firstCoinBanner";
 
@@ -100,14 +99,14 @@ console.log(MessagesList)
           <CustomBanner 
             heading="Firstees" 
             text="Share your experiences, tips, or ask questions with the Firstcaution community."
-            link="#"
+            link="/firstees"
             image="/images/firstees-banner.png"  
             bg="bg-[#E1F0FF]"
           />
           <CustomBanner 
             heading="Firstmoove" 
             text="All my administrative centralised task simplified"
-            link="#"
+            link="/firstmoove"
             image="/images/firstmoove-banner.png"  
             bg="bg-[#DDF9FF]"
           />
