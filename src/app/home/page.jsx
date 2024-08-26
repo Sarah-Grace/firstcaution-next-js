@@ -3,6 +3,10 @@ import Image from "next/image"
 import BillListItem from "../components/billListItem"
 import DepositListItem from "../components/depositListItem";
 import MessageListItem from "../components/messageListItem";
+import Link from "next/link";
+import CustomBanner from "../components/customBanner";
+import FirstCoinBanner from "../components/firstCoinBanner";
+
 
 function Home() {
   const myDepositList = [
@@ -93,16 +97,21 @@ console.log(MessagesList)
                 </div>
             </div>
           </div>
-          <div className="flex justify-between pt-[25px] px-5 pb-8 mt-5 border border-[#E6EFF5] rounded-10 bg-[#E1F0FF]">
-              <div className="max-w-[316]">
-                <h2 className="text-h2 leading-6 mb-4 text-heading">
-                  Firstees
-                </h2>
-                <h3 className="text-sm font-normal leading-[17px] mb-10">
-                  Share your experiences, tips, or ask questions with the Firstcaution community.
-                </h3>
-              </div>
-          </div>
+          <CustomBanner 
+            heading="Firstees" 
+            text="Share your experiences, tips, or ask questions with the Firstcaution community."
+            link="#"
+            image="/images/firstees-banner.png"  
+            bg="bg-[#E1F0FF]"
+          />
+          <CustomBanner 
+            heading="Firstmoove" 
+            text="All my administrative centralised task simplified"
+            link="#"
+            image="/images/firstmoove-banner.png"  
+            bg="bg-[#DDF9FF]"
+          />
+          <FirstCoinBanner />
         </div>
         <div className="basis-2/5">
           <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">

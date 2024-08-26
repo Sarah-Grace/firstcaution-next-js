@@ -44,6 +44,10 @@ module.exports = {
           lineHeight: '12px',
           fontWeight: '500',
         }],
+        'btn': ['15px', {
+          lineHeight: '18px',
+          fontWeight: '500',
+        }]
       },
       spacing: {
         '24px' : '24px', 
