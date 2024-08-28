@@ -1,10 +1,10 @@
-import CardHeader from "../components/CardHeader"
+import CardHeader from "../customComponents/CardHeader"
 import Image from "next/image"
-import BillListItem from "../components/billListItem"
-import DepositListItem from "../components/depositListItem";
-import MessageListItem from "../components/messageListItem";
-import CustomBanner from "../components/customBanner";
-import FirstCoinBanner from "../components/firstCoinBanner";
+import BillListItem from "../customComponents/billListItem"
+import DepositListItem from "../customComponents/depositListItem";
+import MessageListItem from "../customComponents/messageListItem";
+import CustomBanner from "../customComponents/customBanner";
+import FirstCoinBanner from "../customComponents/firstCoinBanner";
 
 
 function Home() {
