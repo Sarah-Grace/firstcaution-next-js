@@ -24,12 +24,11 @@ export default function RootLayout({ children }) {
         <Sidebar />
         <main className="ml-[250px]">
           <SiteHeader />
-          <div className="bg-[#f5f7fa] site-main-section px-10">
+          <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px]">
             {children}
           </div>
-
         </main>
-        </body>
+      </body>
     </html>
   );
 }
