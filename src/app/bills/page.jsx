@@ -30,7 +30,7 @@ function Bills() {
           paidTo: "PG&E",
           paymentMethod: "E-Bill",
           status: "Paid",
-          link: "#"
+          link: "billDetail"
       },
       {
         name: "Jerome Bell",
@@ -38,7 +38,7 @@ function Bills() {
         paidTo: "PG&E",
         paymentMethod: "E-Bill",
         status: "Paid",
-        link: "#"
+        link: "billDetail"
       },
       {
         name: "Robert Fox",
@@ -46,7 +46,7 @@ function Bills() {
         paidTo: "PG&E",
         paymentMethod: "E-Bill",
         status: "Paid",
-        link: "#"
+        link: "billDetail"
       },
       {
         name: "Floyd Miles",
@@ -54,7 +54,7 @@ function Bills() {
         paidTo: "PG&E",
         paymentMethod: "E-Bill",
         status: "Paid",
-        link: "#"
+        link: "billDetail"
       },
       {
         name: "Devon Lane",
@@ -62,7 +62,7 @@ function Bills() {
         paidTo: "PG&E",
         paymentMethod: "E-Bill",
         status: "Paid",
-        link: "#"
+        link: "billDetail"
       },
       {
         name: "Jane Cooper",
@@ -70,7 +70,7 @@ function Bills() {
         paidTo: "PG&E",
         paymentMethod: "E-Bill",
         status: "Paid",
-        link: "#"
+        link: "billDetail"
       }
   ];
   return (

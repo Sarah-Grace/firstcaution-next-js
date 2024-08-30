@@ -49,10 +49,22 @@ function Sidebar() {
             path: "/chatbot"
         }
     ]
+    const menuListData2 = [
+        {
+            menuIcon:"/images/icons/settings.svg", 
+            menuTitle:"Settings",
+            path: "/settings"
+        },
+        {
+            menuIcon:"/images/icons/logout.svg", 
+            menuTitle:"Logout",
+            path: "/login"
+        }
+    ]
 
   return (
     <aside className="w-[250px] h-screen border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px">
-        <div className="">
+        <div className="h-full">
             <Link href='/home'>
                 <Image
                     src="/images/logos/logo.png"
@@ -62,12 +74,21 @@ function Sidebar() {
                     className="mb-9"
                 />
             </Link>
-            <ul >
-                {
-                    menuListData.map((listItem, index) => <SidebarList key={index} menuIcon={listItem.menuIcon} menuTitle={listItem.menuTitle} path={listItem.path} /> )
-                }
-                
-            </ul>
+
+            <div className='flex flex-col justify-between h-full'>
+                <ul>
+                    {
+                        menuListData.map((listItem, index) => <SidebarList key={index} menuIcon={listItem.menuIcon} menuTitle={listItem.menuTitle} path={listItem.path} /> )
+                    }
+                    
+                </ul>
+                <ul>
+                    {
+                        menuListData2.map((listItem, index) => <SidebarList key={index} menuIcon={listItem.menuIcon} menuTitle={listItem.menuTitle} path={listItem.path} /> )
+                    }
+                    
+                </ul>
+            </div>
         </div>
   </aside>
   )

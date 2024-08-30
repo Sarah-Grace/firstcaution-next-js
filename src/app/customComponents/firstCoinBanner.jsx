@@ -5,7 +5,7 @@ function FirstCoinBanner() {
   return (
     <div className="flex justify-between items-end px-0 py-8 mt-5 rounded-[5px] h-[200px] bg-primary">
         <div className="flex justify-between flex-col h-full p-0 pl-[37px] max-w-[340px]">
-            <h3 className='text-xl font-semibold leading-6 text-white'>My Firstcoins</h3>
+            <h3 className='text-xl font-semibold leading-6 text-white lgs:text-[24px] lgs:leading-[29px]'>My Firstcoins</h3>
             <h2 className='text-4xl font-semibold leading-[44px] text-white'>CHF 150.00</h2>
             <div className="flex items-center gap-[10px]">
                 <div className="w-[30px] h-[30px] bg-[rgba(255,255,255,0.3)] flex justify-center items-center rounded-6">

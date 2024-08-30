@@ -17,49 +17,49 @@ function Contracts() {
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Active",
-            link: "#"
+            link: "contractDetail"
         },
         {
             name: "Jerome Bell",
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Pending",
-            link: "#"
+            link: "contractDetail"
         },
         {
             name: "Robert Fox",
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Active",
-            link: "#"
+            link: "contractDetail"
         },
         {
             name: "Floyd Miles",
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Active",
-            link: "#"
+            link: "contractDetail"
         },
         {
             name: "Devon Lane",
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Active",
-            link: "#"
+            link: "contractDetail"
         },
         {
             name: "Jane Cooper",
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Pending",
-            link: "#"
+            link: "contractDetail"
         },
         {
             name: "Wade Warren",
             address: "36-B Ranchview, Switzerland",
             date: "April 8,2024",
             status: "Closed",
-            link: "#"
+            link: "contractDetail"
         }
     ];
     const filteredData = filterStatus === "All" ? data : data.filter(d => d.status === filterStatus);

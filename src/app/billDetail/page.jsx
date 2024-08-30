@@ -42,8 +42,15 @@ function BillDetail() {
                         )
                     })}
                 </div>
-                <div>
-                    
+                <div className="flex justify-center items-center bg-[rgb(52,199,89,0.15)] py-5 px-[26px] gap-5 mt-[30px] rounded-8">
+                    <Image
+                        src="/images/icons/security-off.png"
+                        alt=""
+                        className=""
+                        width={38}
+                        height={38}
+                    />
+                    <h3 className="text-h3 text-content">Please keep in mind that these payments are only for Firstcaution.</h3>
                 </div>
             </div>
             <div className="w-2/4 pl-6">
