@@ -14,11 +14,11 @@ function MessageListItem({avatar, name, chat, time}) {
             />
         </div>
         <div className='flex-auto'>
-            <h4 className='text-h4 lgs:text-[18px] lgs:leading-[22px] mb-1'>{name}</h4>
-            <p className='text-p text-grey-2 lgs:text-[14px] lgs:leading-[17px]'>{chat}</p>
+            <h4 className='text-h4 lgs:text-[18px] lgs:leading-[22px] mid-xxl:text-[18px] mid-xxl:leading-[22px] mb-1'>{name}</h4>
+            <p className='text-p text-grey-2 lgs:text-[14px] lgs:leading-[17px] mid-xxl:text-[14px] mid-xxl:leading-[17px]'>{chat}</p>
         </div>
         <div>
-            <p className='text-xs font-medium leading-[13px] text-end lgs:text-[14px] lgs:leading-[17px]'>{time}</p>
+            <p className='text-xs font-medium leading-[13px] text-end lgs:text-[14px] lgs:leading-[17px] mid-xxl:text-[14px] mid-xxl:leading-[17px]'>{time}</p>
         </div>
     </div>
   )

@@ -58,15 +58,15 @@ console.log(MessagesList)
       <div className="basis-3/5 xxl:basis-full">
         <div className="bg-secondary p-5 mt-5 rounded-10 shadow-c1 xs:px-1">
           <CardHeader textColor="white" link="#" title="My Contracts" />
-          <div className="flex lgs:gap-[6px] md:flex-wrap">
+          <div className="flex lgs:gap-[6px] mid-xxl:gap-[6px] md:flex-wrap">
               <div className="basis-1/2 md:basis-full">
                 <div className="bg-white rounded-6 p-5 xs:px-2">
-                  <div className="flex justify-between mb-4 lgs:mb-0">
+                  <div className="flex justify-between mb-4 lgs:mb-0 mid-xxl:mb-0">
                     <div>
-                      <h3 className="text-h3 lgs:text-xl lgs:leading-6">Current contracts</h3>
-                      <p className="text-p lgs:text-sm lgs:leading-[17px] text-grey-2">Keep contracts in check</p>
+                      <h3 className="text-h3 lgs:text-xl lgs:leading-6 mid-xxl:text-xl mid-xxl:leading-6">Current contracts</h3>
+                      <p className="text-p lgs:text-sm lgs:leading-[17px] mid-xxl:text-sm mid-xxl:leading-[17px] text-grey-2">Keep contracts in check</p>
                     </div>
-                    <p className="text-4xl text-content lgs:text-7xl">12</p>
+                    <p className="text-4xl text-content lgs:text-7xl mid-xxl:text-7xl">12</p>
                   </div>
                   <div className="flex justify-start items-start gap-2">
                       <Image 
@@ -77,8 +77,8 @@ console.log(MessagesList)
                         className="h-[26px]"
                       />
                       <div>
-                        <h3 className="text-[13px] leading-[13px] text-heading lgs:text-[15px] lgs:leading-[15px] lgs:font-medium">36 Ranchview Richardson</h3>
-                        <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal">Switzerland</p>
+                        <h3 className="text-[13px] leading-[13px] text-heading lgs:text-[15px] lgs:leading-[15px] lgs:font-medium mid-xxl:text-[15px] mid-xxl:leading-[15px] mid-xxl:font-medium">36 Ranchview Richardson</h3>
+                        <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">Switzerland</p>
                       </div>
                   </div>
                 </div>
@@ -87,12 +87,12 @@ console.log(MessagesList)
                 <div className="bg-bgc-2 rounded-6 p-5 ms-[1px]">
                   <div className="flex justify-between">
                     <div>
-                      <h3 className="text-h3 lgs:text-xl lgs:leading-6">Granted amount</h3>
-                      <p className="text-p mb-[10px] lgs:text-sm lgs:leading-[17px] lgs:mb-[24px] text-grey-2">Track your granted amount</p>
+                      <h3 className="text-h3 lgs:text-xl lgs:leading-6 mid-xxl:text-xl mid-xxl:leading-6">Granted amount</h3>
+                      <p className="text-p mb-[10px] lgs:text-sm lgs:leading-[17px] lgs:mb-[24px] mid-xxl:text-sm mid-xxl:leading-[17px] mid-xxl:mb-[24px] text-grey-2">Track your granted amount</p>
                     </div>
                     <div>
                     <p 
-                      className="text-p font-medium text-heading relative pl-3 before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-[#F73737] before:block before:absolute before:top-2/4 before:left-0 before:translate-y-[-50%] lgs:text-sm lgs:font-semibold lgs:leading-[17px]">
+                      className="text-p font-medium text-heading relative pl-3 before:content-[''] before:w-[6px] before:h-[6px] before:rounded-full before:bg-[#F73737] before:block before:absolute before:top-2/4 before:left-0 before:translate-y-[-50%] lgs:text-sm lgs:font-semibold lgs:leading-[17px] mid-xxl:text-sm mid-xxl:font-semibold mid-xxl:leading-[17px]">
                       April 8, 2024
                     </p>
 
