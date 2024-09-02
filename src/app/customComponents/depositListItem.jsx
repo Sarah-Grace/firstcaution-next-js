@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 function DepositListItem({icon, title, amount}) {
   return (
-    <div className='flex items-center gap-[17px] px-5 py-[11px] border-b last:border-0 border-[#EAEAEA] mb-2'>
+    <div className='flex items-center gap-[17px] px-5 py-[11px] border-b last:border-0 border-[#EAEAEA] mb-2 xs:px-0'>
         <div className='flex-[0_0_24px] '>
             <Image
                 src={icon}
@@ -12,10 +12,10 @@ function DepositListItem({icon, title, amount}) {
             />
         </div>
         <div className='flex-auto'>
-            <h4 className='text-sm font-medium leading-[23px] text-grey-2'>{title}</h4>
+            <h4 className='text-sm font-medium leading-[23px] text-grey-2 lgs:text-[18px] lgs:leading-[31px] mid-xxl:text-[18px] mid-xxl:leading-[31px]'>{title}</h4>
         </div>
         <div>
-            <h4 className='text-sm font-medium leading-[23px] text-content'>{amount}</h4>
+            <h4 className='text-sm font-medium leading-[23px] text-content lgs:text-[18px] lgs:leading-[31px] mid-xxl:text-[18px] mid-xxl:leading-[31px] xs:text-center'>{amount}</h4>
         </div>
     </div>
   )

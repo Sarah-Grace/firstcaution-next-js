@@ -63,7 +63,7 @@ function Sidebar() {
     ]
 
   return (
-    <aside className="w-[250px] h-screen border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px">
+    <aside className="w-[250px] h-screen border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-[50px] lg:overflow-hidden lg:p-0 lg:h-auto lg:top-[92px]">
         <div className="h-full">
             <Link href='/home'>
                 <Image
@@ -71,7 +71,7 @@ function Sidebar() {
                     width={167}
                     height={52}
                     alt=""
-                    className="mb-9"
+                    className="xl:hidden mb-[38px]"
                 />
             </Link>
 

@@ -1,15 +1,43 @@
-import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
+"use client"
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { usePathname } from 'next/navigation'
+import { HOME_HEADER, CONTRACT_HEADER, BILL_HEADER, DEPOSIT_HEADER } from '@/constants/webConstants'
 
 function SiteHeader() {
-    
+    const pathname = usePathname()
+    const [title, setTitle] = useState('');
+
+    useEffect(() => {
+        switch(pathname) {
+            case '/home':
+                setTitle(HOME_HEADER)
+                break;
+            case '/contracts':
+            case '/contractDetail':
+                setTitle(CONTRACT_HEADER)
+                break;
+            case '/bills':
+            case '/billDetail':
+                setTitle(BILL_HEADER)
+                break;     
+            case '/deposit':
+                setTitle(DEPOSIT_HEADER)
+                break; 
+        }
+    },[pathname])
   return (
-    <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 sticky top-0 z-10">
-        <h1 className='text-h1'>Overview</h1>
+    <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10">
+        <Image
+            src="/images/logos/logo.png"
+            width={167}
+            height={52}
+            alt=""
+            className="xl:block hidden"
+        />
+        <h1 className='text-h1'>{title}</h1>
         <div className='flex justify-center items-center gap-8'>
-            <div className='w-50px h-50px rounded-full bg-[#F5F5F5] flex justify-center items-center'>
+            <div className='w-50px h-50px rounded-full bg-[#F5F5F5] flex justify-center items-center lg:hidden'>
                 <Image
                     src="/images/icons/settings-1.svg"
                     alt=""
@@ -25,7 +53,7 @@ function SiteHeader() {
                     height={25}
                 />
             </div>
-            <div className='rounded-full border border-primary'>
+            <div className='rounded-full border border-primary md:hidden'>
                 <Image
                     src="/images/icons/user-profile.png"
                     alt=""

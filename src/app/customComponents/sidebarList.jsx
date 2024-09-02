@@ -1,21 +1,22 @@
 'use client'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 function SidebarList({ menuIcon , menuTitle, path }) {
     const pathname = usePathname()
+
   return (
-    <li>
-        <Link href={path} className= {`flex leading-[60px] p-0 pl-2 active:text-[#3876DA] link ${pathname === '/' ? 'active' : ''}`}>
+    <li active={pathname === path ? "true" : "false"} className=''>
+        <Link href={path} className= {`${pathname === path && "active"} nav-style flex leading-[60px] p-0 pl-2 text-[#b1b1b1] active:text-[#3876DA] active:before:content-[""]`}>
             <Image
                 src={menuIcon}
                 width={24}
                 height={24}
                 alt=""
             />
-            <span className="ml-[27px] text-[#b1b1b1]">{menuTitle}</span>
+            <span className="ml-[27px] lg:line-clamp-1">{menuTitle}</span>
         </Link>
     </li>
   )

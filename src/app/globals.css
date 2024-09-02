@@ -25,6 +25,29 @@ body {
 .w-calc-line:before {
   width: calc((100% / 2) - 100px);
 }
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.active.nav-style {
+  position: relative;
+}
+.active.nav-style,
+.nav-style:hover {
+  filter: invert(46%) sepia(78%) saturate(3722%) hue-rotate(203deg) brightness(91%) contrast(86%);
+}
+.active.nav-style::before {
+  content: "";
+  height: 60px;
+  width: 6px;
+  background-color: #3876DA;
+  position: absolute;
+  top: 0;
+  left: -39px;
+  border-radius: 0 10px 10px 0;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

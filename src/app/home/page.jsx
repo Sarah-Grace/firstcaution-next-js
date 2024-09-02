@@ -6,8 +6,8 @@ import MessageListItem from "../customComponents/messageListItem";
 import CustomBanner from "../customComponents/customBanner";
 import FirstCoinBanner from "../customComponents/firstCoinBanner";
 
-
 function Home() {
+
   const myDepositList = [
     {
       icon: "/images/icons/granted.png",
@@ -50,15 +50,17 @@ function Home() {
       time: "10:45 PM"
     },
 ];
+
 console.log(MessagesList)
   return (
-    <div className="flex gap-6 pb-10">
-      <div className="basis-3/5">
-        <div className="bg-secondary p-5 mt-5 rounded-10 shadow-c1">
+    <div className="flex gap-6 pb-10 xxl:flex-wrap">
+
+      <div className="basis-3/5 xxl:basis-full">
+        <div className="bg-secondary p-5 mt-5 rounded-10 shadow-c1 xs:px-1">
           <CardHeader textColor="white" link="#" title="My Contracts" />
-          <div className="flex lgs:gap-[6px]">
-              <div className="basis-1/2">
-                <div className="bg-white rounded-6 p-5">
+          <div className="flex lgs:gap-[6px] md:flex-wrap">
+              <div className="basis-1/2 md:basis-full">
+                <div className="bg-white rounded-6 p-5 xs:px-2">
                   <div className="flex justify-between mb-4 lgs:mb-0">
                     <div>
                       <h3 className="text-h3 lgs:text-xl lgs:leading-6">Current contracts</h3>
@@ -81,7 +83,7 @@ console.log(MessagesList)
                   </div>
                 </div>
               </div>
-              <div className="basis-1/2">
+              <div className="basis-1/2 md:basis-full">
                 <div className="bg-bgc-2 rounded-6 p-5 ms-[1px]">
                   <div className="flex justify-between">
                     <div>
@@ -98,7 +100,7 @@ console.log(MessagesList)
                   </div>
                   <div className="text-[32px] leading-[38px] font-medium">
                       <span className="text-grey-2">CHF</span>
-                      <span className="text-content">1,750.00</span>
+                      <span className="text-content pr-1">1,750.00</span>
                   </div>
                 </div>
               </div>
@@ -120,7 +122,7 @@ console.log(MessagesList)
         />
         <FirstCoinBanner />
       </div>
-      <div className="basis-2/5">
+      <div className="basis-2/5 xxl:basis-full">
         <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
           <CardHeader textColor="" link="#" title="My Bills" />
           <div>

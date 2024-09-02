@@ -127,6 +127,14 @@ module.exports = {
       },
       screens: {
         "lgs": '1441px',
+        "xxl" : {'max':'1280px'},
+        "mid-xxl": {'max':'1280px', 'min':'1024px'},
+        "xl" : {'max':'1024px'},
+        "lg" : {'max':'991px'},
+        "md" : {'max':'767px'},
+        "md1" : {'max':'676px'},
+        "sm": {'max':'575px'},
+        "xs": {'max':'480px'}
       }
     },
   },
