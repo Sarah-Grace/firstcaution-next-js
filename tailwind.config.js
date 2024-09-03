@@ -125,17 +125,19 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
-      screens: {
-        "lgs": '1441px',
-        "xxl" : {'max':'1280px'},
-        "mid-xxl": {'max':'1280px', 'min':'1024px'},
-        "xl" : {'max':'1024px'},
-        "lg" : {'max':'991px'},
-        "md" : {'max':'767px'},
-        "md1" : {'max':'676px'},
-        "sm": {'max':'575px'},
-        "xs": {'max':'480px'}
-      }
+    },
+    screens: {
+      "mlgs": {'max':'1440px'},
+      "xxl" : {'max':'1280px'},
+      "mid-xxl": {'max':'1280px', 'min':'1024px'},
+      "xl" : {'max':'1024px'},
+      "lg" : {'max':'991px'},
+      "tablet" :{'max':'768px'},
+      "md" : {'max':'767px'},
+      "md1" : {'max':'676px'},
+      "sm": {'max':'575px'},
+      "xs": {'max':'480px'},
+      "lgs": '1441px',
     },
   },
   plugins: [

@@ -31,10 +31,10 @@ function BillDetail() {
         },
     ]
   return (
-    <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white'>
+    <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white sm:px-2'>
         <BackArrowBtn link="bills" title="Bill Detail" />
-        <div className="flex">
-            <div className="w-2/4 pr-6">
+        <div className="flex xl:flex-wrap">
+            <div className="w-2/4 pr-6 xl:pr-0 xl:w-full xl:mb-6">
                 <div className="mt-12">
                     {BillInfoList.map((list, index) => {
                         return (
@@ -42,18 +42,18 @@ function BillDetail() {
                         )
                     })}
                 </div>
-                <div className="flex justify-center items-center bg-[rgb(52,199,89,0.15)] py-5 px-[26px] gap-5 mt-[30px] rounded-8">
+                <div className="flex justify-center items-center bg-[rgb(52,199,89,0.15)] py-5 px-[26px] gap-5 mt-[30px] rounded-8 tablet:gap-2 tablet:px-2">
                     <Image
                         src="/images/icons/security-off.png"
                         alt=""
-                        className=""
+                        className="tablet:w-7 tablet:h-7"
                         width={38}
                         height={38}
                     />
-                    <h3 className="text-h3 text-content">Please keep in mind that these payments are only for Firstcaution.</h3>
+                    <h3 className="text-h3 text-content tablet:text-sm">Please keep in mind that these payments are only for Firstcaution.</h3>
                 </div>
             </div>
-            <div className="w-2/4 pl-6">
+            <div className="w-2/4 pl-6 xl:pl-0 xl:w-full">
                 <div className="bg-bgc-3 px-[30px] py-5">
                     <div className="flex items-center justify-between">
                         <h3 className="text-h3 font-medium text-grey-2 mb-2">Document Preview</h3>

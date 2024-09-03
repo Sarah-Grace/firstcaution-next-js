@@ -19,6 +19,7 @@ function SiteHeader() {
                 break;
             case '/bills':
             case '/billDetail':
+            case '/payBill':
                 setTitle(BILL_HEADER)
                 break;     
             case '/deposit':
@@ -27,15 +28,15 @@ function SiteHeader() {
         }
     },[pathname])
   return (
-    <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10">
+    <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 tablet:px-[12px]">
         <Image
             src="/images/logos/logo.png"
             width={167}
             height={52}
             alt=""
-            className="xl:block hidden"
+            className="xl:block hidden tablet:w-[90px] tablet:h-[28px]"
         />
-        <h1 className='text-h1'>{title}</h1>
+        <h1 className='text-h1 tablet:text-[18px]'>{title}</h1>
         <div className='flex justify-center items-center gap-8'>
             <div className='w-50px h-50px rounded-full bg-[#F5F5F5] flex justify-center items-center lg:hidden'>
                 <Image
@@ -45,7 +46,7 @@ function SiteHeader() {
                     height={25}
                 />
             </div>
-            <div className='w-50px h-50px rounded-full bg-[#F5F5F5] flex justify-center items-center'>
+            <div className='w-50px h-50px tablet:w-10 tablet:h-10 rounded-full bg-[#F5F5F5] flex justify-center items-center'>
                 <Image
                     src="/images/icons/notifications.svg"
                     alt=""
