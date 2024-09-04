@@ -120,7 +120,7 @@ function Bills() {
                               </p>
                           </div>
                           <Link 
-                              href="#"
+                              href="/payBill"
                               className="rounded-8 bg-secondary text-white py-4 px-[60px] mlgs:px-11 mlgs:py-3 xxl:px-4 xxl:py-2 border-0 lg:px-2 inline-block tablet:absolute tablet:top-[10px] tablet:right-[10px] tablet:py-1 tablet:px-4"
                           >
                               Pay Bill
@@ -141,7 +141,7 @@ function Bills() {
                     />
                     <h3 className="text-[18px] leading-[22px] font-semibold text-content mb-11">Do you want to request monthly payment of Annual Premium?</h3>
                     <Link 
-                        href="#"
+                        href="/monthlyPayment"
                         className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mt-12 inline-block tablet:py-3 tablet:px-10 sm:px-4 xs:px-3 xs:text-sm"
                     >
                         Request Monthly Payment

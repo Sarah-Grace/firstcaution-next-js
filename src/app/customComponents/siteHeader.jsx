@@ -20,6 +20,9 @@ function SiteHeader() {
             case '/bills':
             case '/billDetail':
             case '/payBill':
+            case '/paymentPlan':
+            case '/paymentTerm':
+            case '/monthlyPayment':
                 setTitle(BILL_HEADER)
                 break;     
             case '/deposit':
