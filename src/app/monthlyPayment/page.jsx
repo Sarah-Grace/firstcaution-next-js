@@ -55,7 +55,7 @@ function MonthlyPayment() {
   return (
     <div className="pt-[30px] mb-14">
         <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[30px] px-10 pb-[65px]">
-            <BackArrowBtn link="payBill" title="Payment Term" />
+            <BackArrowBtn link="payBill" title="Request Monthly Payment" />
             <div className="flex mt-14">
                 <div className="w-1/3 pr-3">
                     <div>

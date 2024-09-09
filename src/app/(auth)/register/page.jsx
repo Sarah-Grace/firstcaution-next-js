@@ -1,7 +1,9 @@
+
 import Image from "next/image";
 import Link from "next/link";
 
 function Register() {
+
   return (
     <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(0,0,0,0.15)]'>
     <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto my-4 flex-auto'>
@@ -74,7 +76,7 @@ function Register() {
                         Login
                     </Link>
                 </h4>
-                <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">Sign Up</button>
+                <button className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">Sign Up</button>
             </form>
         </div>
     </div>

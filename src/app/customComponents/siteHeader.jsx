@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
-import { HOME_HEADER, CONTRACT_HEADER, BILL_HEADER, DEPOSIT_HEADER } from '@/constants/webConstants'
+import { HOME_HEADER, CONTRACT_HEADER, BILL_HEADER, DEPOSIT_HEADER, FIRSTMOOVE_HEADER } from '@/constants/webConstants'
 
 function SiteHeader() {
     const pathname = usePathname()
@@ -28,6 +28,9 @@ function SiteHeader() {
             case '/deposit':
                 setTitle(DEPOSIT_HEADER)
                 break; 
+            case '/firstmoove':
+                setTitle(FIRSTMOOVE_HEADER)
+                break;
         }
     },[pathname])
   return (
