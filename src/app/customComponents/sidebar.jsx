@@ -5,7 +5,7 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
 
-function Sidebar() {
+function Sidebar( {logout}) {
     const pathname = usePathname();
     const menuListData = [
         {
@@ -58,7 +58,7 @@ function Sidebar() {
         {
             menuIcon:"/images/icons/logout.svg", 
             menuTitle:"Logout",
-            path: "/login"
+            path: {logout}
         }
     ]
 
@@ -86,6 +86,19 @@ function Sidebar() {
                     {
                         menuListData2.map((listItem, index) => <SidebarList key={index} menuIcon={listItem.menuIcon} menuTitle={listItem.menuTitle} path={listItem.path} /> )
                     }
+                    <li className='' onClick={logout}>
+                        <div>
+                            <Link  href="" className= {`nav-style flex leading-[60px] p-0 pl-2 text-[#b1b1b1] active:text-[#3876DA] active:before:content-[""]`}>
+                                <Image
+                                    src="/images/icons/logout.svg"
+                                    width={24}
+                                    height={24}
+                                    alt=""
+                                />
+                                <span className="ml-[27px] lg:line-clamp-1">Logoutttt</span>
+                            </Link>
+                        </div>
+                    </li>
                     
                 </ul>
             </div>

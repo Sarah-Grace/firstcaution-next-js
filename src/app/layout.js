@@ -7,6 +7,9 @@ import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useState } from 'react';
+import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from "./store";
 
 config.autoAddCss = false;
 
@@ -21,10 +24,15 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        
+      
       <QueryClientProvider client={queryClient}>
+      <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         {
         console.log("children",children)}
-          <Sidebar />
+         {children}
+          {/* <Sidebar />
           <main>
             <div className="ml-[250px] lg:ml-0 sticky top-0 z-10">
               <SiteHeader />
@@ -32,8 +40,11 @@ export default function RootLayout({ children }) {
             <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-[50px] xs:px-1">
               {children}
             </div>
-          </main>
+          </main> */}
+          </PersistGate>
+          </Provider>
         </QueryClientProvider>
+        
       </body>
     </html>
   );
