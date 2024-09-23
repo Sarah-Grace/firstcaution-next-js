@@ -67,11 +67,10 @@ function Register() {
       [name]: ''
     }));
   };
-
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    
     // Validate form data using Zod schema
     const result = formSchema.safeParse(formData);
     const dob = format(date, 'yyyy-MM-dd');

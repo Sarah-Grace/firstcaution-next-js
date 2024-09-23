@@ -2,6 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "./slices/authSlice";
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import logger from "redux-logger";
 
 const persistConfig = {
     key: 'root',
@@ -10,12 +11,9 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
-    reducer: {
-        persistedReducer,
-        auth: authReducer,
-    },
-    devTools: process.env.NODE_ENV !== "production", // Enable Redux DevTools extension
-
-})
+    reducer: persistedReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware({ serializableCheck: false }).concat(logger),
+  });
 
 export const persistor = persistStore(store);

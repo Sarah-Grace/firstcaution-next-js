@@ -26,7 +26,7 @@ function LoginVerification() {
   const dispatch = useDispatch();
   const router = useRouter();
   const [otp, setOtp] = useState("");
-  const email = useSelector((state) => state.auth.userEmail);
+  const email = useSelector((state) => state.userEmail);
   const [errorOtp, setErrorOtp] =useState("");
 
 

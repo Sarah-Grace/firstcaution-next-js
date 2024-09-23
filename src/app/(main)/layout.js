@@ -48,7 +48,7 @@ export default function MainLayout({children}) {
         window.removeEventListener('mousemove', handleUserActivity);
         window.removeEventListener('keydown', handleUserActivity);
       };
-    }, []);
+    });
     return (
         <div>
             <Sidebar logout={logout} />

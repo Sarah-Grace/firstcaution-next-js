@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useMutation } from '@tanstack/react-query';
-import axiosInstance from '../../../../lib/axiosInstance';
+// import axiosInstance from '../../../../lib/axiosInstance';
+import axiosInstance from "@/lib/axiosInstance";
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import {addEmail, addTokens} from '../../../slices/authSlice';
@@ -25,9 +26,6 @@ function Login() {
     const [errorPassword, setErrorPassword] =useState("");
     const [errorUser, setErrorUser] =useState("");
 
-    useEffect(()=> {
-        console.log("First Run")
-    })
     const handleInput = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;

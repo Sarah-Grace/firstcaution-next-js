@@ -85,6 +85,10 @@ module.exports = {
           lineHeight: '17px',
           fontWeight: '600',
         }],
+        'h5': ['12px', {
+          lineHeight: '14px',
+          fontWeight: '600',
+        }],
         'p': ['10px', {
           lineHeight: '12px',
           fontWeight: '500',
