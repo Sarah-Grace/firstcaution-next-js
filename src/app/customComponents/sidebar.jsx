@@ -54,11 +54,6 @@ function Sidebar( {logout}) {
             menuIcon:"/images/icons/settings.svg", 
             menuTitle:"Settings",
             path: "/settings"
-        },
-        {
-            menuIcon:"/images/icons/logout.svg", 
-            menuTitle:"Logout",
-            path: {logout}
         }
     ]
 
@@ -95,11 +90,10 @@ function Sidebar( {logout}) {
                                     height={24}
                                     alt=""
                                 />
-                                <span className="ml-[27px] lg:line-clamp-1">Logoutttt</span>
+                                <span className="ml-[27px] lg:line-clamp-1">Logout</span>
                             </Link>
                         </div>
                     </li>
-                    
                 </ul>
             </div>
         </div>

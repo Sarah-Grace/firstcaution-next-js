@@ -1,11 +1,11 @@
-import CardHeader from "../../customComponents/CardHeader"
 import Image from "next/image"
-import BillListItem from "../../customComponents/billListItem"
-import DepositListItem from "../../customComponents/depositListItem";
-import MessageListItem from "../../customComponents/messageListItem";
-import CustomBanner from "../../customComponents/customBanner";
-import FirstCoinBanner from "../../customComponents/firstCoinBanner";
+import CardHeader from "@/app/customComponents/CardHeader";
+import BillListItem from "@/app/customComponents/billListItem";
+import DepositListItem from "@/app/customComponents/depositListItem";
+import MessageListItem from "@/app/customComponents/messageListItem";
 import Link from "next/link";
+import FirteesCard from "@/app/customComponents/firteesCard";
+import FirstCoinBannerHome from "@/app/customComponents/firstCoinBAnnerHome";
 
 function Home() {
 
@@ -50,17 +50,48 @@ function Home() {
       chat: "Lorem ipsum dolor sit amet ...", 
       time: "10:45 PM"
     },
-];
+  ];
+  const firstees = [
+    {
+      image: "/images/firstees-card-bg.png",
+      logo: "/images/firstees-logo.png",
+      badge: "Time-limited",
+      badgeColor: "bg-[#D93F50]",
+      badgeIcon: "before:bg-[url('/images/icons/badge-icon.png')]",
+      title: "Suhasini",
+      discount: "Up to 30% off",
+      time: "32 min",
+      date: "18 Sep-24 Sep",
+      rating: "4.7", 
+      ratingcount: "123"
+    },
+    {
+      image: "/images/firstees-card-bg.png",
+      logo: "/images/firstees-logo.png",
+      badge: "Time-limited",
+      badgeColor: "bg-[#34C759]",
+      badgeIcon: "before:bg-[url('/images/icons/badge-icon-green.png')]",
+      title: "Free",
+      discount: "Up to 30% off",
+      time: "32 min",
+      date: "",
+      rating: "4.7", 
+      ratingcount: "123"
+    }
+  ];
+
+
+
 
 console.log(MessagesList)
   return (
     <div className="flex gap-6 pb-10 xxl:flex-wrap">
 
       <div className="basis-2/5 xxl:basis-full">
-        <div className="bg-secondary px-5 py-6 mt-5 rounded-10 shadow-c1 xs:px-1">
+        <div className="bg-secondary px-5 py-6 rounded-10 shadow-c1 xs:px-1">
           <h2 className={'text-h2 font-medium mb-6 text-white lgs:text-2xl lgs:leading-[29px] mid-xxl:text-2xl mid-xxl:leading-[29px]'} >My Dashboard</h2>
           <div className="">
-            <div className="bg-white rounded-6 px-5 py-[15px] xs:px-2">
+            <div className="bg-white rounded-6 px-5 py-[15px] xs:px-2 relative">
               <div className="flex justify-between mb-4 lgs:mb-0 mid-xxl:mb-0">
                 <div>
                   <h3 className="text-h3 text-content lgs:text-xl lgs:leading-6 mid-xxl:text-xl mid-xxl:leading-6">Current contracts</h3>
@@ -82,9 +113,11 @@ console.log(MessagesList)
                       <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">Switzerland</p>
                     </div>
                 </div>
-                <Link href="" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5">
+                <Link href="" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px]">
                 Show All
                 </Link>
+              </div>
+              <div className="bg-[url(/images/icons/dotted-line.png)] h-[1px] w-[calc(100%-16px)] absolute bottom-0 left-2">
               </div>
             </div>
             <div className="bg-white rounded-6 px-5 pt-[15px] pb-[6px] xs:px-2">
@@ -92,33 +125,65 @@ console.log(MessagesList)
                 return <DepositListItem key={index} icon={listItem.icon} title={listItem.title} amount={listItem.amount} />
               })}
             </div>
-          </div>
-        </div>
-        <FirstCoinBanner />
-      </div>
-      <div className="basis-3/5 xxl:basis-full">
-        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
-          <CardHeader textColor="" link="#" title="My Bills" />
-          <div>
-            <div className="mb-2">
-              <BillListItem icon="/images/icons/open-bill.png" billType="Open Bills" link="/bills/" />
-            </div>
-            <div>
-              <BillListItem icon="/images/icons/paid-bill.png" billType="Paid bills" link="/bills/" />
+            <div className="">
+              <div className="mb-2 bg-white rounded-6">
+                <BillListItem icon="/images/icons/open-bill.png" billType="Open Bills" link="/bills" />
+              </div>
+              <div className="bg-white rounded-6">
+                <BillListItem icon="/images/icons/paid-bill.png" billType="Paid bills" link="/bills" />
+              </div>
             </div>
           </div>
         </div>
-        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
-          <CardHeader textColor="" link="#" title="My Deposit" />
-          {myDepositList.map((listItem, index) => {
-            return <DepositListItem key={index} icon={listItem.icon} title={listItem.title} amount={listItem.amount} />
-          })}
-        </div>
-        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
+        <div className="bg-white p-5 pb-0 mt-5 rounded-10 border border-[#E6EFF5]">
           <CardHeader textColor="" link="#" title="Message" />
           {MessagesList.map((listItem, index) => {
             return <MessageListItem key={index} avatar={listItem.avatar} name={listItem.name} chat={listItem.chat} time={listItem.time} />
           })}
+        </div>
+      </div>
+      <div className="basis-3/5 xxl:basis-full">
+        <div className="bg-[#D3E9FF] px-[21px] pt-[25px] pb-5 rounded-10">
+          <CardHeader textColor="" link="#" title="Firstees" />
+          <div className="flex gap-3">
+            {firstees.map((firstees, index) => {
+              return (
+                <div className="basis-1/2" key={index}>
+                  <FirteesCard 
+                    image={firstees.image} 
+                    logo={firstees.logo} 
+                    badge= {firstees.badge}  
+                    badgeColor= { firstees.badgeColor}
+                    badgeIcon= {firstees.badgeIcon}
+                    title= { firstees.title}
+                    discount= { firstees.discount}
+                    time= { firstees.time}
+                    date= { firstees.date}
+                    rating = { firstees.rating}
+                    ratingcount= { firstees.ratingcount}/>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+        <FirstCoinBannerHome />
+
+        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
+          <CardHeader textColor="" link="#" title="Firstmoove" />
+          <div className="flex gap-3">
+            <div className="flex items-center flex-auto gap-[14px] py-[11px] pl-[18px] pr-[60px] bg-[#F7F6F6] rounded-8">
+              <Image src="/images/icons/id.png" alt="" width={20} height={16} />
+              <h4 className="text-h4 font-medium text-grey-2">ID</h4>
+            </div>
+            <div className="flex items-center flex-auto gap-[14px] py-[11px] pl-[18px] pr-[50px] bg-[#F7F6F6] rounded-8">
+              <Image src="/images/icons/passport.png" alt="" width={20} height={16} />
+              <h4 className="text-h4 font-medium text-grey-2">Passport</h4>
+            </div>
+            <div className="flex items-center flex-auto gap-[14px] py-[11px] pl-[18px] pr-[10px] bg-[#F7F6F6] rounded-8">
+              <Image src="/images/icons/debt.png" alt="" width={20} height={16} />
+              <h4 className="text-h4 font-medium text-grey-2">Debt Enforcement Certificate</h4>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  webpack: (config) => {
-    return config; // No custom Webpack handling needed for CSS
-  },
+  // webpack: (config) => {
+  //   return config; // No custom Webpack handling needed for CSS
+  // },
 
   async redirects() {
     return [

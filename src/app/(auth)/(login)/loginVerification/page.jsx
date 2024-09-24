@@ -10,7 +10,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../../../../lib/axiosInstance'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {addToken } from '../../../slices/authSlice';
+import {addTokens } from '../../../slices/authSlice';
 import { useRouter } from 'next/navigation';
   
 
@@ -40,7 +40,7 @@ function LoginVerification() {
   const mutation = useMutation({
     mutationFn: verifyOtp,
     onSuccess: (response) => {
-      dispatch(addToken(response.refresh_token));
+      dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}));
       router.push('/home');
       console.log("Response",response.refresh_token);
     },

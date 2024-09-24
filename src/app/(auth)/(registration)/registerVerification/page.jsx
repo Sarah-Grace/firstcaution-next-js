@@ -15,7 +15,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '../../../../lib/axiosInstance'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {addToken } from '../../../slices/authSlice';
+import {addTokens } from '../../../slices/authSlice';
   
 
 const verifyOtp = async (otp) => {
@@ -48,7 +48,7 @@ function RegisterVerification() {
   const mutation = useMutation({
     mutationFn: verifyOtp,
     onSuccess: (response) => {
-      dispatch(addToken(response.refresh_token));
+      dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}));
       openDialog();
       console.log("Response",response.refresh_token);
     },

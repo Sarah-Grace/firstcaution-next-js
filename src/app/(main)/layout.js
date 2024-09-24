@@ -5,7 +5,7 @@ import { useEffect, useRef } from 'react';
 import { startSession, endSession, isSessionActive } from '../(main)/utils/session';
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
-import {resetAll} from '../slices/authSlice';
+import { resetAll } from "@/app/slices/authSlice";
 
 export default function MainLayout({children}) {
     const dispatch = useDispatch();

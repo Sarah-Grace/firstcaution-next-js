@@ -13,9 +13,6 @@ import { createSlice } from "@reduxjs/toolkit";
          state.userEmail = action.payload.userEmail
          state.userName = action.payload.userName
       },
-      addToken:(state, action) => {
-         state.token = action.payload
-      },
       addEmail: (state, action) => {
          state.userEmail = action.payload
       },
@@ -35,5 +32,5 @@ import { createSlice } from "@reduxjs/toolkit";
     }
  })
 
- export const { addUserInfo, addToken, addEmail, addOtp, addTokens, resetAll } = authSlice.actions;
+ export const { addUserInfo, addEmail, addOtp, addTokens, resetAll } = authSlice.actions;
  export default authSlice.reducer;
