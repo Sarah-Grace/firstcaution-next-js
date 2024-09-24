@@ -35,6 +35,9 @@ function DepositAdjust() {
     const handleFlexibleValue = (onValueChange) => {
         setFlexibleAmount(onValueChange)
     }
+    const handleFlexibleVAlueInput = (e) => {
+        setFlexibleAmount(e.target.value)
+    }
   return (
     <div className="pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white">
         <BackArrowBtn link="/home" title="Adjust Detail"/>
@@ -61,6 +64,7 @@ function DepositAdjust() {
                                 className="bg-transparent w-full focus-visible:outline-none"
                                 placeholder={flexibleAmount}
                                 value={flexibleAmount}
+                                readOnly
                             /> 
                         </div>
                         <Slider defaultValue={[flexibleAmount]} max={1000} onValueChange={handleFlexibleValue} />

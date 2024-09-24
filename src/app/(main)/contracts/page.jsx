@@ -72,7 +72,7 @@ function Contracts() {
     <div className="pt-[30px] mb-14">
         <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px]">
             <Tabs defaultValue="All" onValueChange={(t) => { setFilterStatus(t) }} className="">
-                <TabsList>
+                <TabsList className= "border-b border-[#E6EFF5] w-full justify-start">
                     {status.map((status, index) => {
                         console.log(status);
                         return (

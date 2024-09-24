@@ -34,9 +34,9 @@ function DepositDetail() {
                 })}
             </div>
             <div className="w-2/4 self-end text-end">
-                <button className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto leading-4">
+                <a href="/adjustDeposit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto leading-4">
                     Adjust
-                </button>
+                </a>
             </div>
         </div>
     </div>

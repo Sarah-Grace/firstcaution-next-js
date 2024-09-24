@@ -26,6 +26,7 @@ function SiteHeader() {
                 setTitle(BILL_HEADER)
                 break;     
             case '/deposit':
+            case '/adjustDeposit':
                 setTitle(DEPOSIT_HEADER)
                 break; 
             case '/firstmoove':
@@ -42,7 +43,7 @@ function SiteHeader() {
             alt=""
             className="xl:block hidden tablet:w-[90px] tablet:h-[28px]"
         />
-        <h1 className='text-h1 tablet:text-[18px]'>{title}</h1>
+        <h1 className='text-h1 tablet:text-[18px] text-content'>{title}</h1>
         <div className='flex justify-center items-center gap-8'>
             <div className='w-50px h-50px rounded-full bg-[#F5F5F5] flex justify-center items-center lg:hidden'>
                 <Image

@@ -7,7 +7,7 @@ import { useMutation } from '@tanstack/react-query';
 import axiosInstance from "@/lib/axiosInstance";
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
-import {addEmail, addTokens} from '../../../slices/authSlice';
+import {addEmail, addTokens} from '@/app/slices/authSlice';
 
 // Function for login
 const loginUser = async (User) => {
@@ -92,6 +92,7 @@ function Login() {
                             value={formData.email}
                         />
                     </div>
+                    {errorEmail && <p className="mb-3 -mt-3 text-red-600">{errorEmail}</p>}
                     <div className={`rounded-6 relative flex w-full ${errorPassword !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]" }`}>
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -111,9 +112,12 @@ function Login() {
                             value={formData.password}
                         />
                     </div>
+                    {
+
+                    }
                     <Link 
-                    href="/forgetPassword"
-                    className="block mt-3 text-primary leading-[17px] text-sm text-end"
+                        href="/forgetPassword"
+                        className="block mt-3 text-primary leading-[17px] text-sm text-end"
                     >
                         Recover Password
                     </Link>

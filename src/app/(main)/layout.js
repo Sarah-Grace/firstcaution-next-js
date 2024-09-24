@@ -56,7 +56,7 @@ export default function MainLayout({children}) {
                 <div className="ml-[250px] lg:ml-0 sticky top-0 z-10">
                 <SiteHeader />
                 </div>
-                <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-[50px] xs:px-1">
+                <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-[50px] xs:px-1 pb-7">
                     {children}
                 </div>
             </main>
