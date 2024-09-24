@@ -135,20 +135,20 @@ console.log(MessagesList)
             </div>
           </div>
         </div>
-        <div className="bg-white p-5 pb-0 mt-5 rounded-10 border border-[#E6EFF5]">
+        <div className="bg-white p-5 pb-0 mt-5 rounded-10 border border-[#E6EFF5] tablet:hidden">
           <CardHeader textColor="" link="#" title="Message" />
           {MessagesList.map((listItem, index) => {
             return <MessageListItem key={index} avatar={listItem.avatar} name={listItem.name} chat={listItem.chat} time={listItem.time} />
           })}
         </div>
       </div>
-      <div className="basis-3/5 xxl:basis-full">
-        <div className="bg-[#D3E9FF] px-[21px] pt-[25px] pb-5 rounded-10">
+      <div className="basis-3/5 xxl:basis-full flex flex-col">
+        <div className="bg-[#D3E9FF] px-[21px] pt-[25px] pb-5 rounded-10 tablet:order-1">
           <CardHeader textColor="" link="#" title="Firstees" />
-          <div className="flex gap-3">
+          <div className="flex gap-3 tablet:flex-wrap">
             {firstees.map((firstees, index) => {
               return (
-                <div className="basis-1/2" key={index}>
+                <div className="basis-1/2 tablet:basis-full " key={index}>
                   <FirteesCard 
                     image={firstees.image} 
                     logo={firstees.logo} 
@@ -166,11 +166,12 @@ console.log(MessagesList)
             })}
           </div>
         </div>
-        <FirstCoinBannerHome />
-
-        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5]">
+        <div className="tablet:order-3 md1:hidden">
+          <FirstCoinBannerHome />
+        </div>
+        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5] tablet:order-2">
           <CardHeader textColor="" link="#" title="Firstmoove" />
-          <div className="flex gap-3">
+          <div className="flex gap-3 flex-wrap">
             <div className="flex items-center flex-auto gap-[14px] py-[11px] pl-[18px] pr-[60px] bg-[#F7F6F6] rounded-8">
               <Image src="/images/icons/id.png" alt="" width={20} height={16} />
               <h4 className="text-h4 font-medium text-grey-2">ID</h4>

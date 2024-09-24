@@ -33,7 +33,7 @@ function FirstCoinBannerHome() {
                         />
                         <h5 className="text-h5 font-normal w-[130px] flex-[0_0_130px] text-content">You get <span className="font-medium">50 Coins</span> per sponsored clients</h5>
                     </div>
-                    <button className="rounded-8 bg-secondary text-white py-2 px-[33px] border-0 mx-auto block leading-4 ml-[60px]">Invite</button>
+                    <button className="rounded-8 bg-secondary text-white py-2 px-[33px] border-0 mx-auto block leading-4 ml-[60px] tablet:ml-[10px]">Invite</button>
                 </div>
             </div>
             <div className="banner-image firstcoin-home-banner md1:hidden">

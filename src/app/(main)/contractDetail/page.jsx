@@ -6,24 +6,16 @@ import Link from "next/link";
 function ContractDetail() {
     const contractInfoList = [
         {
-            title: "Contract ID",
-            detail: "382468"
+            title: "Granted Amount",
+            detail: "CHF 450.00"
         },
         {
-            title: "Issue Date",
-            detail: "April 8,2024"
+            title: "Deposit Amount",
+            detail: "CHF 420.00"
         },
         {
-            title: "End Date",
-            detail: "May 18,2025"
-        },
-        {
-            title: "Payment terms",
-            detail: "Net 30"
-        },
-        {
-            title: "Contract insurance",
-            detail: "Yearly"
+            title: "Annual Premium",
+            detail: "CHF 130.00"
         }
     ]
   return (
@@ -41,8 +33,8 @@ function ContractDetail() {
                             height={60}
                          />
                          <div>
-                            <h2 className="text-h2 mb-2">John Duo</h2>
-                            <h3 className="text-h3 font-normal text-grey-2 mb-2">775 Rolling Green Rd.</h3>
+                            <h2 className="text-h2 mb-2 text-content">Contract ID</h2>
+                            <h3 className="text-h3 font-normal text-grey-2 mb-2">665789</h3>
                          </div>
                     </div>
                     <div className="border border-[#34C759] py-0 px-5 h-[25px] rounded-8">
@@ -52,9 +44,24 @@ function ContractDetail() {
                 <div>
                     {contractInfoList.map((list, index) => {
                         return (
-                            <CustomList key={index} title={list.title} info={list.detail} />
+                            <CustomList key={index} title={list.title} info={list.detail} className="text-content" />
                         )
                     })}
+                </div>
+                <div className="bg-[#E5EFFF] py-4 px-[26px] rounded-8">
+                    <div className="flex justify-between items-center ">
+                        <h3 className="text-h3 font-medium text-content">Firstcoin</h3>
+                        <h3 className="text-h3 font-medium text-content">90</h3>
+                    </div>
+                    <div className="flex items-center mt-7 gap-2">
+                        <Image  
+                            src="/images/icons/person.png"
+                            alt=""
+                            height={17.5}
+                            width={15}
+                        />
+                        <h4 className="text-h4 font-medium text-grey-2">Sponsored Person: <span className="text-content">John Duo</span></h4>
+                    </div>
                 </div>
             </div>
             <div className="w-2/4 pl-6">
@@ -95,9 +102,18 @@ function ContractDetail() {
                         </button>
                     </div>
                 </div>
-                <div className="mt-14">
-                    <button href="#"  className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
+                <div className="mt-14 flex justify-center items-center gap-3">
+                    <button href="#"  className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4">
                         Download PDF
+                    </button>
+                    <button className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-4">
+                        <Image 
+                            src="/images/icons/upload.png" 
+                            alt="" 
+                            height={26} 
+                            width={20} 
+                            className="mx-auto"
+                        />
                     </button>
                 </div>
             </div>
@@ -106,4 +122,4 @@ function ContractDetail() {
   )
 }
 
-export default ContractDetail
+export default ContractDetail 
