@@ -30,7 +30,7 @@ function RegisterVerification() {
   const dispatch = useDispatch();
   const [otp, setOtp] = useState("");
   const [isDialogOpen, setDialogOpen] = useState(false);
-  const email = useSelector((state) => state.auth.userEmail);
+  const email = useSelector((state) => state.userEmail);
 
 
   // Function to open the dialog
@@ -59,8 +59,8 @@ function RegisterVerification() {
   });
   return (
     <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)]  bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-      <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto my-4 flex-auto'>
-          <div className='flex flex-col justify-center items-center max-h-full w-full overflow-y-auto bg-white py-11 px-[34px] rounded-8'>
+      <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto py-4 flex-auto'>
+          <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
             <h2 className="text-h2 text-heading text-center mb-10">Verification</h2>
               <Image
                   src="/images/password.png"
@@ -69,7 +69,7 @@ function RegisterVerification() {
                   width={134}
                   height={134}
               />
-              <div className="max-w-[300px]">
+              <div className="max-w-[300px] mx-auto">
                 
                 <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">Enter the verification code </h3>
                 <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">Verify your code we just send you to your email address</h4>

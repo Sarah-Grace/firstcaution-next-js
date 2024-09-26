@@ -140,7 +140,7 @@ module.exports = {
       "xxl" : {'max':'1280px'},
       "mid-xxl": {'max':'1280px', 'min':'1024px'},
       "xl" : {'max':'1024px'},
-      "lg" : {'max':'991px'},
+      "lg" : {'max':'992px'},
       "tablet" :{'max':'768px'},
       "md" : {'max':'767px'},
       "md1" : {'max':'676px'},

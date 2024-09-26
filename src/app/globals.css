@@ -48,6 +48,27 @@ body {
   left: -39px;
   border-radius: 0 10px 10px 0;
 }
+/* scroll start */
+/* width */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #9f9fa0; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
+/* scroll end */
 @layer base {
   :root {
     --background: 0 0% 100%;

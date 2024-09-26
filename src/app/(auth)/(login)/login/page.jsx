@@ -7,12 +7,11 @@ import { useMutation } from '@tanstack/react-query';
 import axiosInstance from "@/lib/axiosInstance";
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
-import {addEmail, addTokens} from '@/app/slices/authSlice';
+import {addEmail, addTokens, resetAll} from '@/app/slices/authSlice';
 
 // Function for login
 const loginUser = async (User) => {
     const response = await axiosInstance.post('/api/login/', User);
-    console.log(response)
     return response.data;
 };
 function Login() {
@@ -25,7 +24,9 @@ function Login() {
     const [errorEmail, setErrorEmail] =useState("");
     const [errorPassword, setErrorPassword] =useState("");
     const [errorUser, setErrorUser] =useState("");
-
+    useEffect(() => {
+        dispatch(resetAll());
+    },[])
     const handleInput = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
@@ -41,7 +42,8 @@ function Login() {
         onSuccess: (response) => {
             console.log(response.token)
             dispatch(addEmail(formData.email));
-            dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}))
+            // dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}))
+
             router.push('/loginVerification');
         },
         onError: (error) => {
@@ -61,8 +63,8 @@ function Login() {
     }
   return (
     <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto my-4 flex-auto'>
-            <div className='flex flex-col justify-center items-center max-h-full w-full overflow-y-auto bg-white py-11 px-[34px] rounded-8'>
+        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto'>
+            <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
                 <Image
                     src="/images/logos/logo.png"
                     alt=""

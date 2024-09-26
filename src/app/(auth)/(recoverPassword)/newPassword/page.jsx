@@ -16,7 +16,7 @@ const newPassword = async (Password) => {
 
 function NewPassword() {
     const router = useRouter();
-    const email = useSelector((state) => state.auth.userEmail);
+    const email = useSelector((state) => state.userEmail);
     const [formData, setFormData] = useState({
         password: "",
         confirmPassword: ""
@@ -54,8 +54,8 @@ function NewPassword() {
     }
   return (
     <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)]  bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-      <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto my-4 flex-auto'>
-          <div className='flex flex-col justify-center items-center max-h-full w-full overflow-y-auto bg-white py-11 px-[34px] rounded-8'>
+      <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto py-4 flex-auto'>
+          <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
             <h2 className="text-h2 text-heading text-center mb-10">New Password?</h2>
               <Image
                   src="/images/password.png"

@@ -1,3 +1,4 @@
+"use client"
 import Image from "next/image"
 import CardHeader from "@/app/customComponents/CardHeader";
 import BillListItem from "@/app/customComponents/billListItem";
@@ -6,29 +7,46 @@ import MessageListItem from "@/app/customComponents/messageListItem";
 import Link from "next/link";
 import FirteesCard from "@/app/customComponents/firteesCard";
 import FirstCoinBannerHome from "@/app/customComponents/firstCoinBAnnerHome";
+import { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axiosInstance'
+import { useSelector, useDispatch } from 'react-redux';
+
+
+const homedata = async (otp) => {
+  const response = await axiosInstance.get('/api/client/deshboard/', otp);
+  console.log(response)
+  return response.data;
+};
 
 function Home() {
 
+  const email = useSelector((state) => state.userEmail);
+  const [currentContracts, setCurrentContracts] = useState(0);
+  const [annualPremium, setAnnualPremium] = useState(0);
+  const [grantedAmount, setGrantedAmount] = useState(0);
+  const [depositAmount, setDepositAmount] = useState(0);
+  const [firstcoin, setFirstcoin] = useState(0);
   const myDepositList = [
     {
       icon: "/images/icons/granted-amount.png",
       title: "Granted Amount",
-      amount: "CHF 450.00"
+      amount: `CHF ${grantedAmount}`
     },
     {
       icon: "/images/icons/deposit-amount.png",
       title: "Deposit Amount",
-      amount: "CHF 460.00"
+      amount: `CHF ${depositAmount}`
     },
     {
       icon: "/images/icons/annual-premium.png",
       title: "Annual Premium",
-      amount: "CHF 200.00"
+      amount: `CHF ${annualPremium}`
     },
     {
       icon: "/images/icons/firstcoin-icon.png",
       title: "Firstcoin",
-      amount: "90"
+      amount: firstcoin
     }
   ];
   const MessagesList = [
@@ -79,14 +97,25 @@ function Home() {
       ratingcount: "123"
     }
   ];
+  useEffect(()=> {
+    mutation.mutate({email});
+  },[])
+  // Mutation hook 
+  const mutation = useMutation({
+    mutationFn: homedata,
+    onSuccess: (response) => {
+      setCurrentContracts(response.total_active_contracts);
+      setAnnualPremium(response.total_annual_premium);
+      setDepositAmount(response.total_deposited_amount);
+      setGrantedAmount(response.total_guaranteed_amount);
+      setFirstcoin(response.firstcaution_coin);
+    },
+    onError: (error) => {
 
-
-
-
-console.log(MessagesList)
+    },
+  });
   return (
     <div className="flex gap-6 pb-10 xxl:flex-wrap">
-
       <div className="basis-2/5 xxl:basis-full">
         <div className="bg-secondary px-5 py-6 rounded-10 shadow-c1 xs:px-1">
           <h2 className={'text-h2 font-medium mb-6 text-white lgs:text-2xl lgs:leading-[29px] mid-xxl:text-2xl mid-xxl:leading-[29px]'} >My Dashboard</h2>
@@ -97,7 +126,7 @@ console.log(MessagesList)
                   <h3 className="text-h3 text-content lgs:text-xl lgs:leading-6 mid-xxl:text-xl mid-xxl:leading-6">Current contracts</h3>
                   <p className="text-p lgs:text-sm lgs:leading-[17px] mid-xxl:text-sm mid-xxl:leading-[17px] text-grey-2">Keep contracts in check</p>
                 </div>
-                <p className="text-5xl font-medium leading-9 text-content lgs:text-7xl mid-xxl:text-7xl">12</p>
+                <p className="text-5xl font-medium leading-9 text-content lgs:text-7xl mid-xxl:text-7xl">{currentContracts}</p>
               </div>
               <div className="flex justify-between gap-2">
                 <div className="flex justify-start items-center gap-2">

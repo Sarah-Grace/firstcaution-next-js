@@ -2,11 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
  const authSlice = createSlice({
     name: "auth",
     initialState: {
+      apiKey: "Api-Key HOnVzHkx.IW0KBoWpwjGfBSF19xfMyKxS8kfwUVeo",
       userEmail: "",
       userName: "",
       accessToken: "",
       refreshToken: "",
       otp: "",
+      contractId: ""
     },
     reducers:{
       addUserInfo: (state, action) => {
@@ -23,6 +25,9 @@ import { createSlice } from "@reduxjs/toolkit";
          state.accessToken = action.payload.accessToken
          state.refreshToken = action.payload.refreshToken
       },
+      addContractId: (state, action) => {
+         state.contractId = action.payload
+      },
       resetAll: (state, action) => {
          state.userEmail= ""
          state.userName= ""
@@ -32,5 +37,5 @@ import { createSlice } from "@reduxjs/toolkit";
     }
  })
 
- export const { addUserInfo, addEmail, addOtp, addTokens, resetAll } = authSlice.actions;
+ export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, resetAll } = authSlice.actions;
  export default authSlice.reducer;
