@@ -41,7 +41,7 @@ const createUser = async (newUser) => {
 function Register() {
     const dispatch = useDispatch();
     const router = useRouter();
-
+    const [emailError, setEmailError] = useState("");
     // State for form inputs
   const [formData, setFormData] = useState({
     fname: '',
@@ -176,6 +176,7 @@ function Register() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                         />
                     </div>
+                    {emailError  && <p className="mb-3 -mt-3 text-red-600">{emailError}</p>}
                     <div>
                         {errors.email && <p className="mb-3 -mt-3 text-red-600">{errors.email}</p>}
                     </div>
