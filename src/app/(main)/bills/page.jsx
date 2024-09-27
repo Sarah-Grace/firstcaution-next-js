@@ -3,83 +3,72 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faCheck} from '@fortawesome/free-solid-svg-icons'
+import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from "react";
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axiosInstance from '@/lib/axiosInstance';
+import { useDispatch } from "react-redux";
+
+import { addInvoiceId } from "@/app/slices/authSlice";
+import { useRouter } from 'next/navigation';
+
+const billsdata = async (otp) => {
+  const response = await axiosInstance.get('/api/client/invoices/', otp);
+  return response.data;
+};
 
 function Bills() {
+  const dispatch = useDispatch();
+  const router = useRouter();
   const tabNames = ["Open Bills", "Paid Bills"];
-  const openBillsData = [
-    {
-        category: "Annual Premium",
-        icon: "/images/icons/bill-1.png",
-        date: "April 8,2024",
-        amount: "CHF 540.00",
-        status: "Open"
+  const [invoicesData , setInvoicesData ] = useState([])
+  // const openBillsData = [
+  //   {
+  //       category: "Annual Premium",
+  //       icon: "/images/icons/bill-1.png",
+  //       date: "April 8,2024",
+  //       amount: "CHF 540.00",
+  //       status: "Open"
+  //   },
+  //   {
+  //     category: "Claim",
+  //     icon: "/images/icons/bill-2.png",
+  //     date: "April 8,2024",
+  //     amount: "CHF 540.00",
+  //     status: "Open"
+  //   },
+  // ]
+  const openBillsData = invoicesData.filter((invoice) => invoice.Status !== "Closed")
+  // const paidBillsData = [
+  //     {
+  //         name: "John Duo",
+  //         date: "April 8,2024",
+  //         paidTo: "PG&E",
+  //         paymentMethod: "E-Bill",
+  //         status: "Paid",
+  //         link: "billDetail"
+  //     }
+  // ];
+  const paidBillsData = invoicesData.filter((invoice) => invoice.Status === "Closed")
+  useEffect(()=> {
+    mutation.mutate();
+  },[]);
+  const mutation = useMutation({
+    mutationFn: billsdata,
+    onSuccess: (response) => {
+      console.log(response.invoices)
+      setInvoicesData(response.invoices)
     },
-    {
-      category: "Claim",
-      icon: "/images/icons/bill-2.png",
-      date: "April 8,2024",
-      amount: "CHF 540.00",
-      status: "Open"
-    },
-  ]
-  const paidBillsData = [
-      {
-          name: "John Duo",
-          date: "April 8,2024",
-          paidTo: "PG&E",
-          paymentMethod: "E-Bill",
-          status: "Paid",
-          link: "billDetail"
-      },
-      {
-        name: "Jerome Bell",
-        date: "April 8,2024",
-        paidTo: "PG&E",
-        paymentMethod: "E-Bill",
-        status: "Paid",
-        link: "billDetail"
-      },
-      {
-        name: "Robert Fox",
-        date: "April 8,2024",
-        paidTo: "PG&E",
-        paymentMethod: "E-Bill",
-        status: "Paid",
-        link: "billDetail"
-      },
-      {
-        name: "Floyd Miles",
-        date: "April 8,2024",
-        paidTo: "PG&E",
-        paymentMethod: "E-Bill",
-        status: "Paid",
-        link: "billDetail"
-      },
-      {
-        name: "Devon Lane",
-        date: "April 8,2024",
-        paidTo: "PG&E",
-        paymentMethod: "E-Bill",
-        status: "Paid",
-        link: "billDetail"
-      },
-      {
-        name: "Jane Cooper",
-        date: "April 8,2024",
-        paidTo: "PG&E",
-        paymentMethod: "E-Bill",
-        status: "Paid",
-        link: "billDetail"
-      }
-  ];
+    onError: (error) => {
+
+    },  
+  });
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative tablet:pr-1 tablet:pl-1">
           <Tabs defaultValue={tabNames[0]} className="">
               <TabsList className="border-b border-[#E6EFF5] w-full justify-start">
                   {tabNames.map((tab, index) => {
-                      console.log(tabNames);
                       return (
                           <TabsTrigger 
                               key={`tab${index}`} 
@@ -97,26 +86,26 @@ function Bills() {
                       <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 tablet:block tablet:relative" key={index}>
                           <div className="flex-[1_1_30%] flex items-center gap-3">
                               <Image
-                                src={obd.icon}
+                                src="/images/icons/bill-1.png"
                                 alt=""
                                 className="w-14 h-14 tablet:hidden"
                                 width={60}
                                 height={60}
                               />
-                              <h4 className="text-base leading-[19px] font-semibold tablet:mb-[30px] sm:text-sm">{obd.category}</h4>
+                              <h4 className="text-base leading-[19px] font-semibold tablet:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
                           </div>
                           <div className="flex-[0_0_20%] tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Issue Date:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{obd.date}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{obd['Due Date']}</p>
                           </div>
                           <div className="flex-[0_0_20%] tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Amount:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{obd.amount}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['Amount']}</p>
                           </div>
                           <div className="flex-[0_0_10%] tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Status:</p>
                               <p className="text-[15px] leading-[18px] font-medium relative pl-[10px] after:content[''] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 after:bg-[#34C759] text-[#34C759]">
-                                {obd.status}
+                                Open
                               </p>
                           </div>
                           <Link 
@@ -155,30 +144,38 @@ function Bills() {
                     return (
                       <div className="flex justify-between items-center gap-[5px] py-5 px-8 border-b border-[#E6EFF5] bg-bgc-3 last:border-b-0 tablet:block tablet:relative sm:px-4" key={index}>
                           <div className="block flex-[0_0_20%] xxl:flex-auto  tablet:flex tablet:gap-2 tablet:flex-col-reverse">
-                              <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d.name}</h4>
-                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] tablet:text-[18px] tablet:font-medium tablet:mb-5 tablet:text-content sm:text-sm">{d.date}</h4>
+                              <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d['Payer Name']}</h4>
+                              {console.log(d['Payer Name'])}
+                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] tablet:text-[18px] tablet:font-medium tablet:mb-5 tablet:text-content sm:text-sm">{d['Due Date']}</h4>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2">Paid To:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{d.paidTo}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">PG&E</p>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2">Payment Method</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{d.paymentMethod}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{d['Payment method']}</p>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 tablet:mb-0">Status:</p>
                               <p className="w-[57px] text-white bg-[#34C759] text-center text-xs font-medium rounded-8 leading-4">
                                 <span><FontAwesomeIcon icon={faCheck} /></span>
-                                <span className="pl-1">{d.status}</span>
+                                <span className="pl-1">Paid</span>
                               </p>
                           </div>
+                          <div onClick={() => 
+                            {
+                                dispatch(addInvoiceId(d['InvoiceId']));
+                                router.push('/billDetail');
+                            }
+                          }>
                           <Link 
-                              href={d.link}
+                              href=""
                               className="block border border-[#919191] text-[#919191] py-0 px-[30px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all tablet:absolute tablet:top-[10px] tablet:right-[10px] tablet:text-primary tablet:p-0 tablet:border-0"
                           >
                               View Details
-                          </Link>
+                          </Link> 
+                          </div>
                       </div>
                     )
                   })

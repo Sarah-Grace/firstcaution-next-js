@@ -13,7 +13,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import {addTokens } from '../../../slices/authSlice';
 import { useRouter } from 'next/navigation';
   
-
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
   console.log(response)

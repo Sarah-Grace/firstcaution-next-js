@@ -27,6 +27,7 @@ function Home() {
   const [grantedAmount, setGrantedAmount] = useState(0);
   const [depositAmount, setDepositAmount] = useState(0);
   const [firstcoin, setFirstcoin] = useState(0);
+  const [apiError, setApiError] = useState("")
   const myDepositList = [
     {
       icon: "/images/icons/granted-amount.png",
@@ -111,7 +112,7 @@ function Home() {
       setFirstcoin(response.firstcaution_coin);
     },
     onError: (error) => {
-
+      setApiError(error.message);
     },
   });
   return (

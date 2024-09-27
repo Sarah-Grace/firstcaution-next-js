@@ -1,8 +1,6 @@
 'use client';
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "./customComponents/sidebar";
-import SiteHeader from "./customComponents/siteHeader";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -27,24 +25,12 @@ export default function RootLayout({ children }) {
         
       
       <QueryClientProvider client={queryClient}>
-      <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        {
-        console.log("children",children)}
-         {children}
-          {/* <Sidebar />
-          <main>
-            <div className="ml-[250px] lg:ml-0 sticky top-0 z-10">
-              <SiteHeader />
-            </div>
-            <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-[50px] xs:px-1">
+        <Provider store={store}>
+            <PersistGate loading={null} persistor={persistor}>
               {children}
-            </div>
-          </main> */}
-          </PersistGate>
-          </Provider>
+            </PersistGate>
+            </Provider>
         </QueryClientProvider>
-        
       </body>
     </html>
   );

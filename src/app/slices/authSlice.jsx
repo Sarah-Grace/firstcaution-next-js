@@ -8,7 +8,8 @@ import { createSlice } from "@reduxjs/toolkit";
       accessToken: "",
       refreshToken: "",
       otp: "",
-      contractId: ""
+      contractId: "",
+      invoiceId: ""
     },
     reducers:{
       addUserInfo: (state, action) => {
@@ -28,6 +29,9 @@ import { createSlice } from "@reduxjs/toolkit";
       addContractId: (state, action) => {
          state.contractId = action.payload
       },
+      addInvoiceId: (state, action) => {
+         state.invoiceId = action.payload
+      },
       resetAll: (state, action) => {
          state.userEmail= ""
          state.userName= ""
@@ -37,5 +41,5 @@ import { createSlice } from "@reduxjs/toolkit";
     }
  })
 
- export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, resetAll } = authSlice.actions;
+ export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, resetAll } = authSlice.actions;
  export default authSlice.reducer;

@@ -1,9 +1,26 @@
+"use client"
 import BackArrowBtn from "../../customComponents/BackArrowBtn"
 import Image from "next/image";
 import CustomList from "../../customComponents/CustomList";
 import Link from "next/link";
+import { useSelector } from 'react-redux';
+import { useMutation } from '@tanstack/react-query';
+import { useEffect, useState } from "react";
+import axiosInstance from "@/lib/axiosInstance";
+
+const billDetail = async ({ contractId, otp }) => {
+    console.log(contractId)
+    const response = await axiosInstance.get(`/api/client/invoice-detail/${contractId}/`, otp);
+    console.log(response);
+    return response.data;
+};
 
 function BillDetail() {
+    const contractId = useSelector((state) => state.invoiceId);
+    const [payerName, setPayerName] = useState();
+    const [amount, setAmount] = useState();
+    const [paymentMethod, setpaymentMethod] = useState();
+    const [date, setDate] = useState();
     const BillInfoList = [
         {
             title: "Transaction ID",
@@ -15,21 +32,41 @@ function BillDetail() {
         },
         {
             title: "Payment Date",
-            detail: "May 18,2025"
+            detail: date
         },
         {
             title: "Biller Name",
-            detail: "Karl John"
+            detail: payerName
         },
         {
             title: "Amount Paid",
-            detail: "CHF 450.00"
+            detail: `CHF ${amount}`
         },
         {
             title: "Payment Method",
-            detail: "Credit Card"
+            detail: paymentMethod 
         },
     ]
+    useEffect(() => {
+        mutation.mutate({ contractId, otp: {} }); // Passing contractId and optional otp when mutating
+    }, [contractId]);
+    // Mutation hook 
+    const mutation = useMutation({
+        mutationFn: billDetail,
+        onSuccess: (response) => {
+            setPayerName(response.invoice_detail['Payer Name'])
+            setAmount(response.invoice_detail.Amount)
+            setpaymentMethod(response.invoice_detail['Payment method'])
+            setDate(response.invoice_detail['Due Date'])
+            console.log(response.invoice_detail['Due Date'])
+        },
+        onError: (error) => {
+        // This function runs if the mutation fails
+        // error.response.data.OTP !== undefined ? setErrorOtp(error.response.data.OTP): setErrorOtp("");
+        // console.log( error.response.data.OTP);
+            
+        },
+    });
   return (
     <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white sm:px-2'>
         <BackArrowBtn link="bills" title="Bill Detail" />
