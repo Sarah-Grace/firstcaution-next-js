@@ -32,7 +32,7 @@ function paymentTerm() {
             <div className="flex mt-14">
                 <div className="w-1/3 pr-3">
                     <div>
-                        <label className="text-[18px] font-normal mb-[11px] block">Current Date:</label>
+                        <label className="text-[18px] font-normal mb-[11px] block text-content">Current Date:</label>
                         <div className="border border-[#DFEAF2] bg-bgc-3 rounded-8 mb-[10px]">
                             <input 
                                 type="date"
@@ -45,7 +45,7 @@ function paymentTerm() {
                 <div className="w-2/3 pl-3">
                     <div className="flex flex-col justify-between h-full">
                         <div className="w-[480px]">
-                            <label className="text-[18px] font-normal mb-[11px] block">New Date:</label>
+                            <label className="text-[18px] font-normal mb-[11px] block text-content">New Date:</label>
                             <div className="border border-[#DFEAF2] bg-bgc-3 rounded-8 mb-[10px]">
                                 <input 
                                     type="date"
@@ -60,7 +60,7 @@ function paymentTerm() {
                                 </DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
-                                        <DialogTitle className="text-start text-5 leading-[30px] font-medium">Success </DialogTitle>
+                                        <DialogTitle className="text-start text-5 leading-[30px] font-medium text-content">Success </DialogTitle>
                                     </DialogHeader>
                                     <div className="text-center pt-[50px]">
                                         <Image 

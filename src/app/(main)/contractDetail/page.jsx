@@ -94,7 +94,7 @@ function ContractDetail() {
                     </div> */}
                     <div className={`py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
                         <p 
-                            className={`leading-[25px] text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2`}>
+                            className={`leading-[25px] text-content text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2`}>
                                 {status !== "Closing with Claim" ? status: "Closed"}
                         </p>
                     </div>

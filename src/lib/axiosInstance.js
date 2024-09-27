@@ -4,7 +4,7 @@ import { store } from '@/app/store'; // Import your Redux store
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'https://2929-154-208-40-121.ngrok-free.app/', // Replace with your API base URL
+  baseURL: 'http://192.168.0.123:8000', // Replace with your API base URL
 });
 
 // Add a request interceptor to inject the custom header dynamically

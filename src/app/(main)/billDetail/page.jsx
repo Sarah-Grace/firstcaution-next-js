@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from "react";
 import axiosInstance from "@/lib/axiosInstance";
+import { format } from "date-fns";
 
 const billDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -57,7 +58,7 @@ function BillDetail() {
             setPayerName(response.invoice_detail['Payer Name'])
             setAmount(response.invoice_detail.Amount)
             setpaymentMethod(response.invoice_detail['Payment method'])
-            setDate(response.invoice_detail['Due Date'])
+            setDate(format(response.invoice_detail['Due Date'], 'MMMM do, yyyy'))
             console.log(response.invoice_detail['Due Date'])
         },
         onError: (error) => {

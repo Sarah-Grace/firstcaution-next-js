@@ -51,7 +51,7 @@ function PayBill() {
             <BackArrowBtn link="bills" title="Pay Bill" />
             <div className="flex xl:flex-wrap mt-14">
                 <div className="w-1/2 pr-6 xl:pr-0 xl:w-full xl:mb-6">
-                    <h3 className="text-h3 mb-[22px]">Detail Information:</h3>
+                    <h3 className="text-h3 mb-[22px] text-content">Detail Information:</h3>
                     {detailInfo.map((list, index) => {
                         return (
                             <CustomList key={index} title={list.title} info={list.info} />
@@ -59,7 +59,7 @@ function PayBill() {
                     })}
                 </div>
                 <div className="w-1/2 pl-6 xl:pl-0 xl:w-full">
-                    <h3 className="text-h3 mb-[22px]">Payment Method</h3>
+                    <h3 className="text-h3 mb-[22px] text-content">Payment Method:</h3>
                     { paymentMethod.map((list, index) => {
                         return (
                             <CustomRadioBtn key={index} id={list.id} icon={list.icon} title={list.title} name="pay-bill" />
@@ -75,7 +75,7 @@ function PayBill() {
                     </DialogTrigger>
                     <DialogContent>
                         <DialogHeader>
-                            <DialogTitle className="text-start text-5 leading-[30px] font-medium">Request</DialogTitle>
+                            <DialogTitle className="text-start text-5 leading-[30px] font-medium text-content">Request</DialogTitle>
                         </DialogHeader>
                         <div className="text-center py-[50px] px-6">
                             <Image 

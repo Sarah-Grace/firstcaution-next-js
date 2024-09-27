@@ -136,7 +136,7 @@ function Register() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                         />
                     </div>
-                    {errors.name && <p className="mb-3 -mt-3 text-red-600">{errors.name}</p>}
+                    {errors.name && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.name}</p>}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -156,7 +156,7 @@ function Register() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                         />
                     </div>
-                    {errors.name && <p className="mb-3 -mt-3 text-red-600">{errors.name}</p>}
+                    {errors.name && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.name}</p>}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -176,9 +176,9 @@ function Register() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                         />
                     </div>
-                    {emailError  && <p className="mb-3 -mt-3 text-red-600">{emailError}</p>}
+                    {emailError  && <p className="mb-3 -mt-3 text-red-600 text-xs">{emailError}</p>}
                     <div>
-                        {errors.email && <p className="mb-3 -mt-3 text-red-600">{errors.email}</p>}
+                        {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
                         <span className="px-4 py-0 flex items-center">

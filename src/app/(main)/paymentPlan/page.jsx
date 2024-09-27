@@ -72,11 +72,11 @@ function PaymentPlan() {
                                 <div className="flex">
                                     <div className="w-1/3 pr-3">
                                         <div>
-                                            <label className="block mb-[11px]">
+                                            <label className="block mb-[11px] text-content">
                                                 Duration:
                                             </label>
                                             <Select className="py-4">
-                                                <SelectTrigger className="w-full bg-bgc-3">
+                                                <SelectTrigger className="w-full bg-bgc-3 text-[#909090]">
                                                     <SelectValue />
                                                 </SelectTrigger>
                                                 <SelectContent>
@@ -86,18 +86,18 @@ function PaymentPlan() {
                                         </div>
                                         <SimpleListBlock list={paymentCriteria} icon="/images/icons/calendar.png" title="Payment Plan Criteria" />
                                         <div className="mt-6">
-                                            <label className="block mb-[11px]">Reason:</label>
+                                            <label className="block mb-[11px] text-content">Reason:</label>
                                             <Textarea className="bg-[#F9F9F9]" />
                                         </div>
                                     </div>
                                     <div className="w-2/3 pl-3">
                                         <div className="flex flex-col justify-between h-full">
                                             <div className="max-w-[480px]">
-                                                <label className="block mb-[11px]">
+                                                <label className="block mb-[11px] text-content">
                                                     Start Date:
                                                 </label>
                                                 <Select className="">
-                                                    <SelectTrigger className="w-full bg-bgc-3">
+                                                    <SelectTrigger className="w-full bg-bgc-3 text-[#909090]">
                                                         <SelectValue />
                                                     </SelectTrigger>
                                                     <SelectContent>
@@ -112,7 +112,7 @@ function PaymentPlan() {
                                                     </DialogTrigger>
                                                     <DialogContent>
                                                         <DialogHeader>
-                                                            <DialogTitle className="text-start text-5 leading-[30px] font-medium">Confirmation</DialogTitle>
+                                                            <DialogTitle className="text-start text-5 leading-[30px] font-medium text-content">Confirmation</DialogTitle>
                                                         </DialogHeader>
                                                         <div className="text-center pt-[50px] px-6">
                                                             <Image 

@@ -49,7 +49,7 @@ function Login() {
         onError: (error) => {
             // This function runs if the mutation fails
             error.response.data.email !== undefined ? setErrorEmail(error.response.data.email) : setErrorEmail("");
-            error.response.data.Password !== undefined ? setErrorPassword(error.response.data.Password): setErrorPassword("");
+            error.response.data.password !== undefined ? setErrorPassword(error.response.data.password): setErrorPassword("");
             error.response.data.user !== undefined ? setErrorUser(error.response.data.use): setErrorUser("");
             console.log( error.response.data.email);
             console.log( error.response.data.Password);
@@ -94,7 +94,7 @@ function Login() {
                             value={formData.email}
                         />
                     </div>
-                    {errorEmail && <p className="mb-3 -mt-3 text-red-600">{errorEmail}</p>}
+                    {errorEmail && <p className="mb-3 -mt-3 text-red-600  text-xs">{errorEmail}</p>}
                     <div className={`rounded-6 relative flex w-full ${errorPassword !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]" }`}>
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -112,11 +112,10 @@ function Login() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             onChange={handleInput}
                             value={formData.password}
+
                         />
                     </div>
-                    {
-
-                    }
+                    {errorPassword && <p className="mb-3 mt-2 text-red-600 text-xs">{errorPassword}</p>}
                     <Link 
                         href="/forgetPassword"
                         className="block mt-3 text-primary leading-[17px] text-sm text-end"

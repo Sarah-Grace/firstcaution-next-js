@@ -64,7 +64,7 @@ function NewPassword() {
                   width={134}
                   height={134}
               />
-              <div className="max-w-[300px]">
+              <div className="max-w-[300px] mx-auto">
                 
                 <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">Create New Password</h3>
               </div>

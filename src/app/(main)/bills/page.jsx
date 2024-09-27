@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 
 import { addInvoiceId } from "@/app/slices/authSlice";
 import { useRouter } from 'next/navigation';
+import { format } from "date-fns"
 
 const billsdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/invoices/', otp);
@@ -92,11 +93,11 @@ function Bills() {
                                 width={60}
                                 height={60}
                               />
-                              <h4 className="text-base leading-[19px] font-semibold tablet:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
+                              <h4 className="text-base leading-[19px] text-content font-semibold tablet:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
                           </div>
                           <div className="flex-[0_0_20%] tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Issue Date:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{obd['Due Date']}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{format(obd['Due Date'], 'MMMM do, yyyy')}</p>
                           </div>
                           <div className="flex-[0_0_20%] tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Amount:</p>
@@ -146,14 +147,14 @@ function Bills() {
                           <div className="block flex-[0_0_20%] xxl:flex-auto  tablet:flex tablet:gap-2 tablet:flex-col-reverse">
                               <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d['Payer Name']}</h4>
                               {console.log(d['Payer Name'])}
-                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] tablet:text-[18px] tablet:font-medium tablet:mb-5 tablet:text-content sm:text-sm">{d['Due Date']}</h4>
+                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] tablet:text-[18px] tablet:font-medium tablet:mb-5 tablet:text-content sm:text-sm">{format(d['Due Date'], 'MMMM do, yyyy')}</h4>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2">Paid To:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-grey-2">PG&E</p>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2">Payment Method</p>
+                              <p className="text-base leading-[19px] font-medium text-content mb-2">Payment Method:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{d['Payment method']}</p>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">

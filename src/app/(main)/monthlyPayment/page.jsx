@@ -59,11 +59,11 @@ function MonthlyPayment() {
             <div className="flex mt-14">
                 <div className="w-1/3 pr-3">
                     <div>
-                        <label className="block mb-[11px]">
+                        <label className="block mb-[11px] text-content">
                         Start Date:
                         </label>
                         <Select className="py-4">
-                            <SelectTrigger className="w-full bg-bgc-3">
+                            <SelectTrigger className="w-full bg-bgc-3 text-[#909090]">
                                 <SelectValue />
                             </SelectTrigger>
                             <SelectContent>
@@ -76,7 +76,7 @@ function MonthlyPayment() {
                     </div>
 
                     <div>
-                        <label className="block mb-[11px]">
+                        <label className="block mb-[11px] text-content">
                             Payment Method:
                         </label>
                         {
@@ -94,7 +94,7 @@ function MonthlyPayment() {
                                 </DialogTrigger>
                                 <DialogContent>
                                     <DialogHeader>
-                                        <DialogTitle className="text-start text-5 leading-[30px] font-medium">Confirmation</DialogTitle>
+                                        <DialogTitle className="text-start text-5 leading-[30px] font-medium text-content">Confirmation</DialogTitle>
                                     </DialogHeader>
                                     <div className="text-center pt-[50px]">
                                         <Image 
