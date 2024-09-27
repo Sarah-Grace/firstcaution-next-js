@@ -143,7 +143,7 @@ function Home() {
                       <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">Switzerland</p>
                     </div>
                 </div>
-                <Link href="" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px]">
+                <Link href="/contracts" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px]">
                 Show All
                 </Link>
               </div>
