@@ -41,19 +41,19 @@ function Sidebar( {logout}) {
         {
             menuIcon:"/images/icons/coin.svg", 
             menuTitle:"Firstcoin",
-            path: "/firstcoin"
+            path: "#"
         },
         {
             menuIcon:"/images/icons/chatbot.svg", 
             menuTitle:"Chatbot",
-            path: "/chatbot"
+            path: "#"
         }
     ]
     const menuListData2 = [
         {
             menuIcon:"/images/icons/settings.svg", 
             menuTitle:"Settings",
-            path: "/settings"
+            path: "#"
         }
     ]
 
