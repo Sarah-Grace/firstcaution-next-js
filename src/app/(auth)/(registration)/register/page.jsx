@@ -70,23 +70,30 @@ function Register() {
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    
     // Validate form data using Zod schema
     const result = formSchema.safeParse(formData);
-    const dob = format(date, 'yyyy-MM-dd');
-    if (!result.success) {
-      // Map Zod errors to state for display
-      const newErrors = result.error.errors.reduce((acc, curr) => {
-        acc[curr.path[0]] = curr.message;
-        return acc;
-      }, {});
-      
-      setErrors(newErrors);
-    } else {
-      // If validation passes, proceed with form submission logic
-      // mutation.mutate({ email: formData.email, password: formData.password,  "platform": "internal_user"});
-      mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: dob, "platform": "internal_user"});
-    }
+    mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: format(date, "yyyy-MM-dd"), "platform": "internal_user"})
+    // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
+
+    
+    // // Validate form data using Zod schema
+    // const result = formSchema.safeParse(formData);
+
+    // // // const dob = format(date, 'yyyy-MM-dd');
+    // if (!result.success) {
+    //   // Map Zod errors to state for display
+    //   const newErrors = result.error.errors.reduce((acc, curr) => {
+    //     acc[curr.path[0]] = curr.message;
+    //     return acc;
+    //   }, {});
+    //   console.log(newErrors)
+    //   setErrors();
+    //   console.log(errors)
+    // } else {
+    //   // If validation passes, proceed with form submission logic
+    //   // mutation.mutate({ email: formData.email, password: formData.password,  "platform": "internal_user"});
+    //   mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
+    // }
   };
 
     // Mutation hook for creating a user
@@ -134,9 +141,10 @@ function Register() {
                             value={formData.fname}
                             onChange={handleChange}
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            required
                         />
                     </div>
-                    {errors.name && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.name}</p>}
+                    {/* {errors.fname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.fname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -154,9 +162,10 @@ function Register() {
                             value={formData.lname}
                             onChange={handleChange}
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            required
                         />
                     </div>
-                    {errors.name && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.name}</p>}
+                    {/* {errors.lname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.lname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -174,12 +183,13 @@ function Register() {
                             value={formData.email}
                             onChange={handleChange}
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
-                        />
+                            required
+                       />
                     </div>
                     {emailError  && <p className="mb-3 -mt-3 text-red-600 text-xs">{emailError}</p>}
-                    <div>
+                    {/* <div>
                         {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
-                    </div>
+                    </div> */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
                         <span className="px-4 py-0 flex items-center">
                             <Image
@@ -197,6 +207,7 @@ function Register() {
                             value={formData.password}
                             onChange={handleChange}
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            required
                         />
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">
