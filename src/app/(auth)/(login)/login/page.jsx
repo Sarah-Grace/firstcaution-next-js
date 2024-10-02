@@ -80,7 +80,7 @@ function Login() {
                             <Image
                                 src="/images/icons/email-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[16px]"
                                 width={20}
                                 height={16}
                             />
@@ -100,7 +100,7 @@ function Login() {
                             <Image
                                 src="/images/icons/password.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[22px]"
                                 width={16}
                                 height={22}
                             />
