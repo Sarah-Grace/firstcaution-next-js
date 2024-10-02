@@ -2,7 +2,7 @@ import Image from "next/image";
 export const metadata = {
     title: 'MyFirst',
     icons: {
-      icon: '/Favicon1.ico',
+      icon: '/myFav.ico',
     },
   };
 export default function AuthLayout({children}) {

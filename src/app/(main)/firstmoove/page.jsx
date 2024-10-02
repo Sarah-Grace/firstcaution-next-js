@@ -26,7 +26,7 @@ function Firstmoove() {
                   })}
               </TabsList>
               <TabsContent key={tabNames[0]} value={tabNames[0]}>
-                  <div>
+                  {/* <div>
                     <Accordion type="single" collapsible className="flex gap-6">
                       <AccordionItem value="item-1"  className="flex[0_1_283px] w-[283px] bg-bgc-3">
                         <AccordionTrigger>
@@ -56,7 +56,7 @@ function Firstmoove() {
                         </AccordionContent>
                       </AccordionItem>
                     </Accordion>
-                  </div>
+                  </div> */}
               </TabsContent>
               <TabsContent key={tabNames[1]} value={tabNames[1]}>
 

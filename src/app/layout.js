@@ -8,7 +8,6 @@ import { useState } from 'react';
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from "./store";
-import Head from 'next/head';
 
 config.autoAddCss = false;
 

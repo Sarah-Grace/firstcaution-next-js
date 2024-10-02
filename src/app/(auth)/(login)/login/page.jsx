@@ -94,7 +94,7 @@ function Login() {
                             value={formData.email}
                         />
                     </div>
-                    {errorEmail && <p className="mb-3 -mt-3 text-red-600  text-xs">{errorEmail}</p>}
+                    {errorEmail && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorEmail}</p>}
                     <div className={`rounded-6 relative flex w-full ${errorPassword !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]" }`}>
                         <span className="px-4 py-0 flex items-center">
                             <Image

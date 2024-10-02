@@ -70,7 +70,7 @@ function Verification() {
                   </InputOTPGroup>
                 </InputOTP> 
                 </div>
-                {errorOtp && <p className="mb-3 -mt-3 text-red-600">{errorOtp}</p>}
+                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorOtp}</p>}
                 <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">Verify</button>
             </form>
         </div>
