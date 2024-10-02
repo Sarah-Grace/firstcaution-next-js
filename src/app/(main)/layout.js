@@ -6,6 +6,7 @@ import { startSession, endSession, isSessionActive } from '../(main)/utils/sessi
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import { resetAll } from "@/app/slices/authSlice";
+import { removeToken } from "./utils/auth";
 
 export default function MainLayout({children}) {
     const dispatch = useDispatch();
@@ -32,7 +33,8 @@ export default function MainLayout({children}) {
     };
     const logout= () => {
         router.push('/login');  // Navigate to login page or another route
-        dispatch(resetAll())
+        dispatch(resetAll());
+        removeToken();
     }
     useEffect(() => {
       // Start the session on page load

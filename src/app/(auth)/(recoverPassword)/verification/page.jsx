@@ -37,8 +37,8 @@ function Verification() {
     },
     onError: (error) => {
       // This function runs if the mutation fails
-      error.response.data.OTP !== undefined ? setErrorOtp(error.response.data.OTP): setErrorOtp("");
-      console.log( error.response.data.OTP);
+      error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
+      console.log( error.response.data.otp);
     },
   });
   return (

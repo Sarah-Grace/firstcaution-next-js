@@ -16,6 +16,7 @@ import axiosInstance from '../../../../lib/axiosInstance'
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {addTokens } from '../../../slices/authSlice';
+import { authUserToken } from "@/app/(main)/utils/auth";
   
 
 const verifyOtp = async (otp) => {
@@ -50,14 +51,15 @@ function RegisterVerification() {
     mutationFn: verifyOtp,
     onSuccess: (response) => {
       dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}));
+      authUserToken(response.access_token);
       openDialog();
       console.log("Response",response.refresh_token);
     },
     onError: (error) => {
       // This function runs if the mutation fails
       // setEmailError(error.response.data.email[0]);
-      error.response.data.OTP !== undefined ? setErrorOtp(error.response.data.OTP): setErrorOtp("");
-      console.log( error.response.data.OTP);
+      error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
+      console.log( error.response.data.otp);
     },
   });
   return (
