@@ -31,6 +31,7 @@ function RegisterVerification() {
   const [otp, setOtp] = useState("");
   const [isDialogOpen, setDialogOpen] = useState(false);
   const email = useSelector((state) => state.userEmail);
+  const [errorOtp, setErrorOtp] =useState("");
 
 
   // Function to open the dialog
@@ -55,6 +56,8 @@ function RegisterVerification() {
     onError: (error) => {
       // This function runs if the mutation fails
       // setEmailError(error.response.data.email[0]);
+      error.response.data.OTP !== undefined ? setErrorOtp(error.response.data.OTP): setErrorOtp("");
+      console.log( error.response.data.OTP);
     },
   });
   return (
@@ -86,6 +89,7 @@ function RegisterVerification() {
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
+                {errorOtp && <p className="mb-3 -mt-3 text-red-600">{errorOtp}</p>}
                 <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">Verify</button>
               </form>
           </div>

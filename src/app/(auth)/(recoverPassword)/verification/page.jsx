@@ -27,6 +27,7 @@ function Verification() {
     mutation.mutate({ email, otp});
       
   }
+  const [errorOtp, setErrorOtp] =useState("");
 
   // Mutation hook 
   const mutation = useMutation({
@@ -36,6 +37,8 @@ function Verification() {
     },
     onError: (error) => {
       // This function runs if the mutation fails
+      error.response.data.OTP !== undefined ? setErrorOtp(error.response.data.OTP): setErrorOtp("");
+      console.log( error.response.data.OTP);
     },
   });
   return (
@@ -65,8 +68,9 @@ function Verification() {
                       <InputOTPSlot className="border-0 rounded-8 bg-[#FFE9C3] leading-[56px] w-[42px] h-14 text-[32px] font-medium text-center text-heading mr-2 last:mr-0" index={3} />
                       <InputOTPSlot className="border-0 rounded-8 bg-[#FFE9C3] leading-[56px] w-[42px] h-14 text-[32px] font-medium text-center text-heading mr-2 last:mr-0" index={4} />
                   </InputOTPGroup>
-                </InputOTP>
+                </InputOTP> 
                 </div>
+                {errorOtp && <p className="mb-3 -mt-3 text-red-600">{errorOtp}</p>}
                 <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">Verify</button>
             </form>
         </div>

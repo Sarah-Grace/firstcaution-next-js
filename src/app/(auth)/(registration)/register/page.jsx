@@ -247,7 +247,7 @@ function Register() {
                         </PopoverContent>
                       </Popover>
                     </div>
-                    {dateError  && <p className="my-3 text-red-600 text-xs">{dateError}</p>}
+                    {dateError && <p className="my-3 text-red-600 text-xs">{dateError}</p>}
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
                         <span>Already have an account? 
                         </span>
