@@ -4,7 +4,8 @@ import { store } from '@/app/store'; // Import your Redux store
 
 // Create an Axios instance
 const axiosInstance = axios.create({
-  baseURL: 'http://13.60.226.146/', // Replace with your API base URL
+  //baseURL: 'http://13.60.226.146/', // Local API base URL
+  baseURL: 'https://api.firstcaution.ch/' //API base URL for vercel
 });
 
 // Add a request interceptor to inject the custom header dynamically

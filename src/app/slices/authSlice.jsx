@@ -2,7 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
  const authSlice = createSlice({
     name: "auth",
     initialState: {
-      apiKey: "Api-Key BW5T1boB.BVfctTYItFVm0TN6pnMUD9tOV4hkazcH",
+      // apiKey: "Api-Key BW5T1boB.BVfctTYItFVm0TN6pnMUD9tOV4hkazcH", // local API key
+      apiKey: "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW",
       userEmail: "",
       userName: "",
       accessToken: "",
@@ -39,6 +40,7 @@ import { createSlice } from "@reduxjs/toolkit";
          state.refreshToken= ""
          state.contractId= ""
          state.invoiceId= ""
+         state.apiKey= "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW"
       }
     }
  })
