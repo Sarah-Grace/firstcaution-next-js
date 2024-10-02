@@ -100,7 +100,7 @@ function Login() {
                             <Image
                                 src="/images/icons/password.png"
                                 alt=""
-                                className="w-[20px] h-[22px]"
+                                className="w-[16px] h-[22px]"
                                 width={16}
                                 height={22}
                             />
