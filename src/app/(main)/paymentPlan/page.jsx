@@ -87,7 +87,7 @@ function PaymentPlan() {
                                         <SimpleListBlock list={paymentCriteria} icon="/images/icons/calendar.png" title="Payment Plan Criteria" />
                                         <div className="mt-6">
                                             <label className="block mb-[11px] text-content">Reason:</label>
-                                            <Textarea className="bg-[#F9F9F9]" />
+                                            <Textarea className="bg-[#F9F9F9] text-[#909090]" />
                                         </div>
                                     </div>
                                     <div className="w-2/3 pl-3">

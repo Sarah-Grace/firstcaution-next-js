@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
  const authSlice = createSlice({
     name: "auth",
     initialState: {
-      // apiKey: "Api-Key BW5T1boB.BVfctTYItFVm0TN6pnMUD9tOV4hkazcH", // local API key
-      apiKey: "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW", // Vercel API Key
+      apiKey: "Api-Key wGwvTc4n.7ySCt0XNqNn8gYpP19GGOCiQbDoApP5i", // local API key
+     // apiKey: "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW", // Vercel API Key
       userEmail: "",
       userName: "",
       accessToken: "",
