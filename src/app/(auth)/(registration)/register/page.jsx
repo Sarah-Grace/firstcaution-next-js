@@ -54,6 +54,7 @@ function Register() {
 
   // State for validation errors
   const [errors, setErrors] = useState({});
+  const [dateError, setDateError] = useState("")
 
   // Handle input change
   const handleChange = (e) => {
@@ -72,8 +73,13 @@ function Register() {
     e.preventDefault();
     // Validate form data using Zod schema
     const result = formSchema.safeParse(formData);
-    mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: format(date, "yyyy-MM-dd"), "platform": "internal_user"})
-    // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
+    if(date === "") {
+      setDateError("Select Date of Birth");
+    } else {
+      setDateError("");
+      mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: format(date, "yyyy-MM-dd"), "platform": "internal_user"});
+    }
+   // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
 
     
     // // Validate form data using Zod schema
@@ -240,6 +246,7 @@ function Register() {
                           />
                         </PopoverContent>
                       </Popover>
+                      {dateError  && <p className="mb-3 text-red-600 text-xs">{dateError}</p>}
                     </div>
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
                         <span>Already have an account? 
