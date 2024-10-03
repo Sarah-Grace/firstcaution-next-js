@@ -73,8 +73,13 @@ function Register() {
     e.preventDefault();
     // Validate form data using Zod schema
     const result = formSchema.safeParse(formData);
-    console.log(date.format("YYYY-MM-DD"))
-    mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
+    if(date === "") {
+      setDateError("Select Date of Birth")
+    } else {
+      console.log(date.format("YYYY-MM-DD"))
+      mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
+    }
+
     // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
 
     
