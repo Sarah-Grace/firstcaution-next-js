@@ -76,6 +76,7 @@ function Register() {
     if(date === "") {
       setDateError("Select Date of Birth")
     } else {
+      setDateError("")
       console.log(date.format("YYYY-MM-DD"))
       mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
     }
