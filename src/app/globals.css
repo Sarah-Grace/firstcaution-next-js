@@ -69,6 +69,20 @@ body {
   background: #555; 
 }
 /* scroll end */
+/* Calender */
+.rmdp-container  {
+  width: 100% !important;
+}
+.rmdp-input {
+  height: 50px !important;
+  background-color: transparent;
+  border: none !important;
+  width: 100% !important;
+  color: #909090 !important;
+}
+.rmdp-input:focus {
+  box-shadow: none !important;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

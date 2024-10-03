@@ -21,7 +21,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover"
-
+import DatePicker from "react-multi-date-picker"
 // Define Zod schema for form validation
 const formSchema = z.object({
     fname: z.string().min(1, 'Name is required'), // Name is required and cannot be empty
@@ -73,13 +73,9 @@ function Register() {
     e.preventDefault();
     // Validate form data using Zod schema
     const result = formSchema.safeParse(formData);
-    if(date === "") {
-      setDateError("Select Date of Birth");
-    } else {
-      setDateError("");
-      mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: format(date, "yyyy-MM-dd"), "platform": "internal_user"});
-    }
-   // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
+    console.log(date.format("YYYY-MM-DD"))
+    mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
+    // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
 
     
     // // Validate form data using Zod schema
@@ -226,7 +222,7 @@ function Register() {
                               height={22}
                           />
                       </span>
-                      <Popover>
+                      {/* <Popover>
                         <PopoverTrigger asChild>
                           <Button
                             variant={"outline"}
@@ -245,7 +241,14 @@ function Register() {
                             initialFocus
                           />
                         </PopoverContent>
-                      </Popover>
+                      </Popover> */}
+                        <DatePicker
+                          value={date}
+                          onChange={setDate}
+                          placeholder="Add Date of Birth"
+                        >
+                        </DatePicker>
+
                     </div>
                     {dateError && <p className="my-3 text-red-600 text-xs">{dateError}</p>}
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
