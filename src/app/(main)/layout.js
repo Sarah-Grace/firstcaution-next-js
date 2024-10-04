@@ -22,7 +22,7 @@ export default function MainLayout({children}) {
         endSession();  // End the session after 5 minutes of inactivity
         alert('Session expired due to inactivity.');
         logout()
-      }, 5 * 60 * 1000);  // 5 minutes in milliseconds
+      }, 30 * 60 * 1000);  // 5 minutes in milliseconds
     };
   
     const handleUserActivity = () => {
@@ -52,7 +52,7 @@ export default function MainLayout({children}) {
       };
     });
     return (
-        <div>
+        <div className="bg-white">
             <Sidebar logout={logout} />
             <main>
                 <div className="ml-[250px] lg:ml-0 sticky top-0 z-10">

@@ -8,7 +8,8 @@ import { useSelector } from 'react-redux';
 import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from "react";
 import axiosInstance from "@/lib/axiosInstance";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 
 const contractDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -161,18 +162,12 @@ function ContractDetail() {
                         </button>
                     </div>
                 </div>
-                <div className="mt-14 flex justify-center items-center gap-3">
+                <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
                     <button href="#"  className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4">
                         Download PDF
                     </button>
-                    <button className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-4">
-                        <Image 
-                            src="/images/icons/upload.png" 
-                            alt="" 
-                            height={26} 
-                            width={20} 
-                            className="mx-auto"
-                        />
+                    <button className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-4 text-secondary text-[28px] font-thin">
+                        <FontAwesomeIcon icon={faShareNodes} />
                     </button>
                 </div>
             </div>

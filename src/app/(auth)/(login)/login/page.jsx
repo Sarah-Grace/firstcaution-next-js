@@ -62,9 +62,9 @@ function Login() {
         mutation.mutate({ email: formData.email, password: formData.password});
     }
   return (
-    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto'>
-            <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
+    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px] sm:bg-white'>
+        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto sm:max-w-full sm:h-full sm:py-0'>
+            <div className='overflow-y-auto overflow-x-hidden bg-white py-11 px-[34px] rounded-8 w-full xs:px-5'>
                 <Image
                     src="/images/logos/logo.png"
                     alt=""
@@ -76,7 +76,7 @@ function Login() {
                 <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">Log In to your account</h4>
                 <form action="" className="w-full" onSubmit={formSubmit}>
                     <div className={`rounded-6 relative flex w-full mb-6 ${errorEmail !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]"}`}>
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="px-4 py-0 flex items-center flex-[0_0_auto]">
                             <Image
                                 src="/images/icons/email-icon.png"
                                 alt=""
@@ -96,7 +96,7 @@ function Login() {
                     </div>
                     {errorEmail && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorEmail}</p>}
                     <div className={`rounded-6 relative flex w-full ${errorPassword !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]" }`}>
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="px-4 py-0 flex items-center flex-[0_0_auto]">
                             <Image
                                 src="/images/icons/password.png"
                                 alt=""

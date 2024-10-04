@@ -1,3 +1,6 @@
+'use client'
+
+import { useState } from "react";
 import SimpleListBlock from "../../customComponents/simpleListBlock";
 import BackArrowBtn from "../../customComponents/BackArrowBtn";
 import Image from "next/image";
@@ -9,8 +12,9 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import DatePicker from "react-multi-date-picker"
 
-function paymentTerm() {
+function PaymentTerm() {
     const paymentTerm = [
         {
             title: "Administrative Fees",
@@ -25,6 +29,8 @@ function paymentTerm() {
             info: "0%"
         }
     ];
+    const [currentDate, setCurrentDate] = useState("2024-06-05");
+    const [newDate, setNewDate] = useState("");
   return (
     <div className="pt-[30px] mb-14">
         <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[30px] px-10 pb-[65px]">
@@ -33,10 +39,22 @@ function paymentTerm() {
                 <div className="w-1/3 pr-3">
                     <div>
                         <label className="text-[18px] font-normal mb-[11px] block text-content">Current Date:</label>
-                        <div className="border border-[#DFEAF2] bg-bgc-3 rounded-8 mb-[10px]">
-                            <input 
+                        <div className="border border-[#DFEAF2] bg-bgc-3 rounded-8 mb-[10px] pl-5 relative">
+                            {/* <input 
                                 type="date"
                                 className="leading-[50px] block w-full py-0 px-5 text-[15px] text-[#909090] bg-transparent"
+                            /> */}
+                            <DatePicker
+                                value={currentDate}
+                                onChange={setCurrentDate}
+                            >
+                            </DatePicker>
+                            <Image
+                                src="/images/icons/arrow-down.png"
+                                height={6}
+                                width={12}
+                                alt=""
+                                className="absolute top-[23px] right-[26px]"
                             />
                         </div>
                     </div>
@@ -46,10 +64,20 @@ function paymentTerm() {
                     <div className="flex flex-col justify-between h-full">
                         <div className="w-[480px]">
                             <label className="text-[18px] font-normal mb-[11px] block text-content">New Date:</label>
-                            <div className="border border-[#DFEAF2] bg-bgc-3 rounded-8 mb-[10px]">
-                                <input 
-                                    type="date"
-                                    className="leading-[50px] block w-full py-0 px-5 text-[15px] text-[#909090] bg-transparent"
+                            <div className="border border-[#DFEAF2] bg-bgc-3 rounded-8 mb-[10px] pl-5 relative z-20">
+                                <DatePicker
+                                    value={newDate}
+                                    onChange={setNewDate}
+                                    placeholder="Select your date"
+                                    className="z-20"
+                                >
+                                </DatePicker>
+                                <Image
+                                    src="/images/icons/arrow-down.png"
+                                    height={6}
+                                    width={12}
+                                    alt=""
+                                    className="absolute top-[23px] right-[26px] z-0"
                                 />
                             </div>
                         </div>
@@ -89,4 +117,4 @@ function paymentTerm() {
   )
 }
 
-export default paymentTerm
+export default PaymentTerm

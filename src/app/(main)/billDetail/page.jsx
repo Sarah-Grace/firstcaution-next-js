@@ -58,7 +58,7 @@ function BillDetail() {
             setPayerName(response.invoice_detail['Payer Name'])
             setAmount(response.invoice_detail.Amount)
             setpaymentMethod(response.invoice_detail['Payment method'])
-            setDate(format(response.invoice_detail['Due Date'], 'MMMM do, yyyy'))
+            setDate(format(response.invoice_detail['Due Date'], 'do MMM, yyyy'))
             console.log(response.invoice_detail['Due Date'])
         },
         onError: (error) => {

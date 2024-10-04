@@ -116,7 +116,7 @@ function Home() {
     },
   });
   return (
-    <div className="flex gap-6 pb-10 xxl:flex-wrap">
+    <div className="flex gap-6 pb-10 xxl:flex-wrap xs:px-2">
       <div className="basis-2/5 xxl:basis-full">
         <div className="bg-secondary px-5 py-6 rounded-10 shadow-c1 xs:px-1">
           <h2 className={'text-h2 font-medium mb-6 text-white lgs:text-2xl lgs:leading-[29px] mid-xxl:text-2xl mid-xxl:leading-[29px]'} >My Dashboard</h2>
@@ -129,7 +129,7 @@ function Home() {
                 </div>
                 <p className="text-5xl font-medium leading-9 text-content lgs:text-7xl mid-xxl:text-7xl">{currentContracts}</p>
               </div>
-              <div className="flex justify-between gap-2">
+              <div className="flex justify-between gap-2 flex-wrap">
                 <div className="flex justify-start items-center gap-2">
                     <Image 
                       src="/images/icons/location-dot.png" 
@@ -143,7 +143,7 @@ function Home() {
                       <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">Switzerland</p>
                     </div>
                 </div>
-                <Link href="/contracts" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px]">
+                <Link href="/contracts" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px] md1:px-2">
                 Show All
                 </Link>
               </div>
@@ -165,15 +165,21 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="bg-white p-5 pb-0 mt-5 rounded-10 border border-[#E6EFF5] tablet:hidden">
+        {/* 
+         Messages is removed for now uncomment it in future
+       */}
+        {/* <div className="bg-white p-5 pb-0 mt-5 rounded-10 border border-[#E6EFF5] tablet:hidden">
           <CardHeader textColor="" link="#" title="Message" />
           {MessagesList.map((listItem, index) => {
             return <MessageListItem key={index} avatar={listItem.avatar} name={listItem.name} chat={listItem.chat} time={listItem.time} />
           })}
-        </div>
+        </div> */}
       </div>
       <div className="basis-3/5 xxl:basis-full flex flex-col">
-        <div className="bg-[#D3E9FF] px-[21px] pt-[25px] pb-5 rounded-10 tablet:order-1">
+        {/* 
+         Firstees is removed for now uncomment it in future
+       */}
+        {/* <div className="bg-[#D3E9FF] px-[21px] pt-[25px] pb-5 rounded-10 tablet:order-1">
           <CardHeader textColor="" link="#" title="Firstees" />
           <div className="flex gap-3 tablet:flex-wrap">
             {firstees.map((firstees, index) => {
@@ -195,11 +201,8 @@ function Home() {
               )
             })}
           </div>
-        </div>
-        <div className="tablet:order-3 md1:hidden">
-          <FirstCoinBannerHome />
-        </div>
-        <div className="bg-white p-5 mt-5 rounded-10 border border-[#E6EFF5] tablet:order-2">
+        </div> */}
+        <div className="bg-white p-5 rounded-10 border border-[#E6EFF5] tablet:order-2">
           <CardHeader textColor="" link="#" title="Firstmoove" />
           <div className="flex gap-3 flex-wrap">
             <div className="flex items-center flex-auto gap-[14px] py-[11px] pl-[18px] pr-[60px] bg-[#F7F6F6] rounded-8">
@@ -215,6 +218,9 @@ function Home() {
               <h4 className="text-h4 font-medium text-grey-2">Debt Enforcement Certificate</h4>
             </div>
           </div>
+        </div>
+        <div className="tablet:order-3 md1:hidden">
+          <FirstCoinBannerHome />
         </div>
       </div>
     </div>

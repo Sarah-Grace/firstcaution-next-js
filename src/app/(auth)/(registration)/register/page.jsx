@@ -119,9 +119,9 @@ function Register() {
     });
   
   return (
-    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto'>
-            <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
+    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px] sm:bg-white'>
+        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto sm:max-w-full sm:h-full sm:py-0'>
+            <div className='overflow-y-auto overflow-x-hidden bg-white py-11 px-[34px] rounded-8 xs:px-5'>
                 <Image
                     src="/images/logos/logo.png"
                     alt=""
@@ -133,13 +133,13 @@ function Register() {
                 <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">Create your free account</h4>
                 <form action="" className="w-full" onSubmit={handleSubmit}>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px justify-center  py-0 flex items-center">
                             <Image
                                 src="/images/icons/user-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[20px]"
                                 width={20}
-                                height={16}
+                                height={20}
                             />
                         </span>
                         <input 
@@ -148,19 +148,19 @@ function Register() {
                             placeholder="Your First Name" 
                             value={formData.fname}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                         />
                     </div>
                     {/* {errors.fname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.fname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/user-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[20px]"
                                 width={20}
-                                height={16}
+                                height={20}
                             />
                         </span>
                         <input 
@@ -169,17 +169,17 @@ function Register() {
                             placeholder="Your Last Name" 
                             value={formData.lname}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                         />
                     </div>
                     {/* {errors.lname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.lname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/email-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[16px]"
                                 width={20}
                                 height={16}
                             />
@@ -190,7 +190,7 @@ function Register() {
                             placeholder="Email Address" 
                             value={formData.email}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                        />
                     </div>
@@ -199,11 +199,11 @@ function Register() {
                         {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
                     </div> */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/password.png"
                                 alt=""
-                                className=""
+                                className="w-[16px] h-[22px]"
                                 width={16}
                                 height={22}
                             />
@@ -214,40 +214,20 @@ function Register() {
                             placeholder="Create Strong Password" 
                             value={formData.password}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                         />
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">
-                      <span className="px-4 py-0 flex items-center">
+                      <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
                           <Image
                               src="/images/icons/calendar-icon.png"
                               alt=""
-                              className=""
+                              className="w-[16px] h-[16px]"
                               width={16}
-                              height={22}
+                              height={16}
                           />
                       </span>
-                      {/* <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant={"outline"}
-                            className={cn(
-                              "w-[280px] justify-start text-left font-normal bg-transparent border-0 text-[#909090]",
-                            )}
-                          >
-                            {date ? format(date, "yyyy-MM-dd") : <span>Add Date of Birth</span>}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0">
-                          <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover> */}
                         <DatePicker
                           value={date}
                           onChange={setDate}

@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
   const [queryClient] = useState(() => new QueryClient());
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={`${inter.className} bg-bgc-2`}>
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>

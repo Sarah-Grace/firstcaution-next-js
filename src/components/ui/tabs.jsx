@@ -22,7 +22,7 @@ const TabsTrigger = React.forwardRef(({ className, ...props }, ref) => (
   <TabsPrimitive.Trigger
     ref={ref}
     className={cn(
-      "inline-flex items-center justify-center transition-all focus-visible:outline-none  disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-primary pt-0 pr-[34px] pb-[14px] pl-[34px] sm:pr-[10px] sm:pl-[10px] sm:pb-[10px] border-0 border-b-0 relative text-grey-2 font-medium bg-transparent data-[state=active]:after:h-[3px] data-[state=active]:after:content-[''] data-[state=active]:after:w-full data-[state=active]:after:bg-primary data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:block data-[state=active]:after:rounded-t-[10px]",
+      "inline-flex items-center justify-center transition-all focus-visible:outline-none  disabled:pointer-events-none disabled:opacity-50 data-[state=active]:text-primary pt-0 pr-[34px] pb-[14px] pl-[34px] sm:pr-[6px] sm:pl-[8px] sm:pb-[10px] border-0 border-b-0 relative text-grey-2 font-medium bg-transparent data-[state=active]:after:h-[3px] data-[state=active]:after:content-[''] data-[state=active]:after:w-full data-[state=active]:after:bg-primary data-[state=active]:after:absolute data-[state=active]:after:bottom-0 data-[state=active]:after:block data-[state=active]:after:rounded-t-[10px]",
       className
     )}
     {...props} />
