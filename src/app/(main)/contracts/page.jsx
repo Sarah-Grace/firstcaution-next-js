@@ -82,7 +82,7 @@ function Contracts() {
                                             <div className="flex-[0_0_12%] mxl:flex mxl:items-center">
                                                     <p className="text-base leading-[19px] font-normal text-grey-2 mb-1 mxl:hidden">Status:</p>
                                                     <p 
-                                                        className={`text-[15px] leading-[18px] font-medium relative pl-[10px] after:content[""] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 mxl:border mxl:py-[2px] mxl:pr-3 mxl:pl-6 mxl:after:left-3 mxl:rounded-8 ${listStatusColor[0].bgColor} ${listStatusColor[0].colorClass} ${listStatusColor[0].borderColor} mxl:absolute mxl:top-5 mxl:right-4 sm:top-2 sm:pl-3 sm:pr-2 sm:after:left-1`}>
+                                                        className={`text-[15px] leading-[18px] font-medium relative pl-[10px] after:content[""] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 mxl:border mxl:py-[2px] mxl:pr-3 mxl:pl-6 mxl:after:left-3 mxl:rounded-8 ${listStatusColor[0].bgColor} ${listStatusColor[0].colorClass} ${listStatusColor[0].borderColor} mxl:absolute mxl:top-5 mxl:right-4 sm:top-2 sm:pl-3 sm:pr-2 sm:after:left-1 xs:left-2 xs:right-auto`}>
                                                             {d.clientContractStage!== "Closing with Claim" ? d.clientContractStage : "Closed"}
                                                     </p>
                                             </div>

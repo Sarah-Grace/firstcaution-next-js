@@ -75,12 +75,12 @@ function Sidebar( {logout}) {
         {
             menuIcon:"/images/icons/settings.svg", 
             menuTitle:"Settings",
-            path: "#"
+            path: "/settings"
         }
     ]
 
   return (
-    <aside className="w-[250px] h-screen overflow-auto border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-[50px] lg:overflow-hidden lg:p-0 lg:h-auto lg:top-[92px] lg:border-r-0">
+    <aside className="w-[250px] h-screen overflow-auto border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-10 lg:overflow-hidden lg:p-0 lg:h-auto lg:top-[92px] lg:border-r-0">
         <div className="h-full">
             <Link href='/home'>
                 <Image

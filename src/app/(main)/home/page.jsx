@@ -9,13 +9,13 @@ import FirteesCard from "@/app/customComponents/firteesCard";
 import FirstCoinBannerHome from "@/app/customComponents/firstCoinBAnnerHome";
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axiosInstance from '@/lib/axiosInstance'
+import axiosInstance from '@/lib/axiosInstance';
 import { useSelector, useDispatch } from 'react-redux';
 
 
 const homedata = async (otp) => {
   const response = await axiosInstance.get('/api/client/deshboard/', otp);
-  console.log(response)
+  console.log(response);
   return response.data;
 };
 
@@ -50,54 +50,54 @@ function Home() {
       amount: firstcoin
     }
   ];
-  const MessagesList = [
-    {
-      avatar: "/images/icons/user-1.png",
-      name: "Cody Fisher",
-      chat: "Lorem ipsum dolor sit amet ...", 
-      time: "10:45 PM"
-    },
-    {
-      avatar: "/images/icons/user-2.png",
-      name: "Cody Fisher",
-      chat: "Lorem ipsum dolor sit amet ...", 
-      time: "10:45 PM"
-    },
-    {
-      avatar: "/images/icons/user-3.png",
-      name: "Cody Fisher",
-      chat: "Lorem ipsum dolor sit amet ...", 
-      time: "10:45 PM"
-    },
-  ];
-  const firstees = [
-    {
-      image: "/images/firstees-card-bg.png",
-      logo: "/images/firstees-logo.png",
-      badge: "Time-limited",
-      badgeColor: "bg-[#D93F50]",
-      badgeIcon: "before:bg-[url('/images/icons/badge-icon.png')]",
-      title: "Suhasini",
-      discount: "Up to 30% off",
-      time: "32 min",
-      date: "18 Sep-24 Sep",
-      rating: "4.7", 
-      ratingcount: "123"
-    },
-    {
-      image: "/images/firstees-card-bg.png",
-      logo: "/images/firstees-logo.png",
-      badge: "Time-limited",
-      badgeColor: "bg-[#34C759]",
-      badgeIcon: "before:bg-[url('/images/icons/badge-icon-green.png')]",
-      title: "Free",
-      discount: "Up to 30% off",
-      time: "32 min",
-      date: "",
-      rating: "4.7", 
-      ratingcount: "123"
-    }
-  ];
+  // const MessagesList = [
+  //   {
+  //     avatar: "/images/icons/user-1.png",
+  //     name: "Cody Fisher",
+  //     chat: "Lorem ipsum dolor sit amet ...", 
+  //     time: "10:45 PM"
+  //   },
+  //   {
+  //     avatar: "/images/icons/user-2.png",
+  //     name: "Cody Fisher",
+  //     chat: "Lorem ipsum dolor sit amet ...", 
+  //     time: "10:45 PM"
+  //   },
+  //   {
+  //     avatar: "/images/icons/user-3.png",
+  //     name: "Cody Fisher",
+  //     chat: "Lorem ipsum dolor sit amet ...", 
+  //     time: "10:45 PM"
+  //   },
+  // ];
+  // const firstees = [
+  //   {
+  //     image: "/images/firstees-card-bg.png",
+  //     logo: "/images/firstees-logo.png",
+  //     badge: "Time-limited",
+  //     badgeColor: "bg-[#D93F50]",
+  //     badgeIcon: "before:bg-[url('/images/icons/badge-icon.png')]",
+  //     title: "Suhasini",
+  //     discount: "Up to 30% off",
+  //     time: "32 min",
+  //     date: "18 Sep-24 Sep",
+  //     rating: "4.7", 
+  //     ratingcount: "123"
+  //   },
+  //   {
+  //     image: "/images/firstees-card-bg.png",
+  //     logo: "/images/firstees-logo.png",
+  //     badge: "Time-limited",
+  //     badgeColor: "bg-[#34C759]",
+  //     badgeIcon: "before:bg-[url('/images/icons/badge-icon-green.png')]",
+  //     title: "Free",
+  //     discount: "Up to 30% off",
+  //     time: "32 min",
+  //     date: "",
+  //     rating: "4.7", 
+  //     ratingcount: "123"
+  //   }
+  // ];
   useEffect(()=> {
     mutation.mutate({email});
   },[])
@@ -219,7 +219,7 @@ function Home() {
             </div>
           </div>
         </div>
-        <div className="tablet:order-3 md1:hidden">
+        <div className="tablet:order-3">
           <FirstCoinBannerHome />
         </div>
       </div>

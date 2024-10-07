@@ -110,8 +110,8 @@ function Bills() {
                               </p>
                           </div>
                           <Link 
-                              href="/payBill"
-                              className="rounded-8 bg-secondary text-white py-4 px-[60px] mlgs:px-11 mlgs:py-3 xxl:px-4 xxl:py-2 border-0 lg:px-2 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-4"
+                              href="#"
+                              className="rounded-8 bg-secondary text-white py-4 px-[60px] mlgs:px-11 mlgs:py-3 xxl:px-4 xxl:py-2 border-0 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-8 xs:px-2"
                           >
                               Pay Bill
                           </Link>
@@ -119,7 +119,11 @@ function Bills() {
                     )
                   })
                 }
-                <div>
+                {/* 
+                  Request Monthly payment code commented 
+                  uncomment in future 
+                */}
+                {/* <div>
                   <p className="mt-20 text-base font-medium text-content leading-[19px] text-center flex justify-center items-center before:content-[''] before:block before:h-[1px] before:bg-[#E6EFF5] before:relative before:left-[-10px] after:content-[''] after:block after:h-[1px] after:bg-[#E6EFF5] after:relative after:right-[-10px] w-calc-line">or</p>
                   <div className="max-w-[435px] m-auto text-center">
                     <Image
@@ -137,7 +141,7 @@ function Bills() {
                         Request Monthly Payment
                     </Link>
                   </div>
-                </div>
+                </div> */}
               </TabsContent>
               <TabsContent key={tabNames[1]} value={tabNames[1]}>
                 {
@@ -172,7 +176,7 @@ function Bills() {
                           }>
                           <Link 
                               href=""
-                              className="block border border-[#919191] text-[#919191] py-0 px-[30px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:text-primary mxl:p-0 mxl:border-0"
+                              className="block border border-[#919191] text-[#919191] py-0 px-[30px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:text-primary mxl:p-0 mxl:border-0 xs:relative xs:left-0 xs:inline-block"
                           >
                               View Details
                           </Link> 

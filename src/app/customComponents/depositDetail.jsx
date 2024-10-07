@@ -33,11 +33,12 @@ function DepositDetail() {
                     return <CustomListWidthIcon key={index} icon={listItem.icon} title={listItem.title} amount={listItem.amount} />
                 })}
             </div>
-            <div className="w-2/4 self-end text-end mxl:w-full mxl:mt-4">
+            {/* Adust button is commented  */}
+            {/* <div className="w-2/4 self-end text-end mxl:w-full mxl:mt-4">
                 <a href="/adjustDeposit" className="inline-block rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto leading-4">
                     Adjust
                 </a>
-            </div>
+            </div> */}
         </div>
     </div>
   )

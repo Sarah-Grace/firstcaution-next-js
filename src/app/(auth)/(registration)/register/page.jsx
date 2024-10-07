@@ -133,7 +133,7 @@ function Register() {
                 <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">Create your free account</h4>
                 <form action="" className="w-full" onSubmit={handleSubmit}>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="w-[50px] flex-[0_0_50px justify-center  py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center  py-0 flex items-center">
                             <Image
                                 src="/images/icons/user-icon.png"
                                 alt=""
@@ -154,7 +154,7 @@ function Register() {
                     </div>
                     {/* {errors.fname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.fname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/user-icon.png"
                                 alt=""
@@ -175,7 +175,7 @@ function Register() {
                     </div>
                     {/* {errors.lname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.lname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/email-icon.png"
                                 alt=""
@@ -199,7 +199,7 @@ function Register() {
                         {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
                     </div> */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/password.png"
                                 alt=""
@@ -219,7 +219,7 @@ function Register() {
                         />
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">
-                      <span className="w-[50px] flex-[0_0_50px justify-center py-0 flex items-center">
+                      <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                           <Image
                               src="/images/icons/calendar-icon.png"
                               alt=""
