@@ -7,7 +7,6 @@ import axiosInstance from '../../../../lib/axiosInstance';
 import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import {addEmail} from '../../../slices/authSlice';
-import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
 
 // Function for reset password
@@ -57,9 +56,6 @@ function ForgetPassword() {
     <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px] sm:bg-white'>
       <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto my-4 flex-auto sm:max-w-full sm:h-full sm:py-0'>
           <div className='flex flex-col justify-center items-center max-h-full w-full overflow-y-auto bg-white py-11 px-[34px] rounded-8 sm:py-5 xs:px-5'>
-            <div className="w-[170px] mx-auto mb-5">
-                <LangSwitch />
-            </div>
             <h2 className="text-h2 text-heading text-center mb-10">{t('forget_password_page.forget_password')}</h2>
               <Image
                   src="/images/password.png"

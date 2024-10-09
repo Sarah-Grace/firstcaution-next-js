@@ -47,7 +47,18 @@ function Contracts() {
 
         },
     });
-    
+    function statusTranslation(status) {
+        switch(status){
+            case "All":
+                return t('status.all') 
+            case "Active":
+                return t('status.active')
+            case "Pending":
+                return t('status.pending')
+            case "Closing with Claim":
+                return t('status.closed')
+        }
+    }
     return (
         <div className="pt-[30px] mb-14">
             <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] sm:pr-3 sm:pl-3">
@@ -59,8 +70,9 @@ function Contracts() {
                                 <TabsTrigger 
                                     key={`tab${index}`} 
                                     value={status} 
-                                    className= {status !== "Closing with Claim" ? status: t('status.closed')} >
-                                {status !== "Closing with Claim" ? status : "Closed"}
+                                    className= {status !== "Closing with Claim" ? status : t('status.closed')} >
+                                {/* {status !== "Closing with Claim" ? status : "Closed"}*/}
+                                {statusTranslation(status)} 
                                 </TabsTrigger>
                             )
                         })}

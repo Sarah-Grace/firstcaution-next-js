@@ -147,6 +147,19 @@
             "annual_premium": "Annual Premium",
             "flexible_deposit": "Flexible Deposit",
             "promo_code": "Promo Code"
+        },
+        "settings_page":{
+            "edit_profile": "Edit Profile",
+            "security": "Security",
+            "first_name": "First Name",
+            "last_name": "Last Name",
+            "email": "Email",
+            "dob": "Date of Birth",
+            "save":"Save",
+            "new_password": "New Password",
+            "password": "Password",
+            "confirm_password":"Confirm Password",
+            "change_password": "Change Password"
         }
 
     }
