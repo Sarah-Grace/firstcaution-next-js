@@ -11,6 +11,7 @@ import axiosInstance from "@/lib/axiosInstance";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 import { useTranslations } from 'next-intl';
+// import PdfViewer from "@/app/customComponents/PdfViewer"
 
 const contractDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -27,6 +28,9 @@ function ContractDetail() {
     const [contractDeposit, setContractDeposit] = useState("");
     const [annualPremium, setAnnualPremium] = useState("");
     const [GuarantedAmount, setGuarantedAmount] = useState("");
+    const [pdfLink, setPdfLink] = useState("");
+    //const pdfFile = '/sample.pdf'; // Path to your PDF file
+
     // const statusColor = [
     //     {status:"Active",  colorText:"text-[#34C759]" , bgColor:"before:bg-[#34C759]" , borderColor:"border-[#34C759]"},
     //     {status:"Pending", colorText:"text-[#EEC23E]", bgColor:"before:bg-[#EEC23E]" , borderColor:"border-[#EEC23E]" },
@@ -62,6 +66,7 @@ function ContractDetail() {
             setContractDeposit(response.contract_detail.clientContractDeposit);
             setAnnualPremium(response.contract_detail.clientContractAnnualPremium);
             setGuarantedAmount(response.contract_detail.clientContractGuarantedAmount);
+            setPdfLink(response.file);
         },
         onError: (error) => {
         // This function runs if the mutation fails
@@ -73,12 +78,15 @@ function ContractDetail() {
 
   return (
     <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white xs:px-2'>
-        {}
+        {
+            
+        }
         <BackArrowBtn link="contracts" title="Contract Detail" />
         <div className="flex xxl:flex-wrap">
             <div className="w-1/2 pr-6 xxl:w-full xxl:mb-6 xxl:pr-0">
                 <div className="flex justify-between pt-14 mb-[76px] xxl:mb-5">
                     <div className="flex items-center gap-6 xs:gap-2">
+                    {/* <PdfViewer fileUrl={pdfFile} /> */}
                         <Image
                             src="/images/icons/contract-detail-img.png"
                             alt=""
@@ -129,10 +137,19 @@ function ContractDetail() {
                 <div className="bg-bgc-3 px-[30px] py-5">
                     <div className="flex items-center justify-between">
                         <h3 className="text-h3 font-medium text-grey-2 mb-2">Document Preview</h3>
-                        <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div>
+                        {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
                     </div>
                     <div className="mt-9 mb-[19px]">
-                        <Link href="#">
+                    <div className="">
+                    <iframe
+                        src={pdfLink}
+                        width="600"
+                        height="400"
+                        title="Pdf Viewer"
+                        className="w-full h-[600px]"
+                    ></iframe>
+                    </div>
+                        {/* <Link href="#">
                             <Image
                                 src="/images/document-preview.png"
                                 alt=""
@@ -140,9 +157,9 @@ function ContractDetail() {
                                 width={415}
                                 height={483}
                             />
-                        </Link>
+                        </Link> */}
                     </div>
-                    <div className="text-center">
+                    {/* <div className="text-center">
                         <button className="px-2">
                             <Image
                                 src="/images/icons/zoom-in.svg"
@@ -161,15 +178,15 @@ function ContractDetail() {
                                 height={24}
                             />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
-                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href="http://localhost:3000/sample.pdf" download>
+                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={pdfLink} download  target="_blank">
                         {t('download_pdf')}
                     </a>
-                    <button className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-4 text-secondary text-[28px] font-thin">
+                    <a className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-[50px] text-secondary text-[28px] font-thin text-center" href={pdfLink} target="_blank">
                         <FontAwesomeIcon icon={faShareNodes} />
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

@@ -147,7 +147,20 @@
             "annual_premium": "Jahresprämie", 
             "flexible_deposit": "Flexible Einzahlung", 
             "promo_code": "Promo-Code" 
-        } 
+        } ,
+        "settings_page":{
+            "edit_profile": "Profil bearbeiten",
+            "security": "Sicherheit",
+            "first_name": "Vorname",
+            "last_name": "Nachname",
+            "email": "E-Mail",
+            "dob": "Geburtsdatum",
+            "save":"Speichern",
+            "new_password": "Neues Passwort",
+            "password": "Passwort",
+            "confirm_password":"Passwort bestätigen",
+            "change_password": "Passwort ändern"
+        }
 
     } 
 

@@ -9,6 +9,8 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/lib/axiosInstance";
 import { format } from "date-fns";
 import { useTranslations } from 'next-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 
 const billDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -24,6 +26,7 @@ function BillDetail() {
     const [amount, setAmount] = useState();
     const [paymentMethod, setpaymentMethod] = useState();
     const [date, setDate] = useState();
+    const [pdfLink, setPdfLink] = useState("");
     const BillInfoList = [
         {
             title: t('transaction_id'),
@@ -93,14 +96,23 @@ function BillDetail() {
                     <h3 className="text-h3 text-content tablet:text-sm">{t('note')}</h3>
                 </div>
             </div>
-            <div className="w-2/4 pl-6 xl:pl-0 xl:w-full">
+            <div className="w-1/2 pl-6 xxl:w-full xxl:pl-0">
                 <div className="bg-bgc-3 px-[30px] py-5">
                     <div className="flex items-center justify-between">
                         <h3 className="text-h3 font-medium text-grey-2 mb-2">Document Preview</h3>
-                        <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div>
+                        {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
                     </div>
                     <div className="mt-9 mb-[19px]">
-                        <Link href="#">
+                    <div className="">
+                    <iframe
+                        src="https://pdfobject.com/pdf/sample.pdf"
+                        width="600"
+                        height="400"
+                        title="Embedded Website"
+                        className="w-full h-[600px]"
+                    ></iframe>
+                    </div>
+                        {/* <Link href="#">
                             <Image
                                 src="/images/document-preview.png"
                                 alt=""
@@ -108,9 +120,9 @@ function BillDetail() {
                                 width={415}
                                 height={483}
                             />
-                        </Link>
+                        </Link> */}
                     </div>
-                    <div className="text-center">
+                    {/* <div className="text-center">
                         <button className="px-2">
                             <Image
                                 src="/images/icons/zoom-in.svg"
@@ -129,12 +141,15 @@ function BillDetail() {
                                 height={24}
                             />
                         </button>
-                    </div>
+                    </div> */}
                 </div>
-                <div className="mt-14">
-                    <button href="#"  className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
+                <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
+                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href="https://pdfobject.com/pdf/sample.pdf" download  target="_blank">
                         {t('download_pdf')}
-                    </button>
+                    </a>
+                    <a className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-[50px] text-secondary text-[28px] font-thin text-center" href="https://pdfobject.com/pdf/sample.pdf" target="_blank">
+                        <FontAwesomeIcon icon={faShareNodes} />
+                    </a>
                 </div>
             </div>
         </div>

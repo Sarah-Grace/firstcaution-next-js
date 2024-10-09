@@ -147,6 +147,19 @@
             "annual_premium": "Prime annuelle", 
             "flexible_deposit": "Dépôt flexible", 
             "promo_code": "Code promotionnel" 
+        },
+        "settings_page":{
+            "edit_profile": "Modifier le profil",
+            "security": "Sécurité",
+            "first_name": "Prénom",
+            "last_name": "Nom de famille",
+            "email": "E-mail",
+            "dob": "Date de naissance",
+            "save":"Enregistrer",
+            "new_password": "Nouveau mot de passe",
+            "password": "Mot de passe",
+            "confirm_password":"Confirmer le mot de passe",
+            "change_password": "Changer le mot de passe"
         } 
 
     } 
