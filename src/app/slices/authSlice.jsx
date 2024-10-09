@@ -40,7 +40,6 @@ import { createSlice } from "@reduxjs/toolkit";
          state.refreshToken= ""
          state.contractId= ""
          state.invoiceId= ""
-         state.apiKey= "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW"
       }
     }
  })
