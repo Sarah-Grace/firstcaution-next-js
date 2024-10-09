@@ -1,0 +1,154 @@
+{ 
+    "auth": { 
+        "login": "Connexion" , 
+        "signup": "Inscription", 
+        "email": "Adresse e-mail", 
+        "password": "Mot de passe", 
+        "verification": "Vérification", 
+        "verify": "Vérifier", 
+        "verification_page" : { 
+            "title": "Entrez le code de vérification", 
+            "sub_title": "Vérifiez votre code, nous venons de vous l'envoyer à votre adresse e-mail", 
+            "success": "Inscription réussie !" 
+        }, 
+        "login_page": { 
+            "welcome_back": "Bienvenue", 
+            "sub_title": "Connectez-vous à votre compte", 
+            "recover_password": "Récupérer le mot de passe", 
+            "dont_have": "Vous n'avez pas de compte ? " 
+        }, 
+        "forget_password_page" : { 
+            "forget_password": "Mot de passe oublié ?", 
+            "title": "Entrez l'adresse e-mail associée à votre compte", 
+            "sub_title": "Nous vous enverrons un lien pour réinitialiser votre mot de passe", 
+            "send": "Envoyer" 
+        }, 
+        "new_password_page" : { 
+            "new_password": "Nouveau mot de passe ?", 
+            "create_new_password": "Créer un nouveau mot de passe", 
+            "confirm_password": "Confirmer le mot de passe", 
+            "confirm":"Confirmer" 
+        }, 
+        "password_changed" :{ 
+            "title": "Mot de passe modifié avec succès !", 
+            "sub_title": "Nous vous informerons s'il y a d'autres problèmes avec votre compte", 
+            "go_to_signin": "Accéder à la connexion" 
+        },
+        "register_page": {
+            "title": "Commencer avec MyFirst",
+            "sub_title": "Créez votre compte gratuit",
+            "first_name": "Votre prénom",
+            "last_name": "Votre nom de famille",
+            "password": "Créer un mot de passe fort",
+            "dob": "Ajouter la date de naissance",
+            "have_account": "Vous avez déjà un compte ?"
+        }
+    }, 
+    "main": { 
+        "sidebar_and_header": { 
+            "home_title": "Accueil", 
+            "my_contracts": "Mes contrats", 
+            "my_bills": "Mes factures", 
+            "my_deposit": "Mon dépôt", 
+            "settings": "Paramètre", 
+            "logout": "Déconnexion", 
+            "overview": "Aperçu", 
+            "Firstmoove":"Firstmoove" 
+        }, 
+        "buttons": { 
+            "view_more": "Voir plus", 
+            "view": "Voir" 
+        }, 
+        "home": { 
+            "dashboard": { 
+                "my_dashboard": "Mon tableau de bord", 
+                "current_contracts": "Contrats en cours", 
+                "current_contracts_sub_title": "Gardez les contrats sous contrôle", 
+                "show_all": "Afficher tout", 
+                "address": "36 Ranchview Richardson", 
+                "city": "Suisse" 
+            }, 
+            "granted_amount": "Montant accordé", 
+            "deposit_amount": "Montant du dépôt", 
+            "annual _premium": "Prime annuelle", 
+            "firstcoin": "Première pièce", 
+            "open_bills": "Factures ouvertes", 
+            "paid_bills": "Factures payées", 
+            "id": "ID", 
+            "firstmoove": "Première pièce", 
+            "passport": "Passeport", 
+            "debt": "Certificat d'exécution de dette", 
+            "my_firstcoins": "Mes premières pièces", 
+            "next_invoice": "Économisé sur la prochaine facture : -1 CHF", 
+            "sponsored": { 
+                "you_get": "Vous obtenez ", 
+                "50_coins" : "50 pièces", 
+                "per_sponsored": "par client parrainé" 
+            } , 
+            "invite": "Inviter" 
+        }, 
+        "contract_page": { 
+            "status": { 
+                "all": "Tous", 
+                "active": "Actif", 
+                "pending": "En attente", 
+                "closed": "Fermé" 
+            }, 
+            "contract": "Contrat", 
+            "guarantee_amount": "Montant de la garantie", 
+            "annual_premium": "Prime annuelle", 
+            "status_title": "Statut", 
+            "view_details": "Afficher les détails" 
+        }, 
+        "contract_detail_page": { 
+            "contract_id": "ID du contrat", 
+            "granted_amount": "Montant accordé", 
+            "deposit_amount": "Montant du dépôt", 
+            "annual_premium": "Prime annuelle", 
+            "firstcoin": "Première pièce", 
+            "sponsored_person": "Personne parrainée", 
+            "download_pdf": "Télécharger le PDF" 
+        }, 
+        "bills_page": { 
+            "open-bills": { 
+                "title": "Dépôt", 
+                "issue_date": "Date d'émission", 
+                "amount":"Montant", 
+                "status_title": "Statut ", 
+                "pay_bill": "Payer la facture" 
+            }, 
+            "paid_bills": { 
+                "paid_to": "Payé à", 
+                "payment_method": "Mode de paiement", 
+                "status_title": "Statut", 
+                "view_details": "Afficher les détails" 
+            }, 
+            "status": { 
+                "all": "Tous", 
+                "active": "Actif", 
+                "pending": "En attente", 
+                "closed": "Fermé"
+            }  
+        }, 
+        "bill_detail_page": {
+            "bill_detail": "Détail de la facture", 
+            "transaction_id": "ID de transaction", 
+            "confirmation_no" : "Numéro de confirmation", 
+            "payment_date": "Date de paiement", 
+            "biller_name": "Nom du créancier", 
+            "amount_paid": "Montant payé", 
+            "payment_method": "Mode de paiement", 
+            "note": "Veuillez garder à l'esprit que ces paiements ne concernent que Firstcaution.", 
+            "download_pdf": "Télécharger le PDF" 
+        }, 
+        "deposit_page": { 
+            "deposit_detail": "Détail du dépôt", 
+            "granted_amount": "Montant accordé", 
+            "annual_premium": "Prime annuelle", 
+            "flexible_deposit": "Dépôt flexible", 
+            "promo_code": "Code promotionnel" 
+        } 
+
+    } 
+
+}

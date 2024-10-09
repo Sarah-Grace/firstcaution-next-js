@@ -1,0 +1,154 @@
+{ 
+    "auth": { 
+        "login": "Anmelden", 
+        "signup": "Registrieren", 
+        "email": "E-Mail-Adresse", 
+        "password": "Passwort", 
+        "verification": "Bestätigung", 
+        "verify": "Bestätigen", 
+        "verification_page" : { 
+            "title": "Geben Sie den Bestätigungscode ein", 
+            "sub_title": "Bestätigen Sie Ihren Code, den wir Ihnen gerade an Ihre E-Mail-Adresse gesendet haben", 
+            "success": "Erfolgreich registriert!" 
+        }, 
+        "login_page": { 
+            "welcome_back": "Willkommen zurück", 
+            "sub_title": "Melden Sie sich bei Ihrem Konto an", 
+            "recover_password":"Passwort wiederherstellen", 
+            "dont_have": "Sie haben noch kein Konto? " 
+        }, 
+        "forget_password_page" : { 
+            "forget_password": "Passwort vergessen?", 
+            "title":"Geben Sie die mit Ihrem Konto verknüpfte E-Mail-Adresse ein", 
+            "sub_title": "Wir senden Ihnen per E-Mail einen Link zum Zurücksetzen Ihres Passworts", 
+            "send": "Senden" 
+        }, 
+        "new_password_page" : { 
+            "new_password": "Neues Passwort?", 
+            "create_new_password": "Neues Passwort erstellen", 
+            "confirm_password":"Passwort bestätigen", 
+            "confirm":"Bestätigen" 
+        }, 
+        "password_changed" :{ 
+            "title": "Passwort erfolgreich geändert!", 
+            "sub_title": "Wir informieren Sie, wenn weitere Probleme mit Ihrem Konto auftreten", 
+            "go_to_signin": "Zur Anmeldung" 
+        }, 
+        "register_page": { 
+            "title": "Erste Schritte mit MyFirst", 
+            "sub_title": "Erstellen Sie Ihr kostenloses Konto", 
+            "first_name": "Ihr Vorname", 
+            "last_name": "Ihr Nachname", 
+            "password": "Sicheres Passwort erstellen", 
+            "dob": "Geburtsdatum hinzufügen", 
+            "have_account":"Sie haben bereits ein Konto?" 
+        } 
+    }, 
+    "main": { 
+        "sidebar_and_header": { 
+            "home_title":"Home", 
+            "my_contracts": "Meine Verträge", 
+            "my_bills": "Meine Rechnungen", 
+            "my_deposit":"Meine Anzahlung", 
+            "settings": "Einstellungen", 
+            "logout": "Abmelden", 
+            "overview":"Übersicht", 
+            "Firstmoove": "Firstmoove" 
+        }, 
+        "buttons": {  
+            "view_more":"Mehr anzeigen",
+            "view":"Anzeigen" 
+        },
+        "home": { 
+            "dashboard": { 
+                "my_dashboard": "Mein Dashboard", 
+                "current_contracts": "Aktuelle Verträge", 
+                "current_contracts_sub_title": "Verträge im Blick behalten", 
+                "show_all":"Alle anzeigen", 
+                "address": "36 Ranchview Richardson", 
+                "city":"Schweiz" 
+            }, 
+            "granted_amount":"Bewilligter Betrag", 
+            "deposit_amount":"Einzahlungsbetrag", 
+            "annual _premium":"Jahresprämie", 
+            "firstcoin":"Firstcoin", 
+            "open_bills":"Offene Rechnungen", 
+            "paid_bills":"Bezahlte Rechnungen", 
+            "id":"Ausweis", 
+            "firstmoove": "Firstmoove", 
+            "passport":"Reisepass", 
+            "debt":"Betreibungsbescheinigung", 
+            "my_firstcoins": "Meine Firstcoins", 
+            "next_invoice": "Bei der nächsten Rechnung gespart: -CHF 1", 
+            "sponsored": { 
+                "you_get": "Du bekommst ", 
+                "50_coins" : "50 Münzen", 
+                "per_sponsored":"pro gesponsertem Kunden" 
+            } , 
+            "invite":"Einladen" 
+        }, 
+        "contract_page": { 
+            "status": { 
+                "all": "Alle", 
+                "active": "Aktiv", 
+                "pending": "Ausstehend", 
+                "closed": "Geschlossen" 
+            }, 
+            "contract": "Vertrag", 
+            "guarantee_amount":"Garantiebetrag", 
+            "annual_premium": "Jahresprämie", 
+            "status_title":"Status", 
+            "view_details": "Details anzeigen" 
+        }, 
+        "contract_detail_page": { 
+            "contract_id":"Vertrags-ID", 
+            "granted_amount": "Gewährter Betrag", 
+            "deposit_amount": "Einzahlungsbetrag",
+            "annual_premium": "Jahresprämie", 
+            "firstcoin": "Firstcoin", 
+            "sponsored_person": "Gesponserte Person", 
+            "download_pdf": "PDF herunterladen" 
+        }, 
+        "bills_page": { 
+            "open-bills": { 
+                "title": "Anzahlung", 
+                "issue_date": "Ausgabedatum", 
+                "amount": "Betrag", 
+                "status_title": "Status", 
+                "pay_bill": "Rechnung bezahlen" 
+            },  
+            "paid_bills": {
+                "paid_to": "Bezahlt an",
+                "payment_method": "Zahlungsmethode", 
+                "status_title": "Status", 
+                "view_details": "Details anzeigen" 
+            }, 
+            "status": { 
+                "all": "Alle", 
+                "active": "Aktiv", 
+                "pending": "Ausstehend", 
+                "closed": "Geschlossen" 
+            } 
+        }, 
+        "bill_detail_page": { 
+            "bill_detail": "Rechnungsdetails", 
+            "transaction_id": "Transaktions-ID", 
+            "confirmation_no" :"Bestätigungsnummer", 
+            "payment_date":"Zahlungsdatum", 
+            "biller_name":"Name des Rechnungsstellers", 
+            "amount_paid": "Bezahlter Betrag", 
+            "payment_method": "Zahlungsmethode", 
+            "note": "Bitte beachten Sie, dass diese Zahlungen nur für Firstcaution gelten.", 
+            "download_pdf":"PDF herunterladen" 
+        }, 
+        "deposit_page": { 
+            "deposit_detail": "Einzahlungsdetails", 
+            "granted_amount": "Gewährter Betrag", 
+            "annual_premium": "Jahresprämie", 
+            "flexible_deposit": "Flexible Einzahlung", 
+            "promo_code": "Promo-Code" 
+        } 
+
+    } 
+
+}

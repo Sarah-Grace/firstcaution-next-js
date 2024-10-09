@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "@/lib/axiosInstance";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
+import { useTranslations } from 'next-intl';
 
 const contractDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -19,7 +20,7 @@ const contractDetail = async ({ contractId, otp }) => {
 };
 
 function ContractDetail() {
-    
+    const t = useTranslations('main.contract_detail_page');
     const contractId = useSelector((state) => state.contractId);
     const [contractNumber, setContractNumber] = useState("");
     const [status, setStatus] = useState("");
@@ -37,15 +38,15 @@ function ContractDetail() {
 
     const contractInfoList = [
         {
-            title: "Granted Amount",
+            title: t('granted_amount'),
             detail: `CHF ${GuarantedAmount}`
         },
         {
-            title: "Deposit Amount",
+            title: t('deposit_amount'),
             detail: `CHF ${contractDeposit}`
         },
         {
-            title: "Annual Premium",
+            title: t('annual_premium'),
             detail: `CHF ${annualPremium}`
         }
     ]
@@ -86,7 +87,7 @@ function ContractDetail() {
                             height={60}
                          />
                          <div>
-                            <h2 className="text-h2 mb-2 text-content xs:mb-0 xs:text-base">Contract ID</h2>
+                            <h2 className="text-h2 mb-2 text-content xs:mb-0 xs:text-base">{t('contract_id')}</h2>
                             <h3 className="text-h3 font-normal text-grey-2 mb-2 xs:mb-0">{contractNumber}</h3>
                          </div>
                     </div>
@@ -110,7 +111,7 @@ function ContractDetail() {
                 </div>
                 <div className="bg-[#E5EFFF] py-4 px-[26px] rounded-8">
                     <div className="flex justify-between items-center ">
-                        <h3 className="text-h3 font-medium text-content">Firstcoin</h3>
+                        <h3 className="text-h3 font-medium text-content">{t('firstcoin')}</h3>
                         <h3 className="text-h3 font-medium text-content">90</h3>
                     </div>
                     <div className="flex items-center mt-7 gap-2">
@@ -120,7 +121,7 @@ function ContractDetail() {
                             height={17.5}
                             width={15}
                         />
-                        <h4 className="text-h4 font-medium text-grey-2">Sponsored Person: <span className="text-content">John Duo</span></h4>
+                        <h4 className="text-h4 font-medium text-grey-2">{t('sponsored_person')}: <span className="text-content">John Duo</span></h4>
                     </div>
                 </div>
             </div>
@@ -163,9 +164,9 @@ function ContractDetail() {
                     </div>
                 </div>
                 <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
-                    <button href="#"  className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4">
-                        Download PDF
-                    </button>
+                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href="http://localhost:3000/sample.pdf" download>
+                        {t('download_pdf')}
+                    </a>
                     <button className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-4 text-secondary text-[28px] font-thin">
                         <FontAwesomeIcon icon={faShareNodes} />
                     </button>

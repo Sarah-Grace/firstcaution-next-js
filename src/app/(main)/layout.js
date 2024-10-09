@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import { resetAll } from "@/app/slices/authSlice";
 import { removeToken } from "./utils/auth";
+import { removeLanguage } from "./utils/language";
 
 export default function MainLayout({children}) {
     const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function MainLayout({children}) {
         router.push('/login');  // Navigate to login page or another route
         dispatch(resetAll());
         removeToken();
+        removeLanguage();
     }
     useEffect(() => {
       // Start the session on page load

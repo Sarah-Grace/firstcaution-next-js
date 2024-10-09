@@ -1,0 +1,154 @@
+{
+    "auth": {
+        "login": "Log In" ,
+        "signup": "Sign Up",
+        "email": "Email Address",
+        "password": "Password",
+        "verification":"Verification",
+        "verify": "Verify",
+        "verification_page" : {
+            "title":"Enter the verification code",
+            "sub_title": "Verify your code we just send you to your email address",
+            "success":"Registered succesfully!"
+        },
+        "login_page": {
+            "welcome_back": "Welcome Back",
+            "sub_title": "Log In to your account",
+            "recover_password":"Recover Password",
+            "dont_have": "Don’t have an account? "
+        },
+        "forget_password_page" : {
+            "forget_password": "Forget Password?",
+            "title":"Enter the email address associated with your account",
+            "sub_title": "We will email you a link to reset your password",
+            "send": "Send"
+        },
+        "new_password_page" : {
+            "new_password": "New Password?",
+            "create_new_password": "Create New Password",
+            "confirm_password":"Confirm Password",
+            "confirm":"Confirm"
+        },
+        "password_changed" :{
+            "title": "Password changed succesfully!",
+            "sub_title": "We will let you know if there are more problems with your account",
+            "go_to_signin": "Go to Sign In"
+        },
+        "register_page": {
+            "title": "Get Started with MyFirst",
+            "sub_title": "Create your free account",
+            "first_name": "Your First Name",
+            "last_name": "Your Last Name",
+            "password": "Create Strong Password",
+            "dob": "Add Date of Birth",
+            "have_account": "Already have an account?"
+        }
+    },
+    "main": {
+        "sidebar_and_header": {
+            "home_title":"Home",
+            "my_contracts": "My Contracts",
+            "my_bills": "My Bills",
+            "my_deposit":"My Deposit",
+            "settings": "Setting",
+            "logout": "Logout",
+            "overview":"Overview",
+            "Firstmoove": "Firstmoove"
+        },
+        "buttons": {
+            "view_more":"View More",
+            "view":"View"
+        },
+        "home": {
+            "dashboard": {
+                "my_dashboard": "My Dashboard",
+                "current_contracts": "Current contracts",
+                "current_contracts_sub_title": "Keep contracts in check",
+                "show_all":"Show All",
+                "address": "36 Ranchview Richardson",
+                "city":"Switzerland"
+            },
+            "granted_amount":"Granted Amount",
+            "deposit_amount":"Deposit Amount",
+            "annual _premium":"Annual Premium",
+            "firstcoin":"Firstcoin",
+            "open_bills":"Open Bills",
+            "paid_bills":"Paid Bills",
+            "id":"ID",
+            "firstmoove": "Firstmoove",
+            "passport":"Passport",
+            "debt":"Debt Enforcement Certificate",
+            "my_firstcoins": "My Firstcoins",
+            "next_invoice": "Saved on next Invoice: -CHF 1",
+            "sponsored": {
+                "you_get": "You get ",
+                "50_coins"  : "50 Coins",
+                "per_sponsored":"per sponsored clients"
+            } ,
+            "invite":"Invite"
+        },
+        "contract_page": {
+            "status": {
+                "all": "All",
+                "active": "Active",
+                "pending": "Pending",
+                "closed": "Closed"
+            },
+            "contract": "Contract",
+            "guarantee_amount":"Guarantee Amount",
+            "annual_premium": "Annual Premium",
+            "status_title":"Status",
+            "view_details": "View Details"
+        },
+        "contract_detail_page": {
+            "contract_id":"Contract ID",
+            "granted_amount": "Granted Amount",
+            "deposit_amount": "Deposit Amount",
+            "annual_premium": "Annual Premium",
+            "firstcoin":"Firstcoin",
+            "sponsored_person":"Sponsored Person",
+            "download_pdf":"Download PDF"
+        },
+        "bills_page": {
+            "open-bills": {
+                "title":"Deposit",
+                "issue_date": "Issue Date",
+                "amount":"Amount",
+                "status_title": "Status",
+                "pay_bill": "Pay Bill"
+            },
+            "paid_bills": {
+                "paid_to": "Paid To",
+                "payment_method": "Payment Method",
+                "status_title": "Status",
+                "view_details": "View Details"
+            },
+            "status": {
+                "all": "All",
+                "active": "Active",
+                "pending": "Pending",
+                "closed": "Closed"
+            }
+        },
+        "bill_detail_page": {
+            "bill_detail": "Bill Detail",
+            "transaction_id": "Transaction ID",
+            "confirmation_no" :"Confirmation No",
+            "payment_date":"Payment Date",
+            "biller_name":"Biller Name",
+            "amount_paid": "Amount Paid",
+            "payment_method": "Payment Method",
+            "note": "Please keep in mind that these payments are only for Firstcaution.",
+            "download_pdf":"Download PDF"
+        },
+        "deposit_page": {
+            "deposit_detail": "Deposit Detail",
+            "granted_amount": "Granted Amount",
+            "annual_premium": "Annual Premium",
+            "flexible_deposit": "Flexible Deposit",
+            "promo_code": "Promo Code"
+        }
+
+    }
+
+}

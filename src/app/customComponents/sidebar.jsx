@@ -4,28 +4,30 @@ import SidebarList from './sidebarList'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl';
 
 function Sidebar( {logout}) {
+    const t = useTranslations('main.sidebar_and_header');
     const pathname = usePathname();
     const menuListData = [
         {
             menuIcon:"/images/icons/home.svg", 
-            menuTitle:"Home",
+            menuTitle:t('home_title'),
             path: "/home"
         },
         {
             menuIcon:"/images/icons/my-contracts.svg", 
-            menuTitle:"My Contracts",
+            menuTitle:t('my_contracts'),
             path: "/contracts"
         },
         {
             menuIcon:"/images/icons/my-bills.svg", 
-            menuTitle:"My Bills",
+            menuTitle:t('my_bills'),
             path: "/bills"
         },
         {
             menuIcon:"/images/icons/my-deposit.svg", 
-            menuTitle:"My Deposit",
+            menuTitle:t('my_deposit'),
             path: "/deposit"
         }
     ]
@@ -74,7 +76,7 @@ function Sidebar( {logout}) {
     const menuListData2 = [
         {
             menuIcon:"/images/icons/settings.svg", 
-            menuTitle:"Settings",
+            menuTitle:t('settings'),
             path: "/settings"
         }
     ]
@@ -111,7 +113,7 @@ function Sidebar( {logout}) {
                                     height={24}
                                     alt=""
                                 />
-                                <span className="ml-[27px] lg:line-clamp-1">Logout</span>
+                                <span className="ml-[27px] lg:line-clamp-1">{t('logout')}</span>
                             </Link>
                         </div>
                     </li>

@@ -5,6 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import BackArrowBtn from "@/app/customComponents/BackArrowBtn"
 import CustomListWidthIcon from "@/app/customComponents/CustomListWidthIcon";
 import axiosInstance from '@/lib/axiosInstance';
+import { useTranslations } from 'next-intl';
 
 const depositdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/deshboard/', otp);
@@ -13,6 +14,7 @@ const depositdata = async (otp) => {
 };
 
 function Deposit() {
+  const t = useTranslations('main.deposit_page');
   const email = useSelector((state) => state.userEmail);
   const [annualPremium, setAnnualPremium] = useState(0);
   const [grantedAmount, setGrantedAmount] = useState(0);
@@ -22,22 +24,22 @@ function Deposit() {
   const myDepositList = [
     {
       icon: "/images/icons/granted.png",
-      title: "Granted Amount",
+      title: t('deposit_detail'),
       amount:`CHF ${grantedAmount}`
     },
     {
       icon: "/images/icons/flexible.png",
-      title: "Flexible Deposit",
+      title: t('flexible_deposit'),
       amount: "CHF 460.00"
     },
     {
       icon: "/images/icons/annual.png",
-      title: "Annual Premium",
+      title: t('annual_premium'),
       amount: `CHF ${annualPremium}`,
     },
     {
       icon: "/images/icons/promo.png",
-      title: "Promo Code",
+      title: t('promo_code'),
       amount: "DISCOUNT 20"
     }
   ];
@@ -59,7 +61,7 @@ function Deposit() {
   });
   return (
     <div className="pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white sm:px-3">
-        <BackArrowBtn link="/home" title="Deposit Detail"/>
+        <BackArrowBtn link="/home" title={t('deposit_detail')}/>
         <div className="flex mt-11 flex-wrap">
             <div className="w-2/4 mxl:w-full">
                 {myDepositList.map((listItem, index) => {
