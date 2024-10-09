@@ -12,6 +12,7 @@ export const startSession = () => {
 // End the session by removing the cookie
 export const endSession = () => {
   Cookies.remove(SESSION_KEY);
+  Cookies.remove("language")
 };
 
 // Check if session is active

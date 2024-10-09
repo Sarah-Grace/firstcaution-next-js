@@ -1,0 +1,151 @@
+{ 
+    "auth": { 
+        "login": "Accedi" , 
+        "signup": "Registrati", 
+        "email": "Indirizzo email", 
+        "password": "Password", 
+        "verification":"Verifica", 
+        "verify": "Verifica", 
+        "verification_page" : { 
+            "title":"Inserisci il codice di verifica", 
+            "sub_title": "Verifica il codice che ti abbiamo appena inviato al tuo indirizzo email", 
+            "success":"Registrazione avvenuta con successo!" 
+        }, 
+        "login_page": { 
+            "welcome_back": "Bentornato", 
+            "sub_title": "Accedi al tuo account", 
+            "recover_password":"Recupera password", 
+            "dont_have": "Non hai un account? " 
+        }, 
+        "forget_password_page" : { 
+            "forget_password": "Password dimenticata?", 
+            "title":"Inserisci l'indirizzo email associato al tuo account", 
+            "sub_title": "Ti invieremo un link per reimpostare la password", 
+            "send": "Invia" 
+        }, 
+        "new_password_page" : { 
+            "new_password": "Nuova password?", 
+            "create_new_password": "Crea nuova password", 
+            "confirm_password":"Conferma password", 
+            "confirm":"Conferma" 
+        }, 
+        "password_changed" :{ 
+            "title": "Password modificata con successo!", 
+            "sub_title": "Ti faremo sapere se ci sono altri problemi con il tuo account", 
+            "go_to_signin": "Vai a Accedi In" 
+        }, 
+        "register_page": { 
+            "title": "Inizia con MyFirst", 
+            "sub_title": "Crea il tuo account gratuito", 
+            "first_name": "Il tuo nome", 
+            "last_name": "Il tuo cognome", 
+            "password": "Crea una password complessa", 
+            "dob": "Aggiungi data di nascita", 
+            "have_account":"Hai già un account?" 
+        } 
+    }, 
+    "main": { 
+        "sidebar_and_header": { 
+            "home_title":"Home", 
+            "my_contracts": "I miei contratti", 
+            "my_bills": "Le mie bollette", 
+            "my_deposit":"Il mio deposito", 
+            "settings": "Impostazione", 
+            "logout": "Esci", 
+            "overview":"Panoramica", 
+            "Firstmoove": "Firstmoove" 
+        }, 
+        "buttons": { 
+            "view":"Visualizza" 
+        },
+        "home": { 
+            "dashboard": { 
+                "my_dashboard": "La mia dashboard", 
+                "current_contracts": "Contratti correnti", 
+                "current_contracts_sub_title": "Tieni sotto controllo i contratti", 
+                "show_all":"Mostra tutto", 
+                "address": "36 Ranchview Richardson", 
+                "city":"Svizzera" 
+            }, 
+            "granted_amount":"Importo concesso", 
+            "deposit_amount":"Importo del deposito", 
+            "annual _premium":"Premio annuale", 
+            "firstcoin":"Firstcoin", 
+            "open_bills":"Fatture aperte", 
+            "paid_bills":"Fatture pagate", 
+            "id":"ID", 
+            "firstmoove": "Firstmoove", 
+            "passport":"Passaporto", 
+            "debt":"Certificato di esecuzione del debito", 
+            "my_firstcoins": "I miei Firstcoins", 
+            "next_invoice": "Risparmi sulla prossima fattura: -CHF 1", 
+            "sponsored": { 
+                "you_get": "Ottieni ", 
+                "50_coins" : "50 monete", 
+                "per_sponsored":"per clienti sponsorizzati" 
+            } , 
+            "invite":"Invita" 
+        }, 
+        "contract_page": { 
+            "status": { 
+                "all": "Tutti", 
+                "active": "Attivo", 
+                "pending": "In attesa", 
+                "closed": "Chiuso" 
+            }, 
+            "contract": "Contratto", 
+            "guarantee_amount":"Importo della garanzia", 
+            "annual_premium": "Premio annuale", 
+            "status_title":"Stato", 
+            "view_details": "Visualizza dettagli" 
+        }, 
+        "contract_detail_page": { 
+            "contract_id":"ID contratto", 
+            "granted_amount": "Importo concesso", 
+            "deposit_amount": "Importo del deposito",
+            "annual_premium": "Premio annuale", 
+            "firstcoin":"Firstcoin", 
+            "sponsored_person":"Persona sponsorizzata", 
+            "download_pdf":"Scarica PDF" 
+        }, 
+        "bills_page": { 
+            "open-bills": { 
+                "title":"Deposito", 
+                "issue_date": "Data di emissione", 
+                "amount":"Importo", 
+                "status_title": "Stato", 
+                "pay_bill": "Paga bolletta" 
+            }, 
+            "paid_bills": {
+                "paid_to": "Pagato a",
+                "payment_method": "Metodo di pagamento", 
+                "status_title": "Stato", 
+                "view_details": "Visualizza dettagli" 
+            }, 
+            "status": { 
+                "all": "Tutto", 
+                "active": "Attivo", 
+                "pending": "In attesa", 
+                "closed": "Chiuso" 
+            } 
+        }, 
+        "bill_detail_page": { 
+            "bill_detail": "Dettaglio fattura", 
+            "transaction_id": "ID transazione", 
+            "confirmation_no" :"Numero di conferma", 
+            "payment_date":"Data di pagamento", 
+            "biller_name":"Nome dell'emittente della fattura", 
+            "amount_paid": "Importo pagato", 
+            "payment_method": "Metodo di pagamento", 
+            "note": "Tieni presente che questi pagamenti sono solo per Firstcaution.", 
+            "download_pdf":"Scarica PDF" 
+        }, 
+        "deposit_page": { 
+            "deposit_detail": "Dettaglio deposito", 
+            "granted_amount": "Importo concesso", 
+            "annual_premium": "Premio annuale", 
+            "flexible_deposit": "Deposito flessibile", 
+            "promo_code": "Codice promozionale" 
+        } 
+    }
+}

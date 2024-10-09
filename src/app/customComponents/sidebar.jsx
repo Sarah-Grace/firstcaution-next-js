@@ -4,61 +4,85 @@ import SidebarList from './sidebarList'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import Image from 'next/image'
+import { useTranslations } from 'next-intl';
 
 function Sidebar( {logout}) {
+    const t = useTranslations('main.sidebar_and_header');
     const pathname = usePathname();
     const menuListData = [
         {
             menuIcon:"/images/icons/home.svg", 
-            menuTitle:"Home",
+            menuTitle:t('home_title'),
             path: "/home"
         },
         {
             menuIcon:"/images/icons/my-contracts.svg", 
-            menuTitle:"My Contracts",
+            menuTitle:t('my_contracts'),
             path: "/contracts"
         },
         {
             menuIcon:"/images/icons/my-bills.svg", 
-            menuTitle:"My Bills",
+            menuTitle:t('my_bills'),
             path: "/bills"
         },
         {
             menuIcon:"/images/icons/my-deposit.svg", 
-            menuTitle:"My Deposit",
+            menuTitle:t('my_deposit'),
             path: "/deposit"
-        },
-        {
-            menuIcon:"/images/icons/firstees.svg", 
-            menuTitle:"Firstees",
-            path: "/firstees"
-        },
-        {
-            menuIcon:"/images/icons/firstmoove.svg", 
-            menuTitle:"Firstmoove",
-            path: "/firstmoove"
-        },
-        {
-            menuIcon:"/images/icons/coin.svg", 
-            menuTitle:"Firstcoin",
-            path: "#"
-        },
-        {
-            menuIcon:"/images/icons/chatbot.svg", 
-            menuTitle:"Chatbot",
-            path: "#"
         }
     ]
+    // const menuListData = [
+    //     {
+    //         menuIcon:"/images/icons/home.svg", 
+    //         menuTitle:"Home",
+    //         path: "/home"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/my-contracts.svg", 
+    //         menuTitle:"My Contracts",
+    //         path: "/contracts"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/my-bills.svg", 
+    //         menuTitle:"My Bills",
+    //         path: "/bills"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/my-deposit.svg", 
+    //         menuTitle:"My Deposit",
+    //         path: "/deposit"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/firstees.svg", 
+    //         menuTitle:"Firstees",
+    //         path: "/firstees"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/firstmoove.svg", 
+    //         menuTitle:"Firstmoove",
+    //         path: "/firstmoove"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/coin.svg", 
+    //         menuTitle:"Firstcoin",
+    //         path: "#"
+    //     },
+    //     {
+    //         menuIcon:"/images/icons/chatbot.svg", 
+    //         menuTitle:"Chatbot",
+    //         path: "#"
+    //     }
+    // ]
     const menuListData2 = [
         {
             menuIcon:"/images/icons/settings.svg", 
-            menuTitle:"Settings",
-            path: "#"
+            menuTitle:t('settings'),
+            path: "/settings"
         }
     ]
 
   return (
-    <aside className="w-[250px] h-screen overflow-auto border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-[50px] lg:overflow-hidden lg:p-0 lg:h-auto lg:top-[92px]">
+    <aside className="w-[250px] h-screen overflow-auto border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-10 lg:overflow-hidden lg:p-0 lg:h-auto lg:top-[92px] lg:border-r-0">
         <div className="h-full">
             <Link href='/home'>
                 <Image
@@ -66,7 +90,7 @@ function Sidebar( {logout}) {
                     width={167}
                     height={52}
                     alt=""
-                    className="xl:hidden mb-[38px]"
+                    className="lg:hidden mb-[38px]"
                 />
             </Link>
 
@@ -74,8 +98,7 @@ function Sidebar( {logout}) {
                 <ul>
                     {
                         menuListData.map((listItem, index) => <SidebarList key={index} menuIcon={listItem.menuIcon} menuTitle={listItem.menuTitle} path={listItem.path} /> )
-                    }
-                    
+                    } 
                 </ul>
                 <ul>
                     {
@@ -90,7 +113,7 @@ function Sidebar( {logout}) {
                                     height={24}
                                     alt=""
                                 />
-                                <span className="ml-[27px] lg:line-clamp-1">Logout</span>
+                                <span className="ml-[27px] lg:line-clamp-1">{t('logout')}</span>
                             </Link>
                         </div>
                     </li>

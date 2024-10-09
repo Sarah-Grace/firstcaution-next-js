@@ -8,6 +8,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useEffect, useState } from "react";
 import axiosInstance from "@/lib/axiosInstance";
 import { format } from "date-fns";
+import { useTranslations } from 'next-intl';
 
 const billDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -17,6 +18,7 @@ const billDetail = async ({ contractId, otp }) => {
 };
 
 function BillDetail() {
+    const t = useTranslations('main.bill_detail_page');
     const contractId = useSelector((state) => state.invoiceId);
     const [payerName, setPayerName] = useState();
     const [amount, setAmount] = useState();
@@ -24,27 +26,27 @@ function BillDetail() {
     const [date, setDate] = useState();
     const BillInfoList = [
         {
-            title: "Transaction ID",
+            title: t('transaction_id'),
             detail: "382468"
         },
         {
-            title: "Confirmation No",
+            title: t('confirmation_no'),
             detail: "2BEF168"
         },
         {
-            title: "Payment Date",
+            title: t('payment_date'),
             detail: date
         },
         {
-            title: "Biller Name",
+            title: t('biller_name'),
             detail: payerName
         },
         {
-            title: "Amount Paid",
+            title: t('amount_paid'),
             detail: `CHF ${amount}`
         },
         {
-            title: "Payment Method",
+            title: t('payment_method'),
             detail: paymentMethod 
         },
     ]
@@ -58,7 +60,7 @@ function BillDetail() {
             setPayerName(response.invoice_detail['Payer Name'])
             setAmount(response.invoice_detail.Amount)
             setpaymentMethod(response.invoice_detail['Payment method'])
-            setDate(format(response.invoice_detail['Due Date'], 'MMMM do, yyyy'))
+            setDate(format(response.invoice_detail['Due Date'], 'do MMM, yyyy'))
             console.log(response.invoice_detail['Due Date'])
         },
         onError: (error) => {
@@ -70,7 +72,7 @@ function BillDetail() {
     });
   return (
     <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white sm:px-2'>
-        <BackArrowBtn link="bills" title="Bill Detail" />
+        <BackArrowBtn link="bills" title={t('bill_detail')} />
         <div className="flex xl:flex-wrap">
             <div className="w-2/4 pr-6 xl:pr-0 xl:w-full xl:mb-6">
                 <div className="mt-12">
@@ -88,7 +90,7 @@ function BillDetail() {
                         width={38}
                         height={38}
                     />
-                    <h3 className="text-h3 text-content tablet:text-sm">Please keep in mind that these payments are only for Firstcaution.</h3>
+                    <h3 className="text-h3 text-content tablet:text-sm">{t('note')}</h3>
                 </div>
             </div>
             <div className="w-2/4 pl-6 xl:pl-0 xl:w-full">
@@ -131,7 +133,7 @@ function BillDetail() {
                 </div>
                 <div className="mt-14">
                     <button href="#"  className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
-                        Download PDF
+                        {t('download_pdf')}
                     </button>
                 </div>
             </div>

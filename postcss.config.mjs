@@ -1,3 +1,5 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+const withNextIntl = createNextIntlPlugin();
 /** @type {import('postcss-load-config').Config} */
 const config = {
   plugins: {
@@ -5,4 +7,4 @@ const config = {
   },
 };
 
-export default config;
+export default withNextIntl(config);

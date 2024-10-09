@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import { resetAll } from "@/app/slices/authSlice";
 import { removeToken } from "./utils/auth";
+import { removeLanguage } from "./utils/language";
 
 export default function MainLayout({children}) {
     const dispatch = useDispatch();
@@ -35,6 +36,7 @@ export default function MainLayout({children}) {
         router.push('/login');  // Navigate to login page or another route
         dispatch(resetAll());
         removeToken();
+        removeLanguage();
     }
     useEffect(() => {
       // Start the session on page load
@@ -52,13 +54,13 @@ export default function MainLayout({children}) {
       };
     });
     return (
-        <div>
+        <div className="bg-white">
             <Sidebar logout={logout} />
             <main>
                 <div className="ml-[250px] lg:ml-0 sticky top-0 z-10">
                 <SiteHeader />
                 </div>
-                <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-[50px] xs:px-1 pb-7">
+                <div className="bg-[#f5f7fa] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-10 xs:px-1 pb-7">
                     {children}
                 </div>
             </main>

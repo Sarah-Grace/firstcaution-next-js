@@ -2,7 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
 import Image from "next/image";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faCheck} from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import { addInvoiceId } from "@/app/slices/authSlice";
 import { useRouter } from 'next/navigation';
 import { format } from "date-fns"
+import { useTranslations } from 'next-intl';
 
 const billsdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/invoices/', otp);
@@ -19,6 +20,7 @@ const billsdata = async (otp) => {
 };
 
 function Bills() {
+  const t = useTranslations('main.bills_page');
   const dispatch = useDispatch();
   const router = useRouter();
   const tabNames = ["Open Bills", "Paid Bills"];
@@ -66,7 +68,7 @@ function Bills() {
   });
   return (
     <div className="pt-[30px] mb-14">
-      <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative tablet:pr-1 tablet:pl-1">
+      <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
           <Tabs defaultValue={tabNames[0]} className="">
               <TabsList className="border-b border-[#E6EFF5] w-full justify-start">
                   {tabNames.map((tab, index) => {
@@ -84,42 +86,46 @@ function Bills() {
               {
                   openBillsData.map((obd, index) => {
                     return (
-                      <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 tablet:block tablet:relative" key={index}>
+                      <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 mxl:block mxl:relative" key={index}>
                           <div className="flex-[1_1_30%] flex items-center gap-3">
                               <Image
                                 src="/images/icons/bill-1.png"
                                 alt=""
-                                className="w-14 h-14 tablet:hidden"
+                                className="w-14 h-14 mxl:hidden"
                                 width={60}
                                 height={60}
                               />
-                              <h4 className="text-base leading-[19px] text-content font-semibold tablet:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
+                              <h4 className="text-base leading-[19px] text-content font-semibold mxl:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
                           </div>
-                          <div className="flex-[0_0_20%] tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Issue Date:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{format(obd['Due Date'], 'MMMM do, yyyy')}</p>
+                          <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.issue_date')}:</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{format(obd['Due Date'], 'do MMM, yyyy')}</p>
                           </div>
-                          <div className="flex-[0_0_20%] tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Amount:</p>
+                          <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.amount')}:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['Amount']}</p>
                           </div>
-                          <div className="flex-[0_0_10%] tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">Status:</p>
+                          <div className="flex-[0_0_10%] mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.status_title')}:</p>
                               <p className="text-[15px] leading-[18px] font-medium relative pl-[10px] after:content[''] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 after:bg-[#34C759] text-[#34C759]">
                                 Open
                               </p>
                           </div>
                           <Link 
-                              href="/payBill"
-                              className="rounded-8 bg-secondary text-white py-4 px-[60px] mlgs:px-11 mlgs:py-3 xxl:px-4 xxl:py-2 border-0 lg:px-2 inline-block tablet:absolute tablet:top-[10px] tablet:right-[10px] tablet:py-1 tablet:px-4"
+                              href="#"
+                              className="rounded-8 bg-secondary text-white py-4 px-[60px] mlgs:px-11 mlgs:py-3 xxl:px-4 xxl:py-2 border-0 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-8 xs:px-2"
                           >
-                              Pay Bill
+                              {t('open-bills.pay_bill')}
                           </Link>
                       </div>
                     )
                   })
                 }
-                <div>
+                {/* 
+                  Request Monthly payment code commented 
+                  uncomment in future 
+                */}
+                {/* <div>
                   <p className="mt-20 text-base font-medium text-content leading-[19px] text-center flex justify-center items-center before:content-[''] before:block before:h-[1px] before:bg-[#E6EFF5] before:relative before:left-[-10px] after:content-[''] after:block after:h-[1px] after:bg-[#E6EFF5] after:relative after:right-[-10px] w-calc-line">or</p>
                   <div className="max-w-[435px] m-auto text-center">
                     <Image
@@ -132,33 +138,33 @@ function Bills() {
                     <h3 className="text-[18px] leading-[22px] font-semibold text-content mb-11">Do you want to request monthly payment of Annual Premium?</h3>
                     <Link 
                         href="/monthlyPayment"
-                        className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mt-12 inline-block tablet:py-3 tablet:px-10 sm:px-4 xs:px-3 xs:text-sm"
+                        className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mt-12 inline-block mxl:py-3 mxl:px-10 sm:px-4 xs:px-3 xs:text-sm"
                     >
                         Request Monthly Payment
                     </Link>
                   </div>
-                </div>
+                </div> */}
               </TabsContent>
               <TabsContent key={tabNames[1]} value={tabNames[1]}>
                 {
                   paidBillsData.map((d, index) => {
                     return (
-                      <div className="flex justify-between items-center gap-[5px] py-5 px-8 border-b border-[#E6EFF5] bg-bgc-3 last:border-b-0 tablet:block tablet:relative sm:px-4" key={index}>
-                          <div className="block flex-[0_0_20%] xxl:flex-auto  tablet:flex tablet:gap-2 tablet:flex-col-reverse">
+                      <div className="flex justify-between items-center gap-[5px] py-5 px-8 border-b border-[#E6EFF5] bg-bgc-3 last:border-b-0 mxl:block mxl:relative sm:px-4" key={index}>
+                          <div className="block flex-[0_0_20%] xxl:flex-auto  mxl:flex mxl:gap-2 mxl:flex-col-reverse">
                               <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d['Payer Name']}</h4>
                               {console.log(d['Payer Name'])}
-                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] tablet:text-[18px] tablet:font-medium tablet:mb-5 tablet:text-content sm:text-sm">{format(d['Due Date'], 'MMMM do, yyyy')}</h4>
+                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] mxl:text-[18px] mxl:font-medium mxl:mb-5 mxl:text-content sm:text-sm">{format(d['Due Date'], 'do MMM, yyyy')}</h4>
                           </div>
-                          <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2">Paid To:</p>
+                          <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2">{t('paid_bills.paid_to')}:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-grey-2">PG&E</p>
                           </div>
-                          <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2">Payment Method:</p>
+                          <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2">{t('paid_bills.payment_method')}:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{d['Payment method']}</p>
                           </div>
-                          <div className="flex-[0_0_20%] xxl:flex-auto tablet:flex tablet:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2 tablet:mb-0">Status:</p>
+                          <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2 mxl:mb-0">{t('paid_bills.status_title')}:</p>
                               <p className="w-[57px] text-white bg-[#34C759] text-center text-xs font-medium rounded-8 leading-4">
                                 <span><FontAwesomeIcon icon={faCheck} /></span>
                                 <span className="pl-1">Paid</span>
@@ -172,9 +178,9 @@ function Bills() {
                           }>
                           <Link 
                               href=""
-                              className="block border border-[#919191] text-[#919191] py-0 px-[30px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all tablet:absolute tablet:top-[10px] tablet:right-[10px] tablet:text-primary tablet:p-0 tablet:border-0"
+                              className="block border border-[#919191] text-[#919191] py-0 px-[30px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:text-primary mxl:p-0 mxl:border-0 xs:relative xs:left-0 xs:inline-block"
                           >
-                              View Details
+                              {t('paid_bills.view_details')}
                           </Link> 
                           </div>
                       </div>
@@ -183,7 +189,7 @@ function Bills() {
                 }
               </TabsContent>
           </Tabs>
-          <div className="flex items-center gap-3 absolute top-10 right-[51px] md1:top-2 tablet:gap-[2px]">
+          {/* <div className="flex items-center gap-3 absolute top-10 right-[51px] md1:top-2 mxl:gap-[2px]">
             <Image
               src="/images/icons/ph_timer.png"
               alt=""
@@ -191,8 +197,8 @@ function Bills() {
               width={20}
               height={20}
             />
-            <h3 className="text-h3 font-normal text-grey-2 tablet:text-xs">Last Bill: <span className="text-content">CHF 1,170.00</span></h3>
-          </div>
+            <h3 className="text-h3 font-normal text-grey-2 mxl:text-xs">Last Bill: <span className="text-content">CHF 1,170.00</span></h3>
+          </div> */}
       </div>
     </div>
   )

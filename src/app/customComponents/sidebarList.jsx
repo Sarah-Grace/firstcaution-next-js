@@ -9,14 +9,14 @@ function SidebarList({ menuIcon , menuTitle, path }) {
 
   return (
     <li active={pathname === path ? "true" : "false"} className=''>
-        <Link href={path} className= {`${pathname === path && "active"} nav-style flex leading-[60px] p-0 pl-2 text-[#b1b1b1] active:text-[#3876DA] active:before:content-[""]`}>
+        <Link href={path} className= {`${pathname === path && "active"} nav-style flex leading-[60px] p-0 pl-2 text-[#b1b1b1] active:text-[#3876DA] active:before:content-[""] lg:h-[60px]`}>
             <Image
                 src={menuIcon}
                 width={24}
                 height={24}
                 alt=""
             />
-            <span className="ml-[27px] lg:line-clamp-1">{menuTitle}</span>
+            <span className="ml-[27px] lg:line-clamp-1 lg:hidden">{menuTitle}</span>
         </Link>
     </li>
   )

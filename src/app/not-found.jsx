@@ -21,7 +21,7 @@ function NotFound() {
         <div className="bg-[rgb(163,163,163,0.2)] site-main-section px-10 pt-[30px] ml-[250px] lg:ml-[50px] xs:px-1">
             <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
                 <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto my-4 flex-auto'>
-                    <div className='flex flex-col justify-center items-center max-h-full w-full overflow-y-auto bg-white pt-[104px] pb-[96px] px-[34px] rounded-8'>
+                    <div className='flex flex-col justify-center items-center max-h-full w-full overflow-y-auto bg-white pt-[104px] pb-[96px] px-[34px] rounded-8 xs:px-5'>
                         <Image
                             src="/images/not-found.png"
                             width={182}

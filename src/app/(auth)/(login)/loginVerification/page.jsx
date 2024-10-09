@@ -13,6 +13,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import {addTokens } from '../../../slices/authSlice';
 import { useRouter } from 'next/navigation';
 import { authUserToken } from "@/app/(main)/utils/auth";
+import { useTranslations } from 'next-intl';
+import LangSwitch from "@/app/customComponents/langSwitch";
 
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
@@ -23,6 +25,7 @@ const verifyOtp = async (otp) => {
 
 
 function LoginVerification() {
+  const t = useTranslations('auth');
   const dispatch = useDispatch();
   const router = useRouter();
   const [otp, setOtp] = useState("");
@@ -53,10 +56,14 @@ function LoginVerification() {
     },
   });
   return (
-    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)]  bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-      <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto py-4 flex-auto'>
-          <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
-            <h2 className="text-h2 text-heading text-center mb-10">Verification</h2>
+    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)]  bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px] sm:bg-white'>
+      <div className='flex flex-col justify-center max-w-[443px] h-full mx-auto py-4 flex-auto sm:max-w-full sm:h-full sm:py-0'>
+          <div className='overflow-y-auto overflow-x-hidden bg-white py-11 px-[34px] rounded-8 xs:px-5'>
+            <div className="w-[170px] mx-auto mb-5">
+                <LangSwitch />
+            </div>
+            <h2 className="text-h2 text-heading text-center mb-10">{t('verification')}</h2>
+
               <Image
                   src="/images/password.png"
                   alt=""
@@ -66,8 +73,8 @@ function LoginVerification() {
               />
               <div className="max-w-[300px] mx-auto">
                 
-                <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">Enter the verification code </h3>
-                <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">Verify your code we just send you to your email address</h4>
+                <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">{t('verification_page.title')} </h3>
+                <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">{t('verification_page.sub_title')}</h4>
               </div>
               <form action="" className="w-full" onSubmit={formSubmit}>
                 <div className="relative flex w-full mb-9 justify-center">
@@ -82,7 +89,7 @@ function LoginVerification() {
                   </InputOTP>
                 </div>
                 {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorOtp}</p>}
-                <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">Verify</button>
+                <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">{t('verify')}</button>
               </form>
           </div>
       </div>

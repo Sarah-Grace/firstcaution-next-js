@@ -139,6 +139,7 @@ module.exports = {
       "mlgs": {'max':'1440px'},
       "xxl" : {'max':'1280px'},
       "mid-xxl": {'max':'1280px', 'min':'1024px'},
+      "mxl": {'max': '1200px'},
       "xl" : {'max':'1024px'},
       "lg" : {'max':'992px'},
       "tablet" :{'max':'768px'},

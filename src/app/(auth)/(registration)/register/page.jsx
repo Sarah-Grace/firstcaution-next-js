@@ -11,17 +11,11 @@ import { useRouter } from 'next/navigation';
 import { z } from 'zod';
 
 import * as React from "react"
-import { format } from "date-fns"
 
-import { cn } from "@/lib/utils"
-import { Button } from "@/components/ui/button"
-import { Calendar } from "@/components/ui/calendar"
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
 import DatePicker from "react-multi-date-picker"
+import LangSwitch from "@/app/customComponents/langSwitch";
+import { useTranslations } from 'next-intl';
+
 // Define Zod schema for form validation
 const formSchema = z.object({
     fname: z.string().min(1, 'Name is required'), // Name is required and cannot be empty
@@ -39,6 +33,7 @@ const createUser = async (newUser) => {
   };
 
 function Register() {
+  const t = useTranslations('auth');
     const dispatch = useDispatch();
     const router = useRouter();
     const [emailError, setEmailError] = useState("");
@@ -119,9 +114,12 @@ function Register() {
     });
   
   return (
-    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px]'>
-        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto'>
-            <div className='overflow-y-auto scroll-smooth bg-white py-11 px-[34px] rounded-8'>
+    <div className='fixed top-0 left-0 h-full w-full z-50 overflow-x-hidden overflow-y-hidden shadow-[0_0.5rem_1rem_rgb(0,0,0,0.15)] bg-[rgb(163,163,163,0.2)] backdrop-blur-[3px] sm:bg-white'>
+        <div className='flex flex-col justify-center max-w-[500px] h-full mx-auto py-4 flex-auto sm:max-w-full sm:h-full sm:py-0'>
+            <div className='overflow-y-auto overflow-x-hidden bg-white py-11 px-[34px] rounded-8 xs:px-5'>
+                <div className="w-[170px] mx-auto">
+                    <LangSwitch />
+                </div>
                 <Image
                     src="/images/logos/logo.png"
                     alt=""
@@ -129,57 +127,57 @@ function Register() {
                     width={167}
                     height={52}
                 />
-                <h2 className="text-h2 text-heading text-center mb-2">Get Started with MyFirst</h2>
-                <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">Create your free account</h4>
+                <h2 className="text-h2 text-heading text-center mb-2">{t('register_page.title')}</h2>
+                <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">{t('register_page.sub_title')}</h4>
                 <form action="" className="w-full" onSubmit={handleSubmit}>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center  py-0 flex items-center">
                             <Image
                                 src="/images/icons/user-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[20px]"
                                 width={20}
-                                height={16}
+                                height={20}
                             />
                         </span>
                         <input 
                             type="text" 
                             name="fname"
-                            placeholder="Your First Name" 
+                            placeholder={t('register_page.first_name')} 
                             value={formData.fname}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                         />
                     </div>
                     {/* {errors.fname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.fname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/user-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[20px]"
                                 width={20}
-                                height={16}
+                                height={20}
                             />
                         </span>
                         <input 
                             type="text" 
                             name="lname"
-                            placeholder="Your Last Name" 
+                            placeholder={t('register_page.last_name')} 
                             value={formData.lname}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                         />
                     </div>
                     {/* {errors.lname && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.lname}</p>} */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/email-icon.png"
                                 alt=""
-                                className=""
+                                className="w-[20px] h-[16px]"
                                 width={20}
                                 height={16}
                             />
@@ -187,10 +185,10 @@ function Register() {
                         <input 
                             type="email" 
                             name="email"
-                            placeholder="Email Address" 
+                            placeholder={t('email')} 
                             value={formData.email}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                        />
                     </div>
@@ -199,11 +197,11 @@ function Register() {
                         {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
                     </div> */}
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
-                        <span className="px-4 py-0 flex items-center">
+                        <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/password.png"
                                 alt=""
-                                className=""
+                                className="w-[16px] h-[22px]"
                                 width={16}
                                 height={22}
                             />
@@ -211,64 +209,44 @@ function Register() {
                         <input 
                             type="password" 
                             name="password"
-                            placeholder="Create Strong Password" 
+                            placeholder={t('register_page.password')} 
                             value={formData.password}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             required
                         />
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">
-                      <span className="px-4 py-0 flex items-center">
+                      <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                           <Image
                               src="/images/icons/calendar-icon.png"
                               alt=""
-                              className=""
+                              className="w-[16px] h-[16px]"
                               width={16}
-                              height={22}
+                              height={16}
                           />
                       </span>
-                      {/* <Popover>
-                        <PopoverTrigger asChild>
-                          <Button
-                            variant={"outline"}
-                            className={cn(
-                              "w-[280px] justify-start text-left font-normal bg-transparent border-0 text-[#909090]",
-                            )}
-                          >
-                            {date ? format(date, "yyyy-MM-dd") : <span>Add Date of Birth</span>}
-                          </Button>
-                        </PopoverTrigger>
-                        <PopoverContent className="w-auto p-0">
-                          <Calendar
-                            mode="single"
-                            selected={date}
-                            onSelect={setDate}
-                            initialFocus
-                          />
-                        </PopoverContent>
-                      </Popover> */}
                         <DatePicker
                           value={date}
                           onChange={setDate}
-                          placeholder="Add Date of Birth"
+                          placeholder={t('register_page.dob')}
                         >
                         </DatePicker>
 
                     </div>
                     {dateError && <p className="my-3 text-red-600 text-xs">{dateError}</p>}
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
-                        <span>Already have an account? 
+                        <span>{t('register_page.have_account')} 
                         </span>
                         <Link 
                         href="/login"
                         className="text-primary pl-1"
                         >
-                            Login
+                            {t('login')} 
                         </Link>
                     </h4>
                     <button  disabled={mutation.isLoading} className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
-                    {mutation.isLoading ? 'Signing Up.....' : 'Sign Up'}
+                    {mutation.isLoading ? 'Signing Up.....' : t('signup') }
                     </button>
                 </form>
             </div>
