@@ -50,7 +50,7 @@
             "my_contracts": "My Contracts",
             "my_bills": "My Bills",
             "my_deposit":"My Deposit",
-            "settings": "Setting",
+            "settings": "Settings",
             "logout": "Logout",
             "overview":"Overview",
             "Firstmoove": "Firstmoove"
@@ -124,10 +124,8 @@
                 "view_details": "View Details"
             },
             "status": {
-                "all": "All",
-                "active": "Active",
-                "pending": "Pending",
-                "closed": "Closed"
+                "open_bills":"Open Bills",
+                "paid_bills":"Paid Bills"
             }
         },
         "bill_detail_page": {
@@ -157,7 +155,7 @@
             "dob": "Date of Birth",
             "save":"Save",
             "new_password": "New Password",
-            "password": "Password",
+            "password": "Current Password",
             "confirm_password":"Confirm Password",
             "change_password": "Change Password"
         }

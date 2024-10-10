@@ -17,7 +17,7 @@ function PasswordChanged() {
                 width={134}
                 height={134}
             />
-            <div className="max-w-[300px] mx-auto">
+            <div className="max-w-[310px] mx-auto">
               <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">{t('title')}</h3>
               <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]"> {t('sub_title')}</h4>
               <a href="/login" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full text-center">{t('go_to_signin')}</a>

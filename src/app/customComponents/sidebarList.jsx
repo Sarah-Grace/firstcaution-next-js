@@ -16,7 +16,7 @@ function SidebarList({ menuIcon , menuTitle, path }) {
                 height={24}
                 alt=""
             />
-            <span className="ml-[27px] lg:line-clamp-1 lg:hidden">{menuTitle}</span>
+            <span className="ml-[15px] text-[14px] lg:line-clamp-1 lg:hidden">{menuTitle}</span>
         </Link>
     </li>
   )

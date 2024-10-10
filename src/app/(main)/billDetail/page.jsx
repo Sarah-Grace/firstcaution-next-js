@@ -26,7 +26,7 @@ function BillDetail() {
     const [amount, setAmount] = useState();
     const [paymentMethod, setpaymentMethod] = useState();
     const [date, setDate] = useState();
-    const [pdfLink, setPdfLink] = useState("");
+    const [pdfLink, setPdfLink] = useState("https://pdfobject.com/pdf/sample.pdf");
     const BillInfoList = [
         {
             title: t('transaction_id'),
@@ -105,7 +105,7 @@ function BillDetail() {
                     <div className="mt-9 mb-[19px]">
                     <div className="">
                     <iframe
-                        src="https://pdfobject.com/pdf/sample.pdf"
+                        src={pdfLink}
                         width="600"
                         height="400"
                         title="Embedded Website"
@@ -144,10 +144,10 @@ function BillDetail() {
                     </div> */}
                 </div>
                 <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
-                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href="https://pdfobject.com/pdf/sample.pdf" download  target="_blank">
+                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={pdfLink} download  target="_blank">
                         {t('download_pdf')}
                     </a>
-                    <a className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-[50px] text-secondary text-[28px] font-thin text-center" href="https://pdfobject.com/pdf/sample.pdf" target="_blank">
+                    <a className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-[50px] text-secondary text-[28px] font-thin text-center" href={pdfLink}  target="_blank">
                         <FontAwesomeIcon icon={faShareNodes} />
                     </a>
                 </div>

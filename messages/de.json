@@ -124,10 +124,8 @@
                 "view_details": "Details anzeigen" 
             }, 
             "status": { 
-                "all": "Alle", 
-                "active": "Aktiv", 
-                "pending": "Ausstehend", 
-                "closed": "Geschlossen" 
+                "open_bills":"Offene Rechnungen",
+                "paid_bills":"Bezahlte Rechnungen"
             } 
         }, 
         "bill_detail_page": { 
@@ -157,7 +155,7 @@
             "dob": "Geburtsdatum",
             "save":"Speichern",
             "new_password": "Neues Passwort",
-            "password": "Passwort",
+            "password": "Aktuelles Passwort",
             "confirm_password":"Passwort bestätigen",
             "change_password": "Passwort ändern"
         }

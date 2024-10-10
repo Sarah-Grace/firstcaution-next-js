@@ -66,6 +66,14 @@ function Bills() {
 
     },  
   });
+  const tabsTranslation = (tab) => {
+    switch(tab){
+      case "Open Bills":
+          return t('status.open_bills') 
+      case "Paid Bills":
+          return t('status.paid_bills')
+  }
+  }
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
@@ -77,7 +85,8 @@ function Bills() {
                               key={`tab${index}`} 
                               value={tab} 
                               className= "" >
-                          {tab}
+                          {tabsTranslation(tab)}
+                          
                           </TabsTrigger>
                       )
                   })}
@@ -94,7 +103,7 @@ function Bills() {
                                 className="w-14 h-14 mxl:hidden"
                                 width={60}
                                 height={60}
-                              />
+                              /> 
                               <h4 className="text-base leading-[19px] text-content font-semibold mxl:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
                           </div>
                           <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
@@ -113,7 +122,7 @@ function Bills() {
                           </div>
                           <Link 
                               href="#"
-                              className="rounded-8 bg-secondary text-white py-4 px-[60px] mlgs:px-11 mlgs:py-3 xxl:px-4 xxl:py-2 border-0 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-8 xs:px-2"
+                              className="rounded-8 bg-secondary text-white py-4 lgs:px-[30px] mlgs:px-[10px] mgls:w-[300px] text-center mlgs:py-3 xxl:px-4 xxl:py-2 border-0 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-8 xs:px-2 md:relative md:mb-2 "
                           >
                               {t('open-bills.pay_bill')}
                           </Link>
@@ -178,7 +187,7 @@ function Bills() {
                           }>
                           <Link 
                               href=""
-                              className="block border border-[#919191] text-[#919191] py-0 px-[30px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:text-primary mxl:p-0 mxl:border-0 xs:relative xs:left-0 xs:inline-block"
+                              className="block border border-[#919191] text-[#919191] py-0  px-2 lgs:px-[20px] xxl:px-5 leading-[35px] rounded-sm hover:border-primary hover:text-primary transition-all mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:text-primary mxl:p-0 mxl:border-0 xs:relative xs:left-0 xs:inline-block"
                           >
                               {t('paid_bills.view_details')}
                           </Link> 

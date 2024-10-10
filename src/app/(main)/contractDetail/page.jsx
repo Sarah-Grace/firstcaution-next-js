@@ -142,7 +142,7 @@ function ContractDetail() {
                     <div className="mt-9 mb-[19px]">
                     <div className="">
                     <iframe
-                        src={pdfLink}
+                        src={`https://docs.google.com/gview?url=${pdfLink}&embedded=true`}
                         width="600"
                         height="400"
                         title="Pdf Viewer"
