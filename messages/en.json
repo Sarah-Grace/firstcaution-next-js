@@ -137,7 +137,8 @@
             "amount_paid": "Amount Paid",
             "payment_method": "Payment Method",
             "note": "Please keep in mind that these payments are only for Firstcaution.",
-            "download_pdf":"Download PDF"
+            "download_pdf":"Download PDF", 
+            "document_preview": "Document Preview"
         },
         "deposit_page": {
             "deposit_detail": "Deposit Detail",

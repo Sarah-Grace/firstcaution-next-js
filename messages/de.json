@@ -107,7 +107,8 @@
             "annual_premium": "Jahresprämie", 
             "firstcoin": "Firstcoin", 
             "sponsored_person": "Gesponserte Person", 
-            "download_pdf": "PDF herunterladen" 
+            "download_pdf": "PDF herunterladen" , 
+            "document_preview": "Dokumentvorschau"
         }, 
         "bills_page": { 
             "open-bills": { 
@@ -137,7 +138,8 @@
             "amount_paid": "Bezahlter Betrag", 
             "payment_method": "Zahlungsmethode", 
             "note": "Bitte beachten Sie, dass diese Zahlungen nur für Firstcaution gelten.", 
-            "download_pdf":"PDF herunterladen" 
+            "download_pdf":"PDF herunterladen", 
+            "document_preview": "Dokumentvorschau"
         }, 
         "deposit_page": { 
             "deposit_detail": "Einzahlungsdetails", 
