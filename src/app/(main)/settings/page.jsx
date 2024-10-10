@@ -7,7 +7,14 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axiosInstance';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslations } from 'next-intl'; 
-import { toast } from "sonner";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog";
 
 const profiledata = async (otp) => {
     const response = await axiosInstance.get('/api/profile/', otp);
@@ -26,6 +33,15 @@ const passwordupdate = async (otp) => {
 };
 
 function Settings() {
+    const [isOpen, setIsOpen] = useState(false);
+
+    const openDialog = () => {
+      setIsOpen(true);
+    };
+  
+    const closeDialog = () => {
+      setIsOpen(false);
+    };
   const t = useTranslations('main.settings_page');
   const tabNames = ["Edit Profile", "Security"];
   const [formData, setFormData] = useState({
@@ -82,7 +98,7 @@ function Settings() {
   const update_mutation = useMutation({
     mutationFn:  profiledataupdate,
     onSuccess: (response) => {
-        alert("Profile Udated Successfully!")
+        openDialog();
     },
     onError: (error) => {
       setApiError(error.message);
@@ -100,11 +116,13 @@ function Settings() {
   const update_password_mutation = useMutation({
     mutationFn:  passwordupdate,
     onSuccess: (response) => {
-        alert("Password changed Successfully!")
+        setErrorOldPassword("");
+        setErrorNewPassword("");
+        openDialog();
     },
     onError: (error) => {
         setErrorOldPassword(error.response.data.old_password);
-        setErrorNewPassword(error.response.data.new_password)
+        setErrorNewPassword(error.response.data.new_password);
       console.log(error)
     },
   });
@@ -164,8 +182,8 @@ function Settings() {
                                     className="w-[130px] h-[130px] mxl:w-[100px] mxl:h-[100px] tablet:w-[130px] tablet:h-[130px] tablet:mx-auto"
                                 />
                             </div>
-                            <div className="w-2/5 tablet:w-full">
-                                <div className="rounded-6 relative w-full mb-6">
+                            <div className="w-2/5 tablet:w-full tablet:flex flex-col">
+                                <div className="rounded-6 relative w-full mb-6 tablet:order-2 tablet:mb-0">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('first_name')}</label>
                                     <input 
                                         type="text" 
@@ -173,14 +191,15 @@ function Settings() {
                                         className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full"
                                         onChange={handleInput}
                                         value={formData.fname}
+                                        required
                                     />
                                 </div>
-                                <div className="rounded-6 relative w-full mb-6">
+                                <div className="rounded-6 relative w-full mb-6 tablet:order-1">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('email')}</label>
                                     <input 
                                         type="email" 
                                         name="email"
-                                        className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full"
+                                        className="bg-bgc-1 leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full"
                                         value={formData.email}
                                         readOnly
                                     />
@@ -195,15 +214,17 @@ function Settings() {
                                         className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full"
                                         onChange={handleInput}
                                         value={formData.lname}
+                                        required
                                     />
                                 </div>
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('dob')}</label>
                                     <div className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 ">
                                         <DatePicker
+                                        editable= {false}
                                             value={date}
                                             onChange={setDate}
-                                            placeholder="Add Date of Birth"
+                                            placeholder={date}
                                         >
                                         </DatePicker>
                                     </div>
@@ -270,6 +291,29 @@ function Settings() {
                     </form>
                 </TabsContent>
             </Tabs>
+            <div className="w-2/3 pl-3">
+                    <div className="flex flex-col justify-end h-full">
+                        <div>
+                            <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
+                                {/* <DialogTrigger className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 ml-auto block leading-4 mt-12">            
+                                        Submit
+                                </DialogTrigger> */}
+                                <DialogContent>
+                                    <div className="text-center pt-[50px]">
+                                        
+                                        <h3 className="text-h3 font-medium text-[#8B8D97]">Updated successfully!</h3>
+                                        <button 
+                                            onClick={closeDialog}
+                                            className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
+                                        >
+                                            Okey
+                                        </button>
+                                    </div>
+                                </DialogContent>
+                            </Dialog>
+                        </div>
+                    </div>
+                </div>
         </div>
     </div>
   )

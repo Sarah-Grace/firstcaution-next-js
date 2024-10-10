@@ -107,7 +107,8 @@
             "annual_premium": "Premio annuale", 
             "firstcoin":"Firstcoin", 
             "sponsored_person":"Persona sponsorizzata", 
-            "download_pdf":"Scarica PDF" 
+            "download_pdf":"Scarica PDF" , 
+            "document_preview": "Anteprima del documento"
         }, 
         "bills_page": { 
             "open-bills": { 
@@ -137,7 +138,8 @@
             "amount_paid": "Importo pagato", 
             "payment_method": "Metodo di pagamento", 
             "note": "Tieni presente che questi pagamenti sono solo per Firstcaution.", 
-            "download_pdf":"Scarica PDF" 
+            "download_pdf":"Scarica PDF" , 
+            "document_preview": "Anteprima del documento"
         }, 
         "deposit_page": { 
             "deposit_detail": "Dettaglio deposito", 

@@ -79,9 +79,9 @@ function SiteHeader() {
                 className="h-[52px] w-[167px] tablet:w-[90px] tablet:h-[28px]"
             />
         </Link>
-        <h1 className='text-h1 tablet:text-[18px] text-content'>{title}</h1>
+        <h1 className='text-h1 tablet:text-[18px] text-content md:hidden'>{title}</h1>
         <div className='flex justify-center items-center gap-8'>
-            <div className='bg-[#F5F5F5] flex justify-center items-center w-[171px]'>
+            <div className='flex justify-center items-center w-[171px]'>
                 <Select onValueChange= {(value)=> {setLanguage(value)}}>
                     <SelectTrigger className="border border-[#DFEAF2] rounded-8 text-[#909090]">
                         {cookieValue}
@@ -92,7 +92,7 @@ function SiteHeader() {
                                 <SelectItem 
                                     key={index} 
                                     value={lang.code}
-                                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] checked:text-red-700"
+                                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] checked:text-red-700 md:text-[12px]"
                                     >
                                     {lang.name}
                                 </SelectItem>

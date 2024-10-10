@@ -136,7 +136,7 @@ function ContractDetail() {
             <div className="w-1/2 pl-6 xxl:w-full xxl:pl-0">
                 <div className="bg-bgc-3 px-[30px] py-5">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-h3 font-medium text-grey-2 mb-2">Document Preview</h3>
+                        <h3 className="text-h3 font-medium text-grey-2 mb-2">{t('document_preview')}</h3>
                         {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
                     </div>
                     <div className="mt-9 mb-[19px]">

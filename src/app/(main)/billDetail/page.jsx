@@ -26,7 +26,7 @@ function BillDetail() {
     const [amount, setAmount] = useState();
     const [paymentMethod, setpaymentMethod] = useState();
     const [date, setDate] = useState();
-    const [pdfLink, setPdfLink] = useState("https://pdfobject.com/pdf/sample.pdf");
+    const [pdfLink, setPdfLink] = useState("");
     const BillInfoList = [
         {
             title: t('transaction_id'),
@@ -64,7 +64,9 @@ function BillDetail() {
             setAmount(response.invoice_detail.Amount)
             setpaymentMethod(response.invoice_detail['Payment method'])
             setDate(format(response.invoice_detail['Due Date'], 'do MMM, yyyy'))
-            console.log(response.invoice_detail['Due Date'])
+            setPdfLink(response.file)
+
+
         },
         onError: (error) => {
         // This function runs if the mutation fails
@@ -99,13 +101,13 @@ function BillDetail() {
             <div className="w-1/2 pl-6 xxl:w-full xxl:pl-0">
                 <div className="bg-bgc-3 px-[30px] py-5">
                     <div className="flex items-center justify-between">
-                        <h3 className="text-h3 font-medium text-grey-2 mb-2">Document Preview</h3>
+                        <h3 className="text-h3 font-medium text-grey-2 mb-2">{t('document_preview')}</h3>
                         {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
                     </div>
                     <div className="mt-9 mb-[19px]">
                     <div className="">
                     <iframe
-                        src={pdfLink}
+                        src={`https://docs.google.com/gview?url=${pdfLink}&embedded=true`}
                         width="600"
                         height="400"
                         title="Embedded Website"

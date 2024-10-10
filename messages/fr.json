@@ -107,7 +107,8 @@
             "annual_premium": "Prime annuelle", 
             "firstcoin": "Première pièce", 
             "sponsored_person": "Personne parrainée", 
-            "download_pdf": "Télécharger le PDF" 
+            "download_pdf": "Télécharger le PDF" , 
+            "document_preview": "Aperçu du document" 
         }, 
         "bills_page": { 
             "open-bills": { 
@@ -137,7 +138,8 @@
             "amount_paid": "Montant payé", 
             "payment_method": "Mode de paiement", 
             "note": "Veuillez garder à l'esprit que ces paiements ne concernent que Firstcaution.", 
-            "download_pdf": "Télécharger le PDF" 
+            "download_pdf": "Télécharger le PDF", 
+            "document_preview": "Aperçu du document" 
         }, 
         "deposit_page": { 
             "deposit_detail": "Détail du dépôt", 
