@@ -159,7 +159,9 @@
             "new_password": "Nuova password",
             "password": "password attuale",
             "confirm_password":"Conferma password",
-            "change_password": "Cambia password"
+            "change_password": "Cambia password",
+            "msg": "Informazioni utente aggiornate con successo!",
+            "okey": "Okey"
         }
     }
 }
