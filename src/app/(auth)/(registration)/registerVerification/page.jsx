@@ -76,7 +76,7 @@ function RegisterVerification() {
                   width={134}
                   height={134}
               />
-              <div className="max-w-[300px] mx-auto">
+              <div className="max-w-[310px] mx-auto">
                 
                 <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">{t('verification_page.title')} </h3>
                 <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">{t('verification_page.sub_title')}</h4>
@@ -109,7 +109,7 @@ function RegisterVerification() {
                         height={134}
                     />
                     <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">{t('verification_page.success')}</h3>
-                    <div className="max-w-[300px]">
+                    <div className="max-w-[310px]">
                       <Link href="/home" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full text-center">Go to Home Page</Link>
                     </div>
                   </div>

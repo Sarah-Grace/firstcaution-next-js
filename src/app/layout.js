@@ -11,8 +11,8 @@ import { store, persistor } from "./store";
 import { NextIntlClientProvider } from 'next-intl';
 import enMessages from '../../messages/en.json'; // Statically import message
 import frMessages from '../../messages/fr.json';
-import deMessages from '../../messages/de.json'
-import itMessages from '../../messages/it.json' 
+import deMessages from '../../messages/de.json';
+import itMessages from '../../messages/it.json'; 
 import Cookies from 'js-cookie';
 import Preloader from "@/app/customComponents/Preloader";
 

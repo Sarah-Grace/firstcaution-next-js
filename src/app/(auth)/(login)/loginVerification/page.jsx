@@ -67,7 +67,7 @@ function LoginVerification() {
                   width={134}
                   height={134}
               />
-              <div className="max-w-[300px] mx-auto">
+              <div className="max-w-[310px] mx-auto">
                 
                 <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">{t('verification_page.title')} </h3>
                 <h4 className="text-h4 font-normal text-[#8B8D97] text-center mb-[70px]">{t('verification_page.sub_title')}</h4>

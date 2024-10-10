@@ -49,9 +49,10 @@ function NewPassword() {
     const formSubmit = (e) => {
         e.preventDefault();
         if(formData.password === formData.confirmPassword) {
+          setIsSamePassword(false);
           mutation.mutate({ email: email, password: formData.password});
         } else {
-          setIsSamePassword(!(isDiffPassword));
+          setIsSamePassword(true);
         }
     }
   return (
@@ -67,7 +68,7 @@ function NewPassword() {
                   width={134}
                   height={134}
               />
-              <div className="max-w-[300px] mx-auto">
+              <div className="max-w-[310px] mx-auto">
                 
                 <h3 className="text-[18px] font-medium leading-[22px] text-heading mb-[14px] text-center">{t('new_password_page.create_new_password')}</h3>
               </div>

@@ -13,7 +13,7 @@ function LangSwitch() {
     const langList = [
         { code: "fr", name: "(FR) French" },
         { code: "it", name: "(IT) Italian" },
-        { code: "ge", name: "(GE) German" },
+        { code: "de", name: "(DE) German" },
         { code: "en", name: "(EN) English" }
     ]
     const [cookieValue, setCookieValue] = useState(langList.filter(lang => lang.code === (Cookies.get('language') || 'fr')).map((l)=>l.name));
@@ -22,8 +22,6 @@ function LangSwitch() {
     const setLanguage=  (value) => {
         setCookieValue(langList.filter(lang => lang.code === value ).map((l)=>l.name));
         userLanguage(value);
-        // Simulate a short delay for better UX before reloading the page
-        window.location.reload();
             // Simulate a short delay for better UX before reloading the page
         setTimeout(() => {
             // Reload the page to apply changes

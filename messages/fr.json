@@ -124,10 +124,8 @@
                 "view_details": "Afficher les détails" 
             }, 
             "status": { 
-                "all": "Tous", 
-                "active": "Actif", 
-                "pending": "En attente", 
-                "closed": "Fermé"
+                 "open_bills":"Factures ouvertes",
+                "paid_bills":"Factures payées"
             }  
         }, 
         "bill_detail_page": {
