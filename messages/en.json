@@ -158,9 +158,10 @@
             "new_password": "New Password",
             "password": "Current Password",
             "confirm_password":"Confirm Password",
-            "change_password": "Change Password"
+            "change_password": "Change Password",
+            "msg": "User Information Updated successfully!",
+            "okey": "Okey"
         }
 
     }
-
 }

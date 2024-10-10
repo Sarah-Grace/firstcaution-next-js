@@ -85,14 +85,14 @@ function Settings() {
     console.log(formData.fname)
     console.log(formData.lname)
     // setDate(date)
-    console.log(typeof date)
-    if(typeof date === "string") {
-        setDate(date)
-    }else {
-        setDate(date.format("YYYY-MM-DD"))
-    }
+    // console.log(typeof date)
+    // if(typeof date === "object") {
+    //     console.log("abc")
+    //     setDate(date.format("YYYY-MM-DD"))
+    //     console.log(date)
+    // }
     
-    update_mutation.mutate({ email: formData.email, first_name: formData.fname, last_name: formData.lname, date_of_birth: date});
+    update_mutation.mutate({ email: formData.email, first_name: formData.fname, last_name: formData.lname, date_of_birth: typeof date === "object" ? date.format("YYYY-MM-DD") : date});
   }
 //   mutation for updating profile data
   const update_mutation = useMutation({
@@ -221,10 +221,9 @@ function Settings() {
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('dob')}</label>
                                     <div className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 ">
                                         <DatePicker
-                                        editable= {false}
                                             value={date}
                                             onChange={setDate}
-                                            placeholder={date}
+                                            placeholder="Add Date of Birth"
                                         >
                                         </DatePicker>
                                     </div>
@@ -301,12 +300,12 @@ function Settings() {
                                 <DialogContent>
                                     <div className="text-center pt-[50px]">
                                         
-                                        <h3 className="text-h3 font-medium text-[#8B8D97]">Updated successfully!</h3>
+                                        <h3 className="text-h3 font-medium text-[#8B8D97]">{t('msg')}</h3>
                                         <button 
                                             onClick={closeDialog}
                                             className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
                                         >
-                                            Okey
+                                            {t('okey')}
                                         </button>
                                     </div>
                                 </DialogContent>
