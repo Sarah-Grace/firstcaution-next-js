@@ -25,7 +25,7 @@ function SiteHeader() {
         { code: "en", name: "(EN) English" }
     ]
     const [cookieValue, setCookieValue] = useState(langList.filter(lang => lang.code === (Cookies.get('language') || 'fr')).map((l)=>l.name));
-    
+    console.log(Cookies.get('language'))
 
     const setLanguage=  (value) => {
         setCookieValue(langList.filter(lang => lang.code === value ).map((l)=>l.name));
