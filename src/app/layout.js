@@ -15,7 +15,7 @@ import deMessages from '../../messages/de.json';
 import itMessages from '../../messages/it.json'; 
 import Cookies from 'js-cookie';
 import Preloader from "@/app/customComponents/Preloader";
-
+import {getLanguage} from "@/app/(main)/utils/language"
 
 config.autoAddCss = false;
 
@@ -32,6 +32,7 @@ export default function RootLayout({ children }) {
   const [messages, setMessages] = useState(frMessages);
   useEffect(()=>{
       setLocale(Cookies.get('language') || 'fr');
+      console.log(getLanguage())
       switch(locale) {
         case 'fr':
           setMessages(frMessages)
