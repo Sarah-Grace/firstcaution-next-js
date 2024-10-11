@@ -3,6 +3,7 @@ const nextConfig = {
   // webpack: (config) => {
   //   return config; // No custom Webpack handling needed for CSS
   // },
+  reactStrictMode: false,
   async headers() {
     return [
       {

@@ -101,13 +101,16 @@
             "view_details": "View Details"
         },
         "contract_detail_page": {
+            "contract_detail": "Contract Detail",
             "contract_id":"Contract ID",
             "granted_amount": "Granted Amount",
             "deposit_amount": "Deposit Amount",
             "annual_premium": "Annual Premium",
+            "promo_code":"Promo Code",
             "firstcoin":"Firstcoin",
             "sponsored_person":"Sponsored Person",
-            "download_pdf":"Download PDF"
+            "download_pdf":"Download PDF",
+            "document_preview": "Document Preview"
         },
         "bills_page": {
             "open-bills": {

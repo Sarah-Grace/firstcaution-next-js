@@ -101,10 +101,12 @@
             "view_details": "Afficher les détails" 
         }, 
         "contract_detail_page": { 
+            "contract_detail":"Détail du contrat",
             "contract_id": "ID du contrat", 
             "granted_amount": "Montant accordé", 
             "deposit_amount": "Montant du dépôt", 
             "annual_premium": "Prime annuelle", 
+            "promo_code": "Code promotionnel" ,
             "firstcoin": "Première pièce", 
             "sponsored_person": "Personne parrainée", 
             "download_pdf": "Télécharger le PDF" , 

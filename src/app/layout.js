@@ -4,7 +4,7 @@ import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import React,{ useState, useEffect } from 'react';
+import React,{ useState, useEffect, createContext } from 'react';
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react';
 import { store, persistor } from "./store";
@@ -25,11 +25,17 @@ const inter = Inter({
   variable: '--font-inter',
 });
 
+// Create context to pass the handler
+export const LayoutContext = createContext();
+
 export default function RootLayout({ children }) {
   const [loading, setLoading] = useState(false);
   // let locale = Cookies.get('language') || 'fr';
   const [locale , setLocale] =useState("fr");
   const [messages, setMessages] = useState(frMessages);
+  const updateLocale = (lang) => {
+    setLocale(lang)
+  }
   useEffect(()=>{
       setLocale(Cookies.get('language') || 'fr');
       console.log(getLanguage())
@@ -74,11 +80,11 @@ export default function RootLayout({ children }) {
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
-              <>
-              <>
-                {loading ? <Preloader /> : <>{children}</>}
-              </>
-              </>
+                <LayoutContext.Provider value={{setLocale, updateLocale }}>
+                  <>
+                    {loading ? <Preloader /> : <>{children}</>}
+                  </>
+                </LayoutContext.Provider>
               </PersistGate>
           </Provider>
         </QueryClientProvider>

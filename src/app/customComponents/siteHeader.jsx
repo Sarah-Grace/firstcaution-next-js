@@ -13,8 +13,11 @@ import {
 import {userLanguage} from "@/app/(main)/utils/language";
 import Cookies from 'js-cookie';
 import { useTranslations } from 'next-intl';
+import { useContext } from 'react';
+import { LayoutContext } from '../layout';
 
 function SiteHeader() {
+    const {updateLocale} = useContext(LayoutContext);
     const t = useTranslations('main.sidebar_and_header');
     const pathname = usePathname()
     const [title, setTitle] = useState('');
@@ -25,16 +28,10 @@ function SiteHeader() {
         { code: "en", name: "(EN) English" }
     ]
     const [cookieValue, setCookieValue] = useState(langList.filter(lang => lang.code === (Cookies.get('language') || 'fr')).map((l)=>l.name));
-    console.log(Cookies.get('language'))
-
     const setLanguage=  (value) => {
         setCookieValue(langList.filter(lang => lang.code === value ).map((l)=>l.name));
         userLanguage(value);
-            // Simulate a short delay for better UX before reloading the page
-        setTimeout(() => {
-            // Reload the page to apply changes
-            window.location.reload();
-        }, 1000);
+        updateLocale(value)
     }
     useEffect(() => {
         switch(pathname) {
@@ -92,7 +89,7 @@ function SiteHeader() {
                                 <SelectItem 
                                     key={index} 
                                     value={lang.code}
-                                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] checked:text-red-700 md:text-[12px]"
+                                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] data-[state=checked]:bg-blue-500 md:text-[12px]"
                                     >
                                     {lang.name}
                                 </SelectItem>

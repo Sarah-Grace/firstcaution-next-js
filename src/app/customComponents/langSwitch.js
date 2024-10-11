@@ -7,9 +7,11 @@ import {
   } from "@/components/ui/select"
 import {userLanguage} from "@/app/(main)/utils/language";
 import Cookies from 'js-cookie';
-import  { useState } from 'react'
+import  { useState, useContext } from 'react'
+import { LayoutContext } from '../layout';
 
 function LangSwitch() {
+    const {updateLocale} = useContext(LayoutContext);
     const langList = [
         { code: "fr", name: "(FR) French" },
         { code: "it", name: "(IT) Italian" },
@@ -17,16 +19,10 @@ function LangSwitch() {
         { code: "en", name: "(EN) English" }
     ]
     const [cookieValue, setCookieValue] = useState(langList.filter(lang => lang.code === (Cookies.get('language') || 'fr')).map((l)=>l.name));
-    
-
     const setLanguage=  (value) => {
         setCookieValue(langList.filter(lang => lang.code === value ).map((l)=>l.name));
         userLanguage(value);
-            // Simulate a short delay for better UX before reloading the page
-        setTimeout(() => {
-            // Reload the page to apply changes
-            window.location.reload();
-        }, 1000);
+        updateLocale(value);
     }
   return (
     <Select onValueChange= {(value)=> {setLanguage(value)}}>
@@ -39,7 +35,7 @@ function LangSwitch() {
                 <SelectItem 
                     key={index} 
                     value={lang.code}
-                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] checked:text-red-700"
+                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] data-[state=checked]:bg-blue-500"
                     >
                     {lang.name}
                 </SelectItem>

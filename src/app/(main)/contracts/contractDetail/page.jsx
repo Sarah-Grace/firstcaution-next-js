@@ -1,6 +1,6 @@
 "use client"
 
-import BackArrowBtn from "../../customComponents/BackArrowBtn"
+import BackArrowBtn from "@/app/customComponents/BackArrowBtn";
 import Image from "next/image";
 import CustomList from "@/app/customComponents/CustomList";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import axiosInstance from "@/lib/axiosInstance";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 import { useTranslations } from 'next-intl';
+import DocumentView from "@/app/customComponents/DocumentView";
 // import PdfViewer from "@/app/customComponents/PdfViewer"
 
 const contractDetail = async ({ contractId, otp }) => {
@@ -52,6 +53,10 @@ function ContractDetail() {
         {
             title: t('annual_premium'),
             detail: `CHF ${annualPremium}`
+        },
+        {
+            title: t('promo_code'),
+            detail: `DISCOUNT 20`
         }
     ]
     useEffect(() => {
@@ -81,7 +86,7 @@ function ContractDetail() {
         {
             
         }
-        <BackArrowBtn link="contracts" title="Contract Detail" />
+        <BackArrowBtn link="../contracts" title={t('contract_detail')} />
         <div className="flex xxl:flex-wrap">
             <div className="w-1/2 pr-6 xxl:w-full xxl:mb-6 xxl:pr-0">
                 <div className="flex justify-between pt-14 mb-[76px] xxl:mb-5">
@@ -134,60 +139,7 @@ function ContractDetail() {
                 </div>
             </div>
             <div className="w-1/2 pl-6 xxl:w-full xxl:pl-0">
-                <div className="bg-bgc-3 px-[30px] py-5">
-                    <div className="flex items-center justify-between">
-                        <h3 className="text-h3 font-medium text-grey-2 mb-2">{t('document_preview')}</h3>
-                        {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
-                    </div>
-                    <div className="mt-9 mb-[19px]">
-                    <div className="">
-                    <iframe
-                        src={`https://docs.google.com/gview?url=${pdfLink}&embedded=true`}
-                        width="600"
-                        height="400"
-                        title="Pdf Viewer"
-                        className="w-full h-[600px]"
-                    ></iframe>
-                    </div>
-                        {/* <Link href="#">
-                            <Image
-                                src="/images/document-preview.png"
-                                alt=""
-                                className="mx-auto mb-[30px]"
-                                width={415}
-                                height={483}
-                            />
-                        </Link> */}
-                    </div>
-                    {/* <div className="text-center">
-                        <button className="px-2">
-                            <Image
-                                src="/images/icons/zoom-in.svg"
-                                alt=""
-                                className=""
-                                width={24}
-                                height={24}
-                            />
-                        </button>
-                        <button className="px-2">
-                            <Image
-                                src="/images/icons/zoom-out.svg"
-                                alt=""
-                                className=""
-                                width={24}
-                                height={24}
-                            />
-                        </button>
-                    </div> */}
-                </div>
-                <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
-                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={pdfLink} download  target="_blank">
-                        {t('download_pdf')}
-                    </a>
-                    <a className="rounded-sm bg-white w-[50px] h-[50px] border border-secondary block leading-[50px] text-secondary text-[28px] font-thin text-center" href={pdfLink} target="_blank">
-                        <FontAwesomeIcon icon={faShareNodes} />
-                    </a>
-                </div>
+                <DocumentView link={pdfLink} />
             </div>
         </div>
     </div>

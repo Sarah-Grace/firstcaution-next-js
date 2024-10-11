@@ -86,6 +86,16 @@ body {
 .rmdp-input:focus {
   box-shadow: none !important;
 }
+@media screen and (max-width: 992px) {
+  .sidebar-height {
+    height: calc(100vh - 102px);
+  }
+}
+@media screen and (max-width: 768px) {
+  .sidebar-height {
+    height: calc(100vh - 76px);
+  }
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

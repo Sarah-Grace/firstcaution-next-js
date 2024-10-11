@@ -101,10 +101,12 @@
             "view_details": "Details anzeigen" 
         }, 
         "contract_detail_page": { 
+            "contract_detail": "Vertragsdetails",
             "contract_id":"Vertrags-ID", 
             "granted_amount": "Gewährter Betrag", 
             "deposit_amount": "Einzahlungsbetrag",
             "annual_premium": "Jahresprämie", 
+            "promo_code": "Promo-Code",
             "firstcoin": "Firstcoin", 
             "sponsored_person": "Gesponserte Person", 
             "download_pdf": "PDF herunterladen" , 

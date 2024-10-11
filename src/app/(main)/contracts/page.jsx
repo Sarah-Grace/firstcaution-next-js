@@ -109,7 +109,7 @@ function Contracts() {
                                             <div onClick={() => 
                                                     {
                                                         dispatch(addContractId(d.clientContractId));
-                                                        router.push('/contractDetail');
+                                                        router.push('/contracts/contractDetail');
                                                     }
                                                 }>
                                             <Link 

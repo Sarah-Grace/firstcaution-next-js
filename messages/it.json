@@ -101,10 +101,12 @@
             "view_details": "Visualizza dettagli" 
         }, 
         "contract_detail_page": { 
+            "contract_detail":"Dettaglio contratto",
             "contract_id":"ID contratto", 
             "granted_amount": "Importo concesso", 
             "deposit_amount": "Importo del deposito",
             "annual_premium": "Premio annuale", 
+            "promo_code": "Codice promozionale",
             "firstcoin":"Firstcoin", 
             "sponsored_person":"Persona sponsorizzata", 
             "download_pdf":"Scarica PDF" , 

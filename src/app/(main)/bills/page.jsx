@@ -182,7 +182,7 @@ function Bills() {
                           <div onClick={() => 
                             {
                                 dispatch(addInvoiceId(d['InvoiceId']));
-                                router.push('/billDetail');
+                                router.push('/bills/billDetail');
                             }
                           }>
                           <Link 
