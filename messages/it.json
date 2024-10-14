@@ -165,5 +165,17 @@
             "msg": "Informazioni utente aggiornate con successo!",
             "okey": "Okey"
         }
+    },
+    "errors" : {
+        "email_already_exists": "email già esistente",
+        "invalid_email": "Email non valida",
+        "incorrect_password": "Password non corretta",
+        "email_not_verified":  "Email non verificata",
+        "user_not_found": "Utente non trovato",
+        "not_blank": "Questo campo non può essere vuoto.",
+        "should_not_be_same": "La nuova password non deve essere uguale alla vecchia_password",
+        "invalid_otp": "OTP non valida",
+        "otp_required": "OTP obbligatoria",
+        "valid_email_required": "È obbligatoria un'email valida"
     }
 }

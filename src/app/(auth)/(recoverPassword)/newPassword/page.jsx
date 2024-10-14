@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl';
 // Function for reset password
 const newPassword = async (Password) => {
   const response = await axiosInstance.post('/api/reset/password/complete/', Password);
-  console.log(response)
+  //console.log(response)
   return response.data;
 };
 

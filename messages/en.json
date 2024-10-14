@@ -166,5 +166,17 @@
             "okey": "Okey"
         }
 
+    },
+    "errors" : {
+        "email_already_exists": "email already exists",
+        "invalid_email": "Invalid email",
+        "incorrect_password": "Incorrect password",
+        "email_not_verified":  "Email not verified",
+        "user_not_found": "User not found",
+        "not_blank": "This field may not be blank.",
+        "should_not_be_same": "New password should not be same as old_password",
+        "invalid_otp": "Invalid OTP",
+        "otp_required": "OTP is required",
+        "valid_email_required": "Valid email is required"
     }
 }

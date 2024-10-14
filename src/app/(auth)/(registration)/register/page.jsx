@@ -15,6 +15,7 @@ import * as React from "react"
 import DatePicker from "react-multi-date-picker"
 import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 
 // Define Zod schema for form validation
 const formSchema = z.object({
@@ -28,11 +29,12 @@ const formSchema = z.object({
 // Function to create a new user
 const createUser = async (newUser) => {
     const response = await axiosInstance.post('/api/register/', newUser);
-    console.log(response)
+    //console.log(response)
     return response.data;
   };
 
 function Register() {
+  const { errorTranslate } = useGlobalMethods();
   const t = useTranslations('auth');
     const dispatch = useDispatch();
     const router = useRouter();
@@ -193,7 +195,7 @@ function Register() {
                             required
                        />
                     </div>
-                    {emailError  && <p className="mb-3 -mt-3 text-red-600 text-xs">{emailError}</p>}
+                    {emailError  && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(emailError)}</p>}
                     {/* <div>
                         {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
                     </div> */}
@@ -235,7 +237,7 @@ function Register() {
                         </DatePicker>
 
                     </div>
-                    {dateError && <p className="my-3 text-red-600 text-xs">{dateError}</p>}
+                    {dateError && <p className="my-3 text-red-600 text-xs">{errorTranslate(dateError)}</p>}
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
                         <span>{t('register_page.have_account')} 
                         </span>

@@ -17,7 +17,7 @@ import DocumentView from "@/app/customComponents/DocumentView";
 const contractDetail = async ({ contractId, otp }) => {
     console.log(contractId)
     const response = await axiosInstance.get(`/api/client/contract-detail/${contractId}/`, otp);
-    console.log(response);
+    //console.log(response);
     return response.data;
 };
 
@@ -30,16 +30,17 @@ function ContractDetail() {
     const [annualPremium, setAnnualPremium] = useState("");
     const [GuarantedAmount, setGuarantedAmount] = useState("");
     const [pdfLink, setPdfLink] = useState("");
-    //const pdfFile = '/sample.pdf'; // Path to your PDF file
+    const [stausColor, setStatusColor] = useState({  
+        colorText:"" , 
+        bgColor:"" ,
+        borderColor:""
+    })
 
     // const statusColor = [
     //     {status:"Active",  colorText:"text-[#34C759]" , bgColor:"before:bg-[#34C759]" , borderColor:"border-[#34C759]"},
     //     {status:"Pending", colorText:"text-[#EEC23E]", bgColor:"before:bg-[#EEC23E]" , borderColor:"border-[#EEC23E]" },
     //     {status:"Closing with Claim",  colorText:"text-[#F73737]", bgColor:"before:bg-[#F73737]" , borderColor:"border-[#F73737]" }]
-    // const listStatusColor = statusColor.filter(color => color.status === status);
-    // console.log(listStatusColor[0].borderColor)
-    // // console.log(listStatusColor[0].bgColor)
-    // // console.log(listStatusColor[0].borderColor)
+    //     let listStatusColor;
 
     const contractInfoList = [
         {
@@ -71,7 +72,32 @@ function ContractDetail() {
             setContractDeposit(response.contract_detail.clientContractDeposit);
             setAnnualPremium(response.contract_detail.clientContractAnnualPremium);
             setGuarantedAmount(response.contract_detail.clientContractGuarantedAmount);
+            console.log(response.contract_detail.clientContractStage)
+            switch(response.contract_detail.clientContractStage) {
+                case "Active":
+                    setStatusColor({
+                        colorText:"text-[#34C759]" , 
+                        bgColor:"before:bg-[#34C759]" , 
+                        borderColor:"border-[#34C759]"
+                    })
+                    break;
+                case "Pending": 
+                    setStatusColor({ 
+                        colorText:"text-[#EEC23E]", 
+                        bgColor:"before:bg-[#EEC23E]" , 
+                        borderColor:"border-[#EEC23E]" 
+                    })
+                    break;
+                case "Closing with Claim":
+                    setStatusColor({
+                        colorText:"text-[#F73737]", 
+                        bgColor:"before:bg-[#F73737]" , 
+                        borderColor:"border-[#F73737]" 
+                    })
+                    break;
+            }
             setPdfLink(response.file);
+
         },
         onError: (error) => {
         // This function runs if the mutation fails
@@ -84,6 +110,7 @@ function ContractDetail() {
   return (
     <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white xs:px-2'>
         {
+            
             
         }
         <BackArrowBtn link="../contracts" title={t('contract_detail')} />
@@ -104,15 +131,15 @@ function ContractDetail() {
                             <h3 className="text-h3 font-normal text-grey-2 mb-2 xs:mb-0">{contractNumber}</h3>
                          </div>
                     </div>
-                    {/* <div className={`border ${listStatusColor[0].borderColor} py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
-                        <p className={`leading-[25px] ${listStatusColor[0].colorClass} text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 ${listStatusColor[0].bgColor}`}>{status}</p>
-                    </div> */}
-                    <div className={`py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
+                    <div className={`border ${stausColor.borderColor} py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
+                        <p className={`leading-[25px] ${stausColor.colorText} text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 ${stausColor.bgColor}`}>{status !== "Closing with Claim" ? status: "Closed"}</p>
+                    </div>
+                    {/* <div className={`py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
                         <p 
-                            className={`leading-[25px] text-content text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2`}>
+                            className={`leading-[25px] text-content text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 border  ${stausColor.bgColor} ${stausColor.bgColor} `}>
                                 {status !== "Closing with Claim" ? status: "Closed"}
                         </p>
-                    </div>
+                    </div> */}
                     
                 </div>
                 <div>

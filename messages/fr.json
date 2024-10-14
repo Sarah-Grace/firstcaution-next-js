@@ -53,7 +53,7 @@
             "settings": "Paramètre", 
             "logout": "Déconnexion", 
             "overview": "Aperçu", 
-            "Firstmoove":"Firstmoove" 
+            "Firstmoove":"Premier mouvement" 
         }, 
         "buttons": { 
             "view_more": "Voir plus", 
@@ -75,7 +75,7 @@
             "open_bills": "Factures ouvertes", 
             "paid_bills": "Factures payées", 
             "id": "ID", 
-            "firstmoove": "Première pièce", 
+            "firstmoove": "premier mouvement", 
             "passport": "Passeport", 
             "debt": "Certificat d'exécution de dette", 
             "my_firstcoins": "Mes premières pièces", 
@@ -166,6 +166,18 @@
             "okey": "Ok"
         } 
 
-    } 
+    },
+    "errors" : {
+        "email_already_exists": "l'e-mail existe déjà",
+        "invalid_email": "E-mail invalide",
+        "incorrect_password": "Mot de passe incorrect",
+        "email_not_verified":  "E-mail non vérifié",
+        "user_not_found": "Utilisateur introuvable",
+        "not_blank": "Ce champ ne peut pas être vide.",
+        "should_not_be_same": "Le nouveau mot de passe ne doit pas être identique à l'ancien mot de passe",
+        "invalid_otp": "OTP invalide",
+        "otp_required": "OTP est requis",
+        "valid_email_required": "Une adresse e-mail valide est requise"
+    }
 
 }

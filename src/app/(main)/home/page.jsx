@@ -15,7 +15,7 @@ import { useTranslations } from 'next-intl';
 
 const homedata = async (otp) => {
   const response = await axiosInstance.get('/api/client/deshboard/', otp);
-  console.log(response);
+  //console.log(response);
   return response.data;
 };
 

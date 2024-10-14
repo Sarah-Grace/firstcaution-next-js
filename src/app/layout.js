@@ -15,7 +15,8 @@ import deMessages from '../../messages/de.json';
 import itMessages from '../../messages/it.json'; 
 import Cookies from 'js-cookie';
 import Preloader from "@/app/customComponents/Preloader";
-import {getLanguage} from "@/app/(main)/utils/language"
+import {getLanguage} from "@/app/(main)/utils/language";
+import {userLanguage} from "@/app/(main)/utils/language";
 
 config.autoAddCss = false;
 
@@ -33,31 +34,34 @@ export default function RootLayout({ children }) {
   // let locale = Cookies.get('language') || 'fr';
   const [locale , setLocale] =useState("fr");
   const [messages, setMessages] = useState(frMessages);
-  const updateLocale = (lang) => {
+  const handleLocale = (lang) => {
+    userLanguage(lang); //updating language in cookie
     setLocale(lang)
   }
+    // Context value with multiple states and setters
+    const contextValue = {
+      locale, 
+      handleLocale,
+
+    };
   useEffect(()=>{
       setLocale(Cookies.get('language') || 'fr');
-      console.log(getLanguage())
+      // console.log("Language",getLanguage())
       switch(locale) {
         case 'fr':
           setMessages(frMessages)
-          console.log(messages)
           break;
         case 'en':
           setMessages(enMessages)
-          console.log(messages)
           break;
           case 'de':
             setMessages(deMessages)
-            console.log(messages)
             break;
           case 'it':
             setMessages(itMessages)
-            console.log(messages)
             break;
       }
-
+      
       const handleStart = () => setLoading(true);
       const handleComplete = () => setLoading(false);
   
@@ -80,7 +84,7 @@ export default function RootLayout({ children }) {
         <QueryClientProvider client={queryClient}>
           <Provider store={store}>
               <PersistGate loading={null} persistor={persistor}>
-                <LayoutContext.Provider value={{setLocale, updateLocale }}>
+                <LayoutContext.Provider value={contextValue}>
                   <>
                     {loading ? <Preloader /> : <>{children}</>}
                   </>
@@ -88,7 +92,7 @@ export default function RootLayout({ children }) {
               </PersistGate>
           </Provider>
         </QueryClientProvider>
-        </NextIntlClientProvider>
+      </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import {addEmail, addTokens, resetAll} from '@/app/slices/authSlice';
 import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 
 // Function for login
 const loginUser = async (User) => {
@@ -17,6 +18,7 @@ const loginUser = async (User) => {
     return response.data;
 };
 function Login() {
+    const { errorTranslate } = useGlobalMethods();
     const t = useTranslations('auth');
     const dispatch = useDispatch();
     const router = useRouter();
@@ -27,6 +29,7 @@ function Login() {
     const [errorEmail, setErrorEmail] =useState("");
     const [errorPassword, setErrorPassword] =useState("");
     const [errorUser, setErrorUser] =useState("");
+
     useEffect(() => {
         dispatch(resetAll());
     },[])
@@ -43,7 +46,7 @@ function Login() {
     const mutation = useMutation({
         mutationFn: loginUser,
         onSuccess: (response) => {
-            console.log(response.token)
+            // console.log(response.token)
             dispatch(addEmail(formData.email));
             // dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}))
 
@@ -54,10 +57,10 @@ function Login() {
             error.response.data.email !== undefined ? setErrorEmail(error.response.data.email) : setErrorEmail("");
             error.response.data.password !== undefined ? setErrorPassword(error.response.data.password): setErrorPassword("");
             error.response.data.user !== undefined ? setErrorUser(error.response.data.use): setErrorUser("");
-            console.log( error.response.data.email);
-            console.log( error.response.data.Password);
-            console.log( error.response.data.user);
-            console.log(errorPassword);
+            // console.log( error.response.data.email);
+            // console.log( error.response.data.Password);
+            // console.log( error.response.data.user);
+            // console.log(errorPassword);
         },
     });
     const formSubmit = (e) => {
@@ -99,9 +102,10 @@ function Login() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             onChange={handleInput}
                             value={formData.email}
+                            required
                         />
                     </div>
-                    {errorEmail && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorEmail}</p>}
+                    {errorEmail && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(errorEmail)}</p>}
                     <div className={`rounded-6 relative flex w-full ${errorPassword !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]" }`}>
                         <span className="px-4 py-0 flex items-center flex-[0_0_auto]">
                             <Image
@@ -119,16 +123,18 @@ function Login() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             onChange={handleInput}
                             value={formData.password}
-
+                            required
                         />
                     </div>
-                    {errorPassword && <p className="mb-3 mt-2 text-red-600 text-xs">{errorPassword}</p>}
-                    <Link 
-                        href="/forgetPassword"
-                        className="block mt-3 text-primary leading-[17px] text-sm text-end"
-                    >
-                        {t('login_page.recover_password')}
-                    </Link>
+                    {errorPassword && <p className="mb-3 mt-2 text-red-600 text-xs">{errorTranslate(errorPassword)}</p>}
+                    <div className="text-end ">
+                        <Link 
+                            href="/forgetPassword"
+                            className="inline-block mt-3 text-primary leading-[17px] text-sm"
+                        >
+                            {t('login_page.recover_password')}
+                        </Link>
+                    </div>
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
                         <span>{t('login_page.dont_have')} </span>
                         <Link 

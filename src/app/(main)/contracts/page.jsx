@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 
 const contractdata = async (otp) => {
     const response = await axiosInstance.get('/api/client/active-contracts/', otp);
-    console.log(response)
+    //console.log(response)
     return response.data;
 };
 function Contracts() {

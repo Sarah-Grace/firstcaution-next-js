@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
 import {
     Select,
     SelectContent,
@@ -10,61 +9,23 @@ import {
     SelectTrigger,
     SelectValue,
   } from "@/components/ui/select"
-import {userLanguage} from "@/app/(main)/utils/language";
-import Cookies from 'js-cookie';
-import { useTranslations } from 'next-intl';
 import { useContext } from 'react';
 import { LayoutContext } from '../layout';
+import { MainLayoutContext } from '@/app/(main)/layout'; // Ensure correct import path
 
 function SiteHeader() {
-    const {updateLocale} = useContext(LayoutContext);
-    const t = useTranslations('main.sidebar_and_header');
-    const pathname = usePathname()
-    const [title, setTitle] = useState('');
+    const {locale,handleLocale} = useContext(LayoutContext);
+    const { title, handleTitleChange} = useContext(MainLayoutContext);
     const langList = [
         { code: "fr", name: "(FR) French" },
         { code: "it", name: "(IT) Italian" },
         { code: "de", name: "(DE) German" },
         { code: "en", name: "(EN) English" }
     ]
-    const [cookieValue, setCookieValue] = useState(langList.filter(lang => lang.code === (Cookies.get('language') || 'fr')).map((l)=>l.name));
     const setLanguage=  (value) => {
-        setCookieValue(langList.filter(lang => lang.code === value ).map((l)=>l.name));
-        userLanguage(value);
-        updateLocale(value)
+        handleLocale(value); // handling locale value using context hook
+        handleTitleChange();
     }
-    useEffect(() => {
-        switch(pathname) {
-            case '/home':
-                setTitle(t('overview'))
-                break;
-            case '/contracts':
-            case '/contractDetail':
-                setTitle(t('my_contracts'))
-                break;
-            case '/bills':
-            case '/billDetail':
-            case '/payBill':
-            case '/paymentPlan':
-            case '/paymentTerm':
-            case '/monthlyPayment':
-                setTitle(t('my_bills'))
-                break;     
-            case '/deposit':
-            case '/adjustDeposit':
-                setTitle(t('my_deposit'))
-                break; 
-            case '/firstmoove':
-                setTitle(FIRSTMOOVE_HEADER)
-                break;
-            case '/firstees':
-                setTitle(t('Firstmoove'))
-                break;
-            case '/settings':
-                setTitle(t('settings'))
-                break;
-        }
-    },[pathname])
   return (
     <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 tablet:px-[12px] tablet:h-[76px]">
         <Link href='/home' className='lg:block hidden '>
@@ -81,7 +42,7 @@ function SiteHeader() {
             <div className='flex justify-center items-center w-[171px]'>
                 <Select onValueChange= {(value)=> {setLanguage(value)}}>
                     <SelectTrigger className="border border-[#DFEAF2] rounded-8 text-[#909090]">
-                        {cookieValue}
+                        { langList.filter(lang => lang.code === locale ).map((l)=>l.name)}
                     </SelectTrigger>
                     <SelectContent>
                         {langList.map((lang,index)=> {

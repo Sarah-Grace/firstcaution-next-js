@@ -53,7 +53,7 @@
             "settings": "Einstellungen", 
             "logout": "Abmelden", 
             "overview":"Übersicht", 
-            "Firstmoove": "Firstmoove" 
+            "Firstmoove": "Erster Schritt" 
         }, 
         "buttons": {  
             "view_more":"Mehr anzeigen",
@@ -75,7 +75,7 @@
             "open_bills":"Offene Rechnungen", 
             "paid_bills":"Bezahlte Rechnungen", 
             "id":"Ausweis", 
-            "firstmoove": "Firstmoove", 
+            "firstmoove": "Erster Schritt", 
             "passport":"Reisepass", 
             "debt":"Betreibungsbescheinigung", 
             "my_firstcoins": "Meine Firstcoins", 
@@ -166,6 +166,18 @@
             "okey": "Okey"
         }
 
-    } 
+    },
+    "errors" : {
+        "email_already_exists": "E-Mail existiert bereits",
+        "invalid_email": "Ungültige E-Mail",
+        "incorrect_password": "Falsches Passwort",
+        "email_not_verified":  "E-Mail nicht verifiziert",
+        "user_not_found": "Benutzer nicht gefunden",
+        "not_blank": "Dieses Feld darf nicht leer sein.",
+        "should_not_be_same": "Neues Passwort darf nicht mit altem Passwort identisch sein",
+        "invalid_otp": "Ungültiges OTP",
+        "otp_required": "OTP ist erforderlich",
+        "valid_email_required": "Gültige E-Mail ist erforderlich"
+    }
 
 }

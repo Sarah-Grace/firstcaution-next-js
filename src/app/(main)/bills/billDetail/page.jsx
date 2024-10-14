@@ -16,7 +16,7 @@ import DocumentView from "@/app/customComponents/DocumentView";
 const billDetail = async ({ contractId, otp }) => {
     console.log(contractId)
     const response = await axiosInstance.get(`/api/client/invoice-detail/${contractId}/`, otp);
-    console.log(response);
+    //console.log(response);
     return response.data;
 };
 

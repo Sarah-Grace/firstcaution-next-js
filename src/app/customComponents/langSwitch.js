@@ -11,7 +11,7 @@ import  { useState, useContext } from 'react'
 import { LayoutContext } from '../layout';
 
 function LangSwitch() {
-    const {updateLocale} = useContext(LayoutContext);
+    const {handleLocale} = useContext(LayoutContext);
     const langList = [
         { code: "fr", name: "(FR) French" },
         { code: "it", name: "(IT) Italian" },
@@ -22,7 +22,7 @@ function LangSwitch() {
     const setLanguage=  (value) => {
         setCookieValue(langList.filter(lang => lang.code === value ).map((l)=>l.name));
         userLanguage(value);
-        updateLocale(value);
+        handleLocale(value);
     }
   return (
     <Select onValueChange= {(value)=> {setLanguage(value)}}>

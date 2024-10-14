@@ -18,17 +18,17 @@ import {
 
 const profiledata = async (otp) => {
     const response = await axiosInstance.get('/api/profile/', otp);
-    // console.log(response);
+    // //console.log(response);
     return response.data;
 };
 const profiledataupdate = async (otp) => {
     const response = await axiosInstance.put('/api/profile/', otp);
-    // console.log(response);
+    // //console.log(response);
     return response.data;
 };
 const passwordupdate = async (otp) => {
     const response = await axiosInstance.post('/api/change/password/', otp);
-    // console.log(response);
+    // //console.log(response);
     return response.data;
 };
 

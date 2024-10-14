@@ -14,16 +14,18 @@ import {addTokens } from '../../../slices/authSlice';
 import { useRouter } from 'next/navigation';
 import { authUserToken } from "@/app/(main)/utils/auth";
 import { useTranslations } from 'next-intl';
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
-  console.log(response)
+  // //console.log(response)
   return response.data;
 };
 
 
 
 function LoginVerification() {
+  const { errorTranslate } = useGlobalMethods();
   const t = useTranslations('auth');
   const dispatch = useDispatch();
   const router = useRouter();
@@ -84,7 +86,7 @@ function LoginVerification() {
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
-                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorOtp}</p>}
+                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(errorOtp)}</p>}
                 <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">{t('verify')}</button>
               </form>
           </div>
