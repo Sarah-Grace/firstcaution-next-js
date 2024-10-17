@@ -177,6 +177,14 @@
         "should_not_be_same": "New password should not be same as old_password",
         "invalid_otp": "Invalid OTP",
         "otp_required": "OTP is required",
-        "valid_email_required": "Valid email is required"
+        "valid_email_required": "Valid email is required",
+        "select_date_of_birth": "Select Date of Birth"
+    },
+    "validation": {
+        "password": {
+            "uppercase": "1 uppercase",
+            "digit":"Atleast 1 digit",
+            "minimum_characters": "Minimum 8 characters"
+        }
     }
 }

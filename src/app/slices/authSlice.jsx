@@ -45,4 +45,4 @@ import { createSlice } from "@reduxjs/toolkit";
  })
 
  export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, resetAll } = authSlice.actions;
- export default authSlice.reducer;
+ export default authSlice.reducer; // for store configurations 

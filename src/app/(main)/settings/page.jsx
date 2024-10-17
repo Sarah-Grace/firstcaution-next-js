@@ -2,7 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import DatePicker from "react-multi-date-picker";
+import DatePicker , {DateObject} from "react-multi-date-picker";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axiosInstance';
 import { useSelector, useDispatch } from 'react-redux';
@@ -49,7 +49,10 @@ function Settings() {
     lname: "",
     email: ""
   });
-  const [date, setDate] = useState("");
+  const today = new DateObject();
+  const maxDob = new DateObject();
+  maxDob.setYear(today.year - 16)
+  const [date, setDate] = useState(null);
   const [formDataSecurity, setFormDataSecurity] = useState({
     password: "",
     newPassword: "",
@@ -223,7 +226,10 @@ function Settings() {
                                         <DatePicker
                                             value={date}
                                             onChange={setDate}
-                                            placeholder="Add Date of Birth"
+                                            placeholder={t('dob')}
+                                            minDate="1940/01/01"
+                                            maxDate={maxDob}
+                                            currentDate={maxDob}
                                         >
                                         </DatePicker>
                                     </div>

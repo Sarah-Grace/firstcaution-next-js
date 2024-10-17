@@ -177,7 +177,14 @@
         "should_not_be_same": "Neues Passwort darf nicht mit altem Passwort identisch sein",
         "invalid_otp": "Ungültiges OTP",
         "otp_required": "OTP ist erforderlich",
-        "valid_email_required": "Gültige E-Mail ist erforderlich"
+        "valid_email_required": "Gültige E-Mail ist erforderlich",
+        "select_date_of_birth": "Geburtsdatum auswählen"
+    },    "validation": {
+        "password": {
+            "uppercase": "1 Großbuchstabe",
+            "digit":"Mindestens 1 Ziffer",
+            "minimum_characters": "Mindestens 8 Zeichen"
+        }
     }
 
 }

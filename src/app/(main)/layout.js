@@ -55,6 +55,7 @@ export default function MainLayout({children}) {
         removeLanguage();
     }
     useEffect(() => {
+      document.title = "Myfirst by Firstcaution";
       // Start the session on page load
       startSession();
   

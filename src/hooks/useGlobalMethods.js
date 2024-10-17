@@ -6,6 +6,7 @@ export const useGlobalMethods = () => {
     const errorTranslate = (errorMsg) => {
         switch(errorMsg) {
             case "email already exists":
+            case "user with this email already exists.":
                 return et('email_already_exists')
             case "Incorrect password":
                 return et('incorrect_password')
@@ -25,6 +26,8 @@ export const useGlobalMethods = () => {
                 return et('otp_required')
             case "Valid email is required":
                 return et('valid_email_required')
+            case "Select Date of Birth":
+                return et('select_date_of_birth')
            }
     };
  

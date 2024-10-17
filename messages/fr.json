@@ -177,7 +177,15 @@
         "should_not_be_same": "Le nouveau mot de passe ne doit pas être identique à l'ancien mot de passe",
         "invalid_otp": "OTP invalide",
         "otp_required": "OTP est requis",
-        "valid_email_required": "Une adresse e-mail valide est requise"
+        "valid_email_required": "Une adresse e-mail valide est requise",
+        "select_date_of_birth": "Sélectionnez la date de naissance"
+    },
+    "validation": {
+        "password": {
+            "uppercase": "1 majuscule",
+            "digit":"Au moins 1 chiffre",
+            "minimum_characters": "Minimum 8 caractères"
+        }
     }
 
 }
