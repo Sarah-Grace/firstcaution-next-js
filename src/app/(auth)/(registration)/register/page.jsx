@@ -63,6 +63,46 @@ function Register() {
       characters: false,
       digit: false
   })
+  const [passwordStatus, setPasswordStatus] = useState({
+    uppercase: "text-grey-2 bg-[#F8F6F6]",
+    characters: "text-grey-2 bg-[#F8F6F6]",
+    digit: "text-grey-2 bg-[#F8F6F6]"
+  })
+  const setPasswordStatusValue = (value, prop) => {
+    setPasswordStatus((prevData) => ({
+      ...prevData,
+      [prop]: value
+    }))
+    setIsMissing((prev) => ({
+      ...prev,
+      [prop]: false
+    }))
+  }
+  const passwordValidationState = (errorArray ) => {
+    if (errorArray && errorArray.length > 0) {
+      // style for minimum characters 
+      errorArray.includes('characters') 
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "characters")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "characters")
+      // style for uppercase
+      errorArray.includes('uppercase')
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "uppercase")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "uppercase")
+      // style for digit
+      errorArray.includes('digit')
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "digit")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "digit")
+    } else {
+      
+    }
+
+  }
   // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,9 +112,16 @@ function Register() {
         // Handle validation errors
         const errors = resultPassword.error.format();
         setPasswordError(errors._errors);
-        
+        console.log(errors._errors)
+        passwordValidationState(errors._errors)
       } else {
         setPasswordError([])
+        setPasswordStatus((prevData) => ({
+          ...prevData,
+            characters: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+            uppercase: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+            digit: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25"
+        }));
       }
     }
     
@@ -82,10 +129,6 @@ function Register() {
       ...prevData,
       [name]: value
     }));
-    // setErrors((prevErrors) => ({
-    //   ...prevErrors,
-    //   [name]: ''
-    // }));
     
     
   };
@@ -98,38 +141,19 @@ function Register() {
       characters: false,
       digit: false
     })
-    if(passwordError.includes("uppercase"))
-    {
-      setIsMissing((prev) => ({
-        ...prev,
-        uppercase: true
-      }))
-    }
-    if(passwordError.includes("characters"))
-    {
-      setIsMissing((prev) => ({
-        ...prev,
-        characters: true
-      }))
-    }
-    if(passwordError.includes("digit"))
-    {
-      setIsMissing((prev) => ({
-        ...prev,
-        digit: true
-      }))
-    }
-
-      
-
-    
+    passwordError.includes("uppercase") && setIsMissing((prev) => ({ ...prev, uppercase: true  }))
+    passwordError.includes("characters") &&setIsMissing((prev) => ({ ...prev, characters: true }))
+    passwordError.includes("digit") && setIsMissing((prev) => ({ ...prev, digit: true }))
     if(date === null) {
       setDateError("Select Date of Birth")
-    }else {
+    }else if(date !== null)
       setDateError("")
-      // console.log(date.format("YYYY-MM-DD"))
-      mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
-    }
+      {
+      if( !passwordError.includes("uppercase") && !passwordError.includes("characters") &&  !passwordError.includes("digit")) {
+        
+        mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
+      }
+    } 
   };
 
     // Mutation hook for creating a user
@@ -252,24 +276,23 @@ function Register() {
                         />
                     </div>
                     <div className="flex flex-wrap gap-3 my-3">
-                      <p className={`text-xs ${passwordError.includes("characters") ? 'text-grey-2 bg-[#F8F6F6]' : 'text-[#0BA212] bg-[#ACFFDC] bg-opacity-25' } px-2 leading-[18px] rounded-2xl ${isMissing.characters && 'text-red-600 bg-red-200'}`}>
+                      <p className={`text-xs ${passwordStatus.characters}  px-2 leading-[18px] rounded-2xl ${isMissing.characters && 'text-red-600 bg-red-200'}`}>
                         <span className="pr-[5px]">
                           <FontAwesomeIcon icon={faCheck} />
                         </span>
                         {vt('password.minimum_characters')}
                       </p>
-                      <p className={`text-xs  ${passwordError.includes("uppercase") ? 'text-grey-2 bg-[#F8F6F6]' : 'text-[#0BA212] bg-[#ACFFDC] bg-opacity-25' } px-2 leading-[18px] rounded-2xl ${isMissing.uppercase && 'text-red-600 bg-red-200'}`}>
+                      <p className={`text-xs  ${passwordStatus.uppercase} px-2 leading-[18px] rounded-2xl ${isMissing.uppercase && 'text-red-600 bg-red-200'}`}>
                         <span className="pr-[5px]">
                           <FontAwesomeIcon icon={faCheck} />
                         </span>
                         {vt('password.uppercase')}
                       </p>
-                      <p className={`text-xs ${passwordError.includes("digit") ? 'text-grey-2 bg-[#F8F6F6]' : 'text-[#0BA212] bg-[#ACFFDC] bg-opacity-25' } px-2 leading-[18px] rounded-2xl ${isMissing.digit && 'text-red-600 bg-red-200'}`}>
+                      <p className={`text-xs ${passwordStatus.digit} px-2 leading-[18px] rounded-2xl ${isMissing.digit && 'text-red-600 bg-red-200'}`}>
                         <span className="pr-[5px]">
                           <FontAwesomeIcon icon={faCheck} />
                         </span>
                         {vt('password.digit')}
-                        {isMissing.digit}
                       </p>
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">

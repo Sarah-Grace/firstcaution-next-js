@@ -7,7 +7,7 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectValue,
+    SelectValue, 
   } from "@/components/ui/select"
 import { useContext } from 'react';
 import { LayoutContext } from '../layout';
@@ -15,6 +15,7 @@ import { MainLayoutContext } from '@/app/(main)/layout'; // Ensure correct impor
 
 function SiteHeader() {
     const {locale,handleLocale} = useContext(LayoutContext);
+    const [selectedValue, setSelectedValue] = useState(locale);
     const { title, handleTitleChange} = useContext(MainLayoutContext);
     const langList = [
         { code: "fr", name: "(FR) French" },
@@ -25,6 +26,7 @@ function SiteHeader() {
     const setLanguage=  (value) => {
         handleLocale(value); // handling locale value using context hook
         handleTitleChange();
+        setSelectedValue(value);
     }
   return (
     <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 tablet:px-[12px] tablet:h-[76px]">
@@ -40,8 +42,8 @@ function SiteHeader() {
         <h1 className='text-h1 tablet:text-[18px] text-content md:hidden'>{title}</h1>
         <div className='flex justify-center items-center gap-8'>
             <div className='flex justify-center items-center w-[171px]'>
-                <Select onValueChange= {(value)=> {setLanguage(value)}}>
-                    <SelectTrigger className="border border-[#DFEAF2] rounded-8 text-[#909090]">
+                <Select onValueChange= {(value)=> {setLanguage(value)}} value={selectedValue}>
+                    <SelectTrigger className="border border-[#DFEAF2] rounded-8 text-[#909090] focus:shadow-none focus:ring-0">
                         { langList.filter(lang => lang.code === locale ).map((l)=>l.name)}
                     </SelectTrigger>
                     <SelectContent>
@@ -50,7 +52,7 @@ function SiteHeader() {
                                 <SelectItem 
                                     key={index} 
                                     value={lang.code}
-                                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] data-[state=checked]:bg-blue-500 md:text-[12px]"
+                                    className="text-heading text-left p-0 px-[27px] text-base leading-[50px] w-[200px] data-[state=checked]:bg-[#E8F1FF] data-[state=checked]:text-heading md:text-[12px]"
                                     >
                                     {lang.name}
                                 </SelectItem>
