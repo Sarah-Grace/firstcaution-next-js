@@ -15,7 +15,7 @@ import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
 import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faCheck} from '@fortawesome/free-solid-svg-icons';
+import {faCheck, faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 
 
 // Function to create a new user
@@ -35,6 +35,11 @@ const formSchema = z.object({
 const passwordSchema = 
 z.string().min(8, { message: "characters" }).regex(/[A-Z]/, { message: "uppercase" }).regex(/\d/, { message: "digit" });
 function Register() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
   const { errorTranslate } = useGlobalMethods();
   const t = useTranslations('auth');
   const vt = useTranslations('validation')
@@ -115,13 +120,20 @@ function Register() {
         console.log(errors._errors)
         passwordValidationState(errors._errors)
       } else {
+        console.log(passwordError.uppercase);
         setPasswordError([])
+        setIsMissing({
+          uppercase: false,
+          characters: false,
+          digit: false
+        })
         setPasswordStatus((prevData) => ({
           ...prevData,
-            characters: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
-            uppercase: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
-            digit: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25"
+          characters: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+          uppercase: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+          digit: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25"
         }));
+        console.log(passwordStatus.uppercase)
       }
     }
     
@@ -146,9 +158,8 @@ function Register() {
     passwordError.includes("digit") && setIsMissing((prev) => ({ ...prev, digit: true }))
     if(date === null) {
       setDateError("Select Date of Birth")
-    }else if(date !== null)
+    }else if(date !== null){
       setDateError("")
-      {
       if( !passwordError.includes("uppercase") && !passwordError.includes("characters") &&  !passwordError.includes("digit")) {
         
         mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
@@ -266,14 +277,17 @@ function Register() {
                             />
                         </span>
                         <input 
-                            type="password" 
+                            type={showPassword ? 'text' : 'password'}
                             name="password"
                             placeholder={t('register_page.password')} 
                             value={formData.password}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 pl-[5px] pr-[30px] text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none xs:pr-[5px]"
                             
                         />
+                        <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                          {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                        </button>
                     </div>
                     <div className="flex flex-wrap gap-3 my-3">
                       <p className={`text-xs ${passwordStatus.characters}  px-2 leading-[18px] rounded-2xl ${isMissing.characters && 'text-red-600 bg-red-200'}`}>

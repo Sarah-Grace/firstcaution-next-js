@@ -11,6 +11,8 @@ import {addEmail, addTokens, resetAll} from '@/app/slices/authSlice';
 import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
 import { useGlobalMethods } from '@/hooks/useGlobalMethods';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 
 // Function for login
 const loginUser = async (User) => {
@@ -18,6 +20,11 @@ const loginUser = async (User) => {
     return response.data;
 };
 function Login() {
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePassword = () => {
+      setShowPassword(!showPassword);
+    };
     const { errorTranslate } = useGlobalMethods();
     const t = useTranslations('auth');
     const dispatch = useDispatch();
@@ -117,14 +124,17 @@ function Login() {
                             />
                         </span>
                         <input 
-                            type="password" 
+                            type={showPassword ? 'text' : 'password'} 
                             name="password"
                             placeholder={t('password')} 
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             onChange={handleInput}
                             value={formData.password}
                             required
                         />
+                        <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                          {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                        </button>
                     </div>
                     {errorPassword && <p className="mb-3 mt-2 text-red-600 text-xs">{errorTranslate(errorPassword)}</p>}
                     <div className="text-end ">

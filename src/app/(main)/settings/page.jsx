@@ -15,6 +15,8 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 
 const profiledata = async (otp) => {
     const response = await axiosInstance.get('/api/profile/', otp);
@@ -33,6 +35,18 @@ const passwordupdate = async (otp) => {
 };
 
 function Settings() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showNewPassword,setShowNewPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const togglePassword = () => {
+      setShowPassword(!showPassword);
+    };
+    const toggleNewPassword = () => {
+        setShowNewPassword(!showNewPassword);
+      };
+      const toggleConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+      };
     const [isOpen, setIsOpen] = useState(false);
 
     const openDialog = () => {
@@ -250,38 +264,53 @@ function Settings() {
                             <div className="w-2/5 xxl:w-1/2 tablet:w-full">
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('password')}</label>
-                                    <input 
-                                        type="password" 
-                                        name="password"
-                                        className={`leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full`}
-                                        onChange={handleInputSecurity}
-                                        value={formDataSecurity.password}
-                                        required
-                                    />
+                                    <div className="relative">
+                                        <input 
+                                            type={showPassword ? 'text' : 'password'}  
+                                            name="password"
+                                            className={`leading-[48px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full`}
+                                            onChange={handleInputSecurity}
+                                            value={formDataSecurity.password}
+                                            required
+                                        />
+                                        <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                                            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <p className={`${errorOldPassword ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >{errorOldPassword} </p>
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('new_password')}</label>
-                                    <input 
-                                        type="password" 
-                                        name="newPassword"
-                                        className={`leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
-                                        onChange={handleInputSecurity}
-                                        value={formDataSecurity.newPassword}
-                                        required
-                                    />
+                                    <div className="relative">
+                                        <input 
+                                            type={showNewPassword ? 'text' : 'password'} 
+                                            name="newPassword"
+                                            className={`leading-[48px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
+                                            onChange={handleInputSecurity}
+                                            value={formDataSecurity.newPassword}
+                                            required
+                                        />
+                                        <button type="button" onClick={toggleNewPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                                            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('confirm_password')}</label>
-                                    <input 
-                                        type="password" 
-                                        name="confirmPassword"
-                                        className={`leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
-                                        onChange={handleInputSecurity}
-                                        value={formDataSecurity.confirmPassword}
-                                        required
-                                    />
+                                    <div className="relative">
+                                        <input 
+                                            type={showConfirmPassword ? 'text' : 'password'}  
+                                            name="confirmPassword"
+                                            className={`leading-[48px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
+                                            onChange={handleInputSecurity}
+                                            value={formDataSecurity.confirmPassword}
+                                            required
+                                        />
+                                        <button type="button" onClick={toggleConfirmPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                                            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                        </button>
+                                    </div>
                                 </div>
                 <p className={`${isDiffPassword ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >Password and Confirm Password are not same </p>
                 <p className={`${errorNewPassword ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >{errorNewPassword} </p>
