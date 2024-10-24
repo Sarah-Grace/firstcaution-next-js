@@ -25,11 +25,12 @@ function Contracts() {
     { "Active": t('status.active') },
     { "Pending": t('status.pending') },
     { "Closing with Claim": "Closing with Claim" }]
-    const status = ["All", "Active", "Pending","Closing with Claim"];
+    const status = ["All", "Active", "Pending","Closing with Claim", "Closing without Claim"];
     const statusColor = [
         {status:"Active",  colorClass:"text-[#34C759]" , bgColor:"after:bg-[#34C759]" , borderColor:"mxl:border-[#34C759]"},
         {status:"Pending", colorClass:"text-[#EEC23E]", bgColor:"after:bg-[#EEC23E]" , borderColor:"mxl:border-[#EEC23E]" },
-        {status:"Closing with Claim",  colorClass:"text-[#F73737]", bgColor:"after:bg-[#F73737]" , borderColor:"mxl:border-[#F73737]" }
+        {status:"Closing with Claim",  colorClass:"text-[#F73737]", bgColor:"after:bg-[#F73737]" , borderColor:"mxl:border-[#F73737]" },
+        {status:"Closing without Claim",  colorClass:"text-[#F73737]", bgColor:"after:bg-[#F73737]" , borderColor:"mxl:border-[#F73737]" }
     ];
     const [allContracts, setAllContracts] = useState([])
     const filteredData = filterStatus === "All" ? allContracts : allContracts.filter(d => d.clientContractStage === filterStatus);
@@ -41,7 +42,9 @@ function Contracts() {
     const mutation = useMutation({
         mutationFn: contractdata,
         onSuccess: (response) => {
-            setAllContracts(response)
+            Object.entries(response).length !== 0 && setAllContracts(response) 
+           // setAllContracts(response)
+            console.log(response)
         },
         onError: (error) => {
 
@@ -57,20 +60,22 @@ function Contracts() {
                 return t('status.pending')
             case "Closing with Claim":
                 return t('status.closed')
+            case "Closing without Claim":
+            return t('status.cancelled')
         }
     }
     return (
         <div className="pt-[30px] mb-14">
             <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] sm:pr-3 sm:pl-3">
                 <Tabs defaultValue="All" onValueChange={(t) => { setFilterStatus(t) }} className="">
-                    <TabsList className= "border-b border-[#E6EFF5] w-full justify-start">
+                    <TabsList className= "border-b border-[#E6EFF5] w-full justify-start flex-wrap">
                         {status.map((status, index) => {
                             console.log(status);
                             return (
                                 <TabsTrigger 
                                     key={`tab${index}`} 
                                     value={status} 
-                                    className= {status !== "Closing with Claim" ? status : t('status.closed')} >
+                                    className= {`pt-4 ${status !== "Closing with Claim" ? status : t('status.closed')}`} >
                                 {/* {status !== "Closing with Claim" ? status : "Closed"}*/}
                                 {statusTranslation(status)} 
                                 </TabsTrigger>
@@ -84,7 +89,7 @@ function Contracts() {
                                 filteredData.map((d, index) => {
                                     // fetching background and text color classes from an array of objects baces on status
                                     const listStatusColor = statusColor.filter(color => color.status === d.clientContractStage)
-                                    console.log(listStatusColor[0].bgColor)
+                                    // console.log(listStatusColor[0].bgColor)
                                     return (
                                         <div className="flex justify-between items-center gap-[5px] py-5 px-8 border-b border-[#E6EFF5] bg-bgc-3 last:border-b-0 mxl:block relative mxl:border mxl:rounded-6 mxl:mb-2 mxl:px-2 mxl:pb-3 xs:pt-10" key={index}>
                                             <div className="block flex-[0_0_20%] mxl:flex mxl:items-center mxl:gap-1 mxl:mb-3">
@@ -101,8 +106,12 @@ function Contracts() {
                                             </div>
                                             <div className="flex-[0_0_12%] mxl:flex mxl:items-center">
                                                     <p className="text-base leading-[19px] font-normal text-grey-2 mb-1 mxl:hidden">{t('status_title')}:</p>
-                                                    <p 
+                                                    {/* <p 
                                                         className={`text-[15px] leading-[18px] font-medium relative pl-[10px] after:content[""] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 mxl:border mxl:py-[2px] mxl:pr-3 mxl:pl-6 mxl:after:left-3 mxl:rounded-8 ${listStatusColor[0].bgColor} ${listStatusColor[0].colorClass} ${listStatusColor[0].borderColor} mxl:absolute mxl:top-5 mxl:right-4 sm:top-2 sm:pl-3 sm:pr-2 sm:after:left-1 xs:left-2 xs:right-auto`}>
+                                                            {d.clientContractStage!== "Closing with Claim" ? d.clientContractStage : t('status.closed')}
+                                                    </p> */}
+                                                    <p 
+                                                        className={`text-[15px] leading-[18px] font-medium relative after:content[""] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 mxl:border mxl:py-[2px] mxl:pr-3 mxl:pl-6 mxl:after:left-3 mxl:rounded-8 mxl:absolute mxl:top-5 mxl:right-4 sm:top-2 sm:pl-3 sm:pr-2 sm:after:left-1 xs:left-2 xs:right-auto text-content`}>
                                                             {d.clientContractStage!== "Closing with Claim" ? d.clientContractStage : t('status.closed')}
                                                     </p>
                                             </div>

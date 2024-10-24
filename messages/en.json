@@ -15,7 +15,9 @@
             "welcome_back": "Welcome Back",
             "sub_title": "Log In to your account",
             "recover_password":"Recover Password",
-            "dont_have": "Don’t have an account? "
+            "dont_have": "Don’t have an account? ",
+            "user_not_verified" : "User is not Verified",
+            "verify_now": "Verify Now"
         },
         "forget_password_page" : {
             "forget_password": "Forget Password?",
@@ -42,6 +44,13 @@
             "password": "Create Strong Password",
             "dob": "Add Date of Birth",
             "have_account": "Already have an account?"
+        },
+        "communication_Failed": {
+            "title": "Failed to communicate with external service!",
+            "sub_title_1":"It seems like there is an issue with your connection to the external server that may require assisting from your Salesforce team.",
+            "sub_title_2": "It's advisable to reach out to them for support, as they may be able to resolve the connectivity problems or provide further troubleshooting steps.",
+            "contact_with_team": "Contact with team",
+            "go_back": "Go back"
         }
     },
     "main": {
@@ -64,9 +73,7 @@
                 "my_dashboard": "My Dashboard",
                 "current_contracts": "Current contracts",
                 "current_contracts_sub_title": "Keep contracts in check",
-                "show_all":"Show All",
-                "address": "36 Ranchview Richardson",
-                "city":"Switzerland"
+                "show_all":"Show All"
             },
             "granted_amount":"Granted Amount",
             "deposit_amount":"Deposit Amount",
@@ -92,7 +99,8 @@
                 "all": "All",
                 "active": "Active",
                 "pending": "Pending",
-                "closed": "Closed"
+                "closed": "Closed",
+                "cancelled": "Cancelled"
             },
             "contract": "Contract",
             "guarantee_amount":"Guarantee Amount",
@@ -115,7 +123,7 @@
         "bills_page": {
             "open-bills": {
                 "title":"Deposit",
-                "issue_date": "Issue Date",
+                "due_date": "Due Date",
                 "amount":"Amount",
                 "status_title": "Status",
                 "pay_bill": "Pay Bill"
@@ -178,12 +186,13 @@
         "invalid_otp": "Invalid OTP",
         "otp_required": "OTP is required",
         "valid_email_required": "Valid email is required",
-        "select_date_of_birth": "Select Date of Birth"
+        "select_date_of_birth": "Select Date of Birth",
+        "email_not_registered": "This Email is not registered"
     },
     "validation": {
         "password": {
             "uppercase": "1 uppercase",
-            "digit":"Atleast 1 digit",
+            "digit":"At least 1 digit",
             "minimum_characters": "Minimum 8 characters"
         }
     }

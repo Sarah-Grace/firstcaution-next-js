@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { useRouter } from 'next/navigation';
 import {addEmail} from '../../../slices/authSlice';
 import { useTranslations } from 'next-intl';
-
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 // Function for reset password
 const resetPassword = async (User) => {
   const response = await axiosInstance.post('/api/reset/password/', User);
@@ -17,6 +17,7 @@ const resetPassword = async (User) => {
 };
 
 function ForgetPassword() {
+    const { errorTranslate } = useGlobalMethods();
     const t = useTranslations('auth');
     const dispatch = useDispatch();
     const router = useRouter();
@@ -78,9 +79,10 @@ function ForgetPassword() {
                           className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none text-center border border-[#C6C6C6] rounded-8 sm:px-1"
                           onChange={handleInput}
                           value={formData.email}
+                          required
                       />
                   </div>
-                  <p className={`${invalidEmail !== "" ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >This Email is not registered</p>
+                  <p className={`${invalidEmail !== "" ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >{errorTranslate(invalidEmail)}</p>
                   <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full text-center">{t('forget_password_page.send')}</button>
               </form>
           </div>

@@ -22,6 +22,11 @@ const homedata = async (otp) => {
 function Home() {
   const t = useTranslations('main');
   const email = useSelector((state) => state.userEmail);
+  const [address, setAddress] = useState({
+    "city": "",
+    "street": "",
+    "country": "",
+  })
   const [currentContracts, setCurrentContracts] = useState(0);
   const [annualPremium, setAnnualPremium] = useState(0);
   const [grantedAmount, setGrantedAmount] = useState(0);
@@ -110,6 +115,12 @@ function Home() {
       setDepositAmount(response.total_deposited_amount);
       setGrantedAmount(response.total_guaranteed_amount);
       setFirstcoin(response.firstcaution_coin);
+      setAddress((prev) => ({
+        ...prev,
+        city: response.address.city,
+        street: response.address.street,
+        country: response.address.country
+    }))
     },
     onError: (error) => {
       setApiError(error.message);
@@ -139,8 +150,8 @@ function Home() {
                       className="flex-[0_0_16px] h-6"
                     />
                     <div>
-                      <h3 className="text-[13px] leading-[13px] font-medium text-heading lgs:text-[15px] lgs:leading-[15px] lgs:font-medium mid-xxl:text-[15px] mid-xxl:leading-[15px] mid-xxl:font-medium">{t('home.dashboard.address')}</h3>
-                      <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">{t('home.dashboard.city')}</p>
+                      <h3 className="text-[13px] leading-[13px] font-medium text-heading lgs:text-[15px] lgs:leading-[15px] lgs:font-medium mid-xxl:text-[15px] mid-xxl:leading-[15px] mid-xxl:font-medium">{`${address.street} ${address.city}`}</h3>
+                      <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">{address.country}</p>
                     </div>
                 </div>
                 <Link href="/contracts" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px] md1:px-2">

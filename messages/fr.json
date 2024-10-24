@@ -15,7 +15,9 @@
             "welcome_back": "Bienvenue", 
             "sub_title": "Connectez-vous à votre compte", 
             "recover_password": "Récupérer le mot de passe", 
-            "dont_have": "Vous n'avez pas de compte ? " 
+            "dont_have": "Vous n'avez pas de compte ? ",
+            "user_not_verified" : "L'utilisateur n'est pas vérifié",
+            "verify_now": "Vérifier maintenant" 
         }, 
         "forget_password_page" : { 
             "forget_password": "Mot de passe oublié ?", 
@@ -42,7 +44,14 @@
             "password": "Créer un mot de passe fort",
             "dob": "Ajouter la date de naissance",
             "have_account": "Vous avez déjà un compte ?"
-        }
+        },
+        "communication_Failed": {
+            "title": "Échec de la communication avec le service externe!",
+            "sub_title_1":"Il semble qu'il y ait un problème avec votre connexion au serveur externe qui peut nécessiter l'assistance de votre équipe Salesforce.",
+            "sub_title_2": "Il est conseillé de les contacter pour obtenir de l'aide, car ils peuvent être en mesure de résoudre les problèmes de connectivité ou de fournir d'autres étapes de dépannage.",
+            "contact_with_team": "Contacter l'équipe",
+            "go_back": "Revenir en arrière"
+        } 
     }, 
     "main": { 
         "sidebar_and_header": { 
@@ -64,9 +73,7 @@
                 "my_dashboard": "Mon tableau de bord", 
                 "current_contracts": "Contrats en cours", 
                 "current_contracts_sub_title": "Gardez les contrats sous contrôle", 
-                "show_all": "Afficher tout", 
-                "address": "36 Ranchview Richardson", 
-                "city": "Suisse" 
+                "show_all": "Afficher tout" 
             }, 
             "granted_amount": "Montant accordé", 
             "deposit_amount": "Montant du dépôt", 
@@ -92,7 +99,8 @@
                 "all": "Tous", 
                 "active": "Actif", 
                 "pending": "En attente", 
-                "closed": "Fermé" 
+                "closed": "Fermé" ,
+                "cancelled": "annulé"
             }, 
             "contract": "Contrat", 
             "guarantee_amount": "Montant de la garantie", 
@@ -115,7 +123,7 @@
         "bills_page": { 
             "open-bills": { 
                 "title": "Dépôt", 
-                "issue_date": "Date d'émission", 
+                "due_date": "Date d'échéance", 
                 "amount":"Montant", 
                 "status_title": "Statut ", 
                 "pay_bill": "Payer la facture" 
@@ -178,7 +186,8 @@
         "invalid_otp": "OTP invalide",
         "otp_required": "OTP est requis",
         "valid_email_required": "Une adresse e-mail valide est requise",
-        "select_date_of_birth": "Sélectionnez la date de naissance"
+        "select_date_of_birth": "Sélectionnez la date de naissance",
+        "email_not_registered": "Cet email n'est pas enregistré"
     },
     "validation": {
         "password": {

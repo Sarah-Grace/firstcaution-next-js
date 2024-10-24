@@ -13,6 +13,14 @@ import { useTranslations } from 'next-intl';
 import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog";
 
 // Function for login
 const loginUser = async (User) => {
@@ -20,13 +28,27 @@ const loginUser = async (User) => {
     return response.data;
 };
 function Login() {
-    const [showPassword, setShowPassword] = useState(false);
-
+    const [showPassword, setShowPassword] = useState(false); // to hold state of password show/hide feature
+    // function to change password show / hide state 
     const togglePassword = () => {
       setShowPassword(!showPassword);
     };
-    const { errorTranslate } = useGlobalMethods();
-    const t = useTranslations('auth');
+    const [isOpen, setIsOpen] = useState(false); // to hold state for dialog box open and close 
+    // function to open dialog box
+    const openDialog = () => {
+      setIsOpen(true);
+    };
+    // function to close dialog box
+    const closeDialog = () => {
+      setIsOpen(false);
+    };
+    // this function will called if user registered himself but did not verify otp
+    const verifyUser = () => {
+        dispatch(addEmail(formData.email));
+        router.push('/registerVerification');
+    }
+    const { errorTranslate } = useGlobalMethods(); // calling custom hook for error messages translation 
+    const t = useTranslations('auth'); 
     const dispatch = useDispatch();
     const router = useRouter();
     const [formData, setFormData] = useState({
@@ -56,11 +78,15 @@ function Login() {
             // console.log(response.token)
             dispatch(addEmail(formData.email));
             // dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}))
-
             router.push('/loginVerification');
         },
         onError: (error) => {
             // This function runs if the mutation fails
+
+            if(error.response.data.user === "Email not verified") {  
+               
+                openDialog()
+            }
             error.response.data.email !== undefined ? setErrorEmail(error.response.data.email) : setErrorEmail("");
             error.response.data.password !== undefined ? setErrorPassword(error.response.data.password): setErrorPassword("");
             error.response.data.user !== undefined ? setErrorUser(error.response.data.use): setErrorUser("");
@@ -159,6 +185,32 @@ function Login() {
                 </form>
             </div>
         </div>
+        <div className="w-2/3 pl-3">
+                <div className="flex flex-col justify-end h-full">
+                    <div>
+                        <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
+                            
+                            <DialogContent>
+                                <div className="text-center pt-[50px]">
+                                <button 
+                                    onClick={ closeDialog }
+                                    className="absolute w-10 right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none p-2 bg-[#F1F3F9] text-content">
+                                X
+                                </button>
+                                    <h3 className="text-h3 font-medium text-[#8B8D97]">{t('login_page.user_not_verified')}</h3>
+                                    
+                                    <button 
+                                        onClick={ verifyUser }
+                                        className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
+                                    >
+                                        {t('login_page.verify_now')}
+                                    </button>
+                                </div>
+                            </DialogContent>
+                        </Dialog>
+                    </div>
+                </div>
+            </div>
     </div>
   )
 }

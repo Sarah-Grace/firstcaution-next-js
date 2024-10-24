@@ -292,7 +292,7 @@ function Settings() {
                                             required
                                         />
                                         <button type="button" onClick={toggleNewPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
-                                            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                            {showNewPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
                                         </button>
                                     </div>
                                 </div>
@@ -308,7 +308,7 @@ function Settings() {
                                             required
                                         />
                                         <button type="button" onClick={toggleConfirmPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
-                                            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                            {showConfirmPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
                                         </button>
                                     </div>
                                 </div>
@@ -326,28 +326,28 @@ function Settings() {
                 </TabsContent>
             </Tabs>
             <div className="w-2/3 pl-3">
-                    <div className="flex flex-col justify-end h-full">
-                        <div>
-                            <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
-                                {/* <DialogTrigger className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 ml-auto block leading-4 mt-12">            
-                                        Submit
-                                </DialogTrigger> */}
-                                <DialogContent>
-                                    <div className="text-center pt-[50px]">
-                                        
-                                        <h3 className="text-h3 font-medium text-[#8B8D97]">{t('msg')}</h3>
-                                        <button 
-                                            onClick={closeDialog}
-                                            className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
-                                        >
-                                            {t('okey')}
-                                        </button>
-                                    </div>
-                                </DialogContent>
-                            </Dialog>
-                        </div>
+                <div className="flex flex-col justify-end h-full">
+                    <div>
+                        <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
+                            {/* <DialogTrigger className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 ml-auto block leading-4 mt-12">            
+                                    Submit
+                            </DialogTrigger> */}
+                            <DialogContent>
+                                <div className="text-center pt-[50px]">
+                                    
+                                    <h3 className="text-h3 font-medium text-[#8B8D97]">{t('msg')}</h3>
+                                    <button 
+                                        onClick={closeDialog}
+                                        className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
+                                    >
+                                        {t('okey')}
+                                    </button>
+                                </div>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
   )

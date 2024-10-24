@@ -10,8 +10,14 @@ import { removeToken } from "./utils/auth";
 import { removeLanguage } from "./utils/language";
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
+import axiosInstance from "@/lib/axiosInstance";
+import { useMutation } from '@tanstack/react-query';
 
-
+const logoutapi = async () => {
+  const response = await axiosInstance.post('/api/logout/');
+  // //console.log(response)
+  return response.data;
+};
 
 // Create context to pass the handler
 export const MainLayoutContext = createContext();
@@ -30,6 +36,7 @@ export default function MainLayout({children}) {
     const dispatch = useDispatch();
     const timeoutRef = useRef(null);
     const router = useRouter(); // Get the router instance
+
     const resetTimeout = () => {
       if (timeoutRef.current) {
         clearTimeout(timeoutRef.current);
@@ -49,11 +56,34 @@ export default function MainLayout({children}) {
       resetTimeout();
     };
     const logout= () => {
-        router.push('/login');  // Navigate to login page or another route
-        dispatch(resetAll());
-        removeToken();
-        removeLanguage();
+      mutation.mutate(); 
+      router.push('/login');  // Navigate to login page or another route
+
     }
+          // Mutation hook 
+  const mutation = useMutation({
+    mutationFn: logoutapi,
+    onSuccess: (response) => {
+      console.log("Loged out", response)
+      dispatch(resetAll());
+      removeToken();
+      removeLanguage();
+
+      // Manipulate history to prevent back navigation
+      if (typeof window !== 'undefined') {
+        // Push a new state to prevent back navigation
+        window.history.pushState(null, null, window.location.href);
+
+        // Override the back button behavior
+        window.onpopstate = function () {
+          window.history.go(1); // Stay on the current page
+        };
+      }
+    },
+    onError: (error) => { 
+      console.log("Loged out", response)  
+    },
+  });
     useEffect(() => {
       document.title = "Myfirst by Firstcaution";
       // Start the session on page load

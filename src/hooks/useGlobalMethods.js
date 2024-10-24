@@ -28,9 +28,11 @@ export const useGlobalMethods = () => {
                 return et('valid_email_required')
             case "Select Date of Birth":
                 return et('select_date_of_birth')
+            case "This Email is not registered":
+                return et('email_not_registered')    
            }
     };
- 
+    
     return {
         errorTranslate,
     };

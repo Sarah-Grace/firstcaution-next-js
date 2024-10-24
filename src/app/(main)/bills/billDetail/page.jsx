@@ -12,6 +12,7 @@ import { useTranslations } from 'next-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 import DocumentView from "@/app/customComponents/DocumentView";
+import Preloader from "@/app/customComponents/Preloader";
 
 const billDetail = async ({ contractId, otp }) => {
     console.log(contractId)
@@ -28,6 +29,7 @@ function BillDetail() {
     const [paymentMethod, setpaymentMethod] = useState();
     const [date, setDate] = useState();
     const [pdfLink, setPdfLink] = useState("");
+    const [loading, setLoading] = useState(true);
     const BillInfoList = [
         {
             title: t('transaction_id'),
@@ -56,6 +58,12 @@ function BillDetail() {
     ]
     useEffect(() => {
         mutation.mutate({ contractId, otp: {} }); // Passing contractId and optional otp when mutating
+        const timer = setTimeout(() => {
+            setLoading(false); // Stop loading and show content
+        }, 10000);
+
+        // Cleanup the timer when the component unmounts
+        return () => clearTimeout(timer);
     }, [contractId]);
     // Mutation hook 
     const mutation = useMutation({
@@ -64,9 +72,8 @@ function BillDetail() {
             setPayerName(response.invoice_detail['Payer Name'])
             setAmount(response.invoice_detail.Amount)
             setpaymentMethod(response.invoice_detail['Payment method'])
-            setDate(format(response.invoice_detail['Due Date'], 'do MMM, yyyy'))
+            setDate(format(response.invoice_detail['dueDate'], 'do MMM, yyyy'))
             setPdfLink(response.file)
-
 
         },
         onError: (error) => {
@@ -100,7 +107,28 @@ function BillDetail() {
                 </div>
             </div>
             <div className="w-1/2 pl-6 xxl:w-full xxl:pl-0">
-                <DocumentView link={pdfLink} />
+            <div className="bg-bgc-3 px-[30px] py-5 md1:px-3">
+                    <div className="flex items-center justify-between">
+                        <h3 className="text-h3 font-medium text-grey-2 mb-2">{t('document_preview')}</h3>
+                        {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
+                    </div>
+                    {loading ? (
+                        // Show the preloader while waiting for the timer
+                        <Preloader />
+                    ) : (
+                        // After 10 seconds, display either the PDF or the error message
+                        <h2 className="text-content">No PDF Found</h2>
+                    )}
+                </div>
+                {/* {!loading &&
+                (
+                    <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
+                        <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={blobUrl} download  target="_blank">
+                            {t('download_pdf')}
+                        </a>
+                    </div>
+                )
+                } */}
             </div>
         </div>
     </div>

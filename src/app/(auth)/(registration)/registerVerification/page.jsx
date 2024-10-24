@@ -61,8 +61,13 @@ function RegisterVerification() {
     onError: (error) => {
       // This function runs if the mutation fails
       // setEmailError(error.response.data.email[0]);
-      error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
-      console.log( error.response.data.otp);
+      if(error.response.data.otp === "Invalid OTP" ) {
+        setErrorOtp(error.response.data.otp);
+      } else if(error.response.data.otp[0]) {
+        setErrorOtp(error.response.data.otp[0]);
+      } else {
+        setErrorOtp("")
+      }
     },
   });
   return (
