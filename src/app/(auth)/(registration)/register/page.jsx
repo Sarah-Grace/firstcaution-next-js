@@ -9,31 +9,40 @@ import { useDispatch } from "react-redux";
 import {addUserInfo } from '../../../slices/authSlice';
 import { useRouter } from 'next/navigation';
 import { z } from 'zod';
-
 import * as React from "react"
-
-import DatePicker from "react-multi-date-picker"
+import DatePicker , { DateObject } from "react-multi-date-picker"
 import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
-
-// Define Zod schema for form validation
-const formSchema = z.object({
-    fname: z.string().min(1, 'Name is required'), // Name is required and cannot be empty
-    lname: z.string().min(1, 'Name is required'), // Name is required and cannot be empty
-    email: z.string().email('Invalid email address'), // Email must be valid
-    password: z.string().min(8, 'Password must be at least 8 characters') // Password must be at least 6 chars
-});
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faCheck, faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 
 
 // Function to create a new user
 const createUser = async (newUser) => {
     const response = await axiosInstance.post('/api/register/', newUser);
-    console.log(response)
+    //console.log(response)
     return response.data;
   };
 
+// Define Zod schema for form validation
+const formSchema = z.object({
+  fname: z.string().min(1, 'Name is required'), // Name is required and cannot be empty
+  lname: z.string().min(1, 'Name is required'), // Name is required and cannot be empty
+  email: z.string().email('Invalid email address'), // Email must be valid
+  password: z.string().min(8, 'Minimum 8 characters') // Password must be at least 8 chars
+});
+const passwordSchema = 
+z.string().min(8, { message: "characters" }).regex(/[A-Z]/, { message: "uppercase" }).regex(/\d/, { message: "digit" });
 function Register() {
+  const [showPassword, setShowPassword] = useState(false);
+
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const { errorTranslate } = useGlobalMethods();
   const t = useTranslations('auth');
+  const vt = useTranslations('validation')
     const dispatch = useDispatch();
     const router = useRouter();
     const [emailError, setEmailError] = useState("");
@@ -44,59 +53,118 @@ function Register() {
     email: '',
     password: '',
   });
-  const [date, setDate] = useState("");
-  
+  const today = new DateObject();
+  const maxDob = new DateObject();
+  maxDob.setYear(today.year - 16);
+  const [date, setDate] = useState(null);
+
 
   // State for validation errors
   const [errors, setErrors] = useState({});
   const [dateError, setDateError] = useState("")
+  const [passwordError, setPasswordError] = useState(['characters', 'uppercase', 'digit'])
+  const [isMissing, setIsMissing] = useState({
+      uppercase: false,
+      characters: false,
+      digit: false
+  })
+  const [passwordStatus, setPasswordStatus] = useState({
+    uppercase: "text-grey-2 bg-[#F8F6F6]",
+    characters: "text-grey-2 bg-[#F8F6F6]",
+    digit: "text-grey-2 bg-[#F8F6F6]"
+  })
+  const setPasswordStatusValue = (value, prop) => {
+    setPasswordStatus((prevData) => ({
+      ...prevData,
+      [prop]: value
+    }))
+    setIsMissing((prev) => ({
+      ...prev,
+      [prop]: false
+    }))
+  }
+  const passwordValidationState = (errorArray ) => {
+    if (errorArray && errorArray.length > 0) {
+      // style for minimum characters 
+      errorArray.includes('characters') 
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "characters")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "characters")
+      // style for uppercase
+      errorArray.includes('uppercase')
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "uppercase")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "uppercase")
+      // style for digit
+      errorArray.includes('digit')
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "digit")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "digit")
+    } else {
+      
+    }
 
+  }
   // Handle input change
   const handleChange = (e) => {
     const { name, value } = e.target;
+    if(name === "password") {
+      const resultPassword = passwordSchema.safeParse(value);
+      if (!resultPassword.success) {
+        // Handle validation errors
+        const errors = resultPassword.error.format();
+        setPasswordError(errors._errors);
+        console.log(errors._errors)
+        passwordValidationState(errors._errors)
+      } else {
+        console.log(passwordError.uppercase);
+        setPasswordError([])
+        setIsMissing({
+          uppercase: false,
+          characters: false,
+          digit: false
+        })
+        setPasswordStatus((prevData) => ({
+          ...prevData,
+          characters: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+          uppercase: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+          digit: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25"
+        }));
+        console.log(passwordStatus.uppercase)
+      }
+    }
+    
     setFormData((prevData) => ({
       ...prevData,
       [name]: value
     }));
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: ''
-    }));
+    
+    
   };
+
   // Handle form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Validate form data using Zod schema
-    const result = formSchema.safeParse(formData);
-    if(date === "") {
+    setIsMissing({
+      uppercase: false,
+      characters: false,
+      digit: false
+    })
+    passwordError.includes("uppercase") && setIsMissing((prev) => ({ ...prev, uppercase: true  }))
+    passwordError.includes("characters") &&setIsMissing((prev) => ({ ...prev, characters: true }))
+    passwordError.includes("digit") && setIsMissing((prev) => ({ ...prev, digit: true }))
+    if(date === null) {
       setDateError("Select Date of Birth")
-    } else {
+    }else if(date !== null){
       setDateError("")
-      console.log(date.format("YYYY-MM-DD"))
-      mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
-    }
-
-    // mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
-
-    
-    // // Validate form data using Zod schema
-    // const result = formSchema.safeParse(formData);
-
-    // // // const dob = format(date, 'yyyy-MM-dd');
-    // if (!result.success) {
-    //   // Map Zod errors to state for display
-    //   const newErrors = result.error.errors.reduce((acc, curr) => {
-    //     acc[curr.path[0]] = curr.message;
-    //     return acc;
-    //   }, {});
-    //   console.log(newErrors)
-    //   setErrors();
-    //   console.log(errors)
-    // } else {
-    //   // If validation passes, proceed with form submission logic
-    //   // mutation.mutate({ email: formData.email, password: formData.password,  "platform": "internal_user"});
-    //   mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: "1995-03-05", "platform": "internal_user"});
-    // }
+      if( !passwordError.includes("uppercase") && !passwordError.includes("characters") &&  !passwordError.includes("digit")) {
+        
+        mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
+      }
+    } 
   };
 
     // Mutation hook for creating a user
@@ -109,7 +177,12 @@ function Register() {
       },
       onError: (error) => {
         // This function runs if the mutation fails
+        setEmailError("")
+        error.response.data.msg === "Failed to communicate with external service." && router.push('../communicationFailed');
+        console.log(error.response.data.email[0])
         setEmailError(error.response.data.email[0]);
+
+        // error.response.data=== "Failed to communicate with external service" && router.push('/communicationFailed');
       },
     });
   
@@ -193,11 +266,11 @@ function Register() {
                             required
                        />
                     </div>
-                    {emailError  && <p className="mb-3 -mt-3 text-red-600 text-xs">{emailError}</p>}
+                    {emailError  && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(emailError)}</p>}
                     {/* <div>
                         {errors.email && <p className="mb-3 -mt-3 text-red-600 text-xs">{errors.email}</p>}
                     </div> */}
-                    <div className="bg-[#f6f6f6] rounded-6 relative flex w-full mb-6">
+                    <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">
                         <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
                             <Image
                                 src="/images/icons/password.png"
@@ -208,14 +281,37 @@ function Register() {
                             />
                         </span>
                         <input 
-                            type="password" 
+                            type={showPassword ? 'text' : 'password'}
                             name="password"
                             placeholder={t('register_page.password')} 
                             value={formData.password}
                             onChange={handleChange}
-                            className="leading-[50px] py-0 pl-[5px] pr-4 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
-                            required
+                            className="leading-[50px] py-0 pl-[5px] pr-[30px] text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none xs:pr-[5px]"
+                            
                         />
+                        <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                          {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                        </button>
+                    </div>
+                    <div className="flex flex-wrap gap-3 my-3">
+                      <p className={`text-xs ${passwordStatus.characters}  px-2 leading-[18px] rounded-2xl ${isMissing.characters && 'text-red-600 bg-red-200'}`}>
+                        <span className="pr-[5px]">
+                          <FontAwesomeIcon icon={faCheck} />
+                        </span>
+                        {vt('password.minimum_characters')}
+                      </p>
+                      <p className={`text-xs  ${passwordStatus.uppercase} px-2 leading-[18px] rounded-2xl ${isMissing.uppercase && 'text-red-600 bg-red-200'}`}>
+                        <span className="pr-[5px]">
+                          <FontAwesomeIcon icon={faCheck} />
+                        </span>
+                        {vt('password.uppercase')}
+                      </p>
+                      <p className={`text-xs ${passwordStatus.digit} px-2 leading-[18px] rounded-2xl ${isMissing.digit && 'text-red-600 bg-red-200'}`}>
+                        <span className="pr-[5px]">
+                          <FontAwesomeIcon icon={faCheck} />
+                        </span>
+                        {vt('password.digit')}
+                      </p>
                     </div>
                     <div className="bg-[#f6f6f6] rounded-6 relative flex w-full">
                       <span className="w-[50px] flex-[0_0_50px] justify-center py-0 flex items-center">
@@ -227,15 +323,23 @@ function Register() {
                               height={16}
                           />
                       </span>
-                        <DatePicker
+                        {/* <DatePicker
                           value={date}
                           onChange={setDate}
                           placeholder={t('register_page.dob')}
                         >
+                        </DatePicker> */}
+                        <DatePicker
+                          value={date}
+                          onChange={setDate}
+                          placeholder={t('register_page.dob')}
+                          minDate="1940/01/01"
+                          maxDate={maxDob}
+                          currentDate={maxDob}
+                        >
                         </DatePicker>
-
                     </div>
-                    {dateError && <p className="my-3 text-red-600 text-xs">{dateError}</p>}
+                    {dateError && <p className="my-3 text-red-600 text-xs">{errorTranslate(dateError)}</p>}
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
                         <span>{t('register_page.have_account')} 
                         </span>

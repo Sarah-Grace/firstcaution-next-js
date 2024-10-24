@@ -1,21 +1,33 @@
 "use client"
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useMutation} from '@tanstack/react-query';
 import axiosInstance from '../../../../lib/axiosInstance';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 
 // Function for reset password
 const newPassword = async (Password) => {
   const response = await axiosInstance.post('/api/reset/password/complete/', Password);
-  console.log(response)
+  //console.log(response)
   return response.data;
 };
 
 function NewPassword() {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const togglePassword = () => {
+    setShowPassword(!showPassword);
+  };
+  const toggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+  const [showpasswordIcon, setShowPasswordIcon] = useState(false);
+  const [showConfirmPasswordIcon, setShowConfirmPasswordIcon] = useState(false);
   const t = useTranslations('auth');
     const router = useRouter();
     const email = useSelector((state) => state.userEmail);
@@ -32,8 +44,12 @@ function NewPassword() {
             ...prev,
             [fieldName]: fieldValue
         }));
-    }
 
+    }
+    useEffect(()=> {
+      formData.password === "" ? setShowPasswordIcon(false) : setShowPasswordIcon(true)
+      formData.confirmPassword === "" ? setShowConfirmPasswordIcon(false) : setShowConfirmPasswordIcon(true)
+    }, [formData])
 
     // Mutation hook for reset password
     const mutation = useMutation({
@@ -75,23 +91,35 @@ function NewPassword() {
               <form action="" className="w-full" onSubmit={formSubmit}>
                 <div className={`bg-[#f6f6f6] rounded-6 relative flex w-full mb-6  ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}>
                     <input 
-                      type="password" 
+                      type={showPassword ? 'text' : 'password'} 
                       name="password"
                       placeholder={t('password')}
-                      className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none text-center"
+                      className={`leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none  ${showpasswordIcon ? 'text-left' : 'text-center'}`}
                       onChange={handleInput}
                       value={formData.password}
                     />
+                    {
+                      showpasswordIcon && 
+                      <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                        {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                      </button>
+                    }
                 </div>   
                 <div className={`bg-[#f6f6f6] rounded-6 relative flex w-full mb-6  ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}>
                     <input 
-                      type="password" 
+                      type={showConfirmPassword ? 'text' : 'password'}  
                       name="confirmPassword"
                       placeholder={t('new_password_page.confirm_password')} 
-                      className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none text-center"
+                      className={`leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none  ${showConfirmPasswordIcon ? 'text-left' : 'text-center'}`}
                       onChange={handleInput}
                       value={formData.confirmPassword}
                     />
+                    {
+                      showConfirmPasswordIcon && 
+                      <button type="button" onClick={toggleConfirmPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                        {showConfirmPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                      </button>
+                    }
                 </div>
                 <div>
 

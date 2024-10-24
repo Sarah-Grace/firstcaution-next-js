@@ -10,6 +10,17 @@ import { useRouter } from 'next/navigation';
 import {addEmail, addTokens, resetAll} from '@/app/slices/authSlice';
 import LangSwitch from "@/app/customComponents/langSwitch";
 import { useTranslations } from 'next-intl';
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+  } from "@/components/ui/dialog";
 
 // Function for login
 const loginUser = async (User) => {
@@ -17,7 +28,27 @@ const loginUser = async (User) => {
     return response.data;
 };
 function Login() {
-    const t = useTranslations('auth');
+    const [showPassword, setShowPassword] = useState(false); // to hold state of password show/hide feature
+    // function to change password show / hide state 
+    const togglePassword = () => {
+      setShowPassword(!showPassword);
+    };
+    const [isOpen, setIsOpen] = useState(false); // to hold state for dialog box open and close 
+    // function to open dialog box
+    const openDialog = () => {
+      setIsOpen(true);
+    };
+    // function to close dialog box
+    const closeDialog = () => {
+      setIsOpen(false);
+    };
+    // this function will called if user registered himself but did not verify otp
+    const verifyUser = () => {
+        dispatch(addEmail(formData.email));
+        router.push('/registerVerification');
+    }
+    const { errorTranslate } = useGlobalMethods(); // calling custom hook for error messages translation 
+    const t = useTranslations('auth'); 
     const dispatch = useDispatch();
     const router = useRouter();
     const [formData, setFormData] = useState({
@@ -27,6 +58,7 @@ function Login() {
     const [errorEmail, setErrorEmail] =useState("");
     const [errorPassword, setErrorPassword] =useState("");
     const [errorUser, setErrorUser] =useState("");
+
     useEffect(() => {
         dispatch(resetAll());
     },[])
@@ -43,21 +75,25 @@ function Login() {
     const mutation = useMutation({
         mutationFn: loginUser,
         onSuccess: (response) => {
-            console.log(response.token)
+            // console.log(response.token)
             dispatch(addEmail(formData.email));
             // dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}))
-
             router.push('/loginVerification');
         },
         onError: (error) => {
             // This function runs if the mutation fails
+
+            if(error.response.data.user === "Email not verified") {  
+               
+                openDialog()
+            }
             error.response.data.email !== undefined ? setErrorEmail(error.response.data.email) : setErrorEmail("");
             error.response.data.password !== undefined ? setErrorPassword(error.response.data.password): setErrorPassword("");
             error.response.data.user !== undefined ? setErrorUser(error.response.data.use): setErrorUser("");
-            console.log( error.response.data.email);
-            console.log( error.response.data.Password);
-            console.log( error.response.data.user);
-            console.log(errorPassword);
+            // console.log( error.response.data.email);
+            // console.log( error.response.data.Password);
+            // console.log( error.response.data.user);
+            // console.log(errorPassword);
         },
     });
     const formSubmit = (e) => {
@@ -99,9 +135,10 @@ function Login() {
                             className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             onChange={handleInput}
                             value={formData.email}
+                            required
                         />
                     </div>
-                    {errorEmail && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorEmail}</p>}
+                    {errorEmail && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(errorEmail)}</p>}
                     <div className={`rounded-6 relative flex w-full ${errorPassword !== "" ? "bg-[#FFF4F4] border border-[#F73737]" : "bg-[#f6f6f6]" }`}>
                         <span className="px-4 py-0 flex items-center flex-[0_0_auto]">
                             <Image
@@ -113,22 +150,27 @@ function Login() {
                             />
                         </span>
                         <input 
-                            type="password" 
+                            type={showPassword ? 'text' : 'password'} 
                             name="password"
                             placeholder={t('password')} 
-                            className="leading-[50px] py-0 px-5 text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
+                            className="leading-[50px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] text-[#909090] bg-transparent flex-auto focus-visible:outline-none"
                             onChange={handleInput}
                             value={formData.password}
-
+                            required
                         />
+                        <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                          {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                        </button>
                     </div>
-                    {errorPassword && <p className="mb-3 mt-2 text-red-600 text-xs">{errorPassword}</p>}
-                    <Link 
-                        href="/forgetPassword"
-                        className="block mt-3 text-primary leading-[17px] text-sm text-end"
-                    >
-                        {t('login_page.recover_password')}
-                    </Link>
+                    {errorPassword && <p className="mb-3 mt-2 text-red-600 text-xs">{errorTranslate(errorPassword)}</p>}
+                    <div className="text-end ">
+                        <Link 
+                            href="/forgetPassword"
+                            className="inline-block mt-3 text-primary leading-[17px] text-sm"
+                        >
+                            {t('login_page.recover_password')}
+                        </Link>
+                    </div>
                     <h4 className="text-h4 font-normal text-center text-[#8B8D97] mb-[70px] mt-12">
                         <span>{t('login_page.dont_have')} </span>
                         <Link 
@@ -143,6 +185,32 @@ function Login() {
                 </form>
             </div>
         </div>
+        <div className="w-2/3 pl-3">
+                <div className="flex flex-col justify-end h-full">
+                    <div>
+                        <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
+                            
+                            <DialogContent>
+                                <div className="text-center pt-[50px]">
+                                <button 
+                                    onClick={ closeDialog }
+                                    className="absolute w-10 right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none p-2 bg-[#F1F3F9] text-content">
+                                X
+                                </button>
+                                    <h3 className="text-h3 font-medium text-[#8B8D97]">{t('login_page.user_not_verified')}</h3>
+                                    
+                                    <button 
+                                        onClick={ verifyUser }
+                                        className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
+                                    >
+                                        {t('login_page.verify_now')}
+                                    </button>
+                                </div>
+                            </DialogContent>
+                        </Dialog>
+                    </div>
+                </div>
+            </div>
     </div>
   )
 }

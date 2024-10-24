@@ -15,7 +15,9 @@
             "welcome_back": "Bentornato", 
             "sub_title": "Accedi al tuo account", 
             "recover_password":"Recupera password", 
-            "dont_have": "Non hai un account? " 
+            "dont_have": "Non hai un account? ",
+            "user_not_verified" : "L'utente non è verificato",
+            "verify_now": "Verifica ora"  
         }, 
         "forget_password_page" : { 
             "forget_password": "Password dimenticata?", 
@@ -41,7 +43,14 @@
             "last_name": "Il tuo cognome", 
             "password": "Crea una password complessa", 
             "dob": "Aggiungi data di nascita", 
-            "have_account":"Hai già un account?" 
+            "have_account":"Hai già un account?"
+        },
+        "communication_Failed": {
+            "title": "Impossibile comunicare con il servizio esterno!",
+            "sub_title_1":"Sembra che ci sia un problema con la tua connessione al server esterno che potrebbe richiedere assistenza dal tuo team Salesforce.",
+            "sub_title_2": "Si consiglia di contattarli per ricevere supporto, in quanto potrebbero essere in grado di risolvere i problemi di connettività o fornire ulteriori passaggi per la risoluzione dei problemi.",
+            "contact_with_team": "Contatta il team",
+            "go_back": "Torna indietro"
         } 
     }, 
     "main": { 
@@ -64,9 +73,7 @@
                 "my_dashboard": "La mia dashboard", 
                 "current_contracts": "Contratti correnti", 
                 "current_contracts_sub_title": "Tieni sotto controllo i contratti", 
-                "show_all":"Mostra tutto", 
-                "address": "36 Ranchview Richardson", 
-                "city":"Svizzera" 
+                "show_all":"Mostra tutto"
             }, 
             "granted_amount":"Importo concesso", 
             "deposit_amount":"Importo del deposito", 
@@ -92,7 +99,8 @@
                 "all": "Tutti", 
                 "active": "Attivo", 
                 "pending": "In attesa", 
-                "closed": "Chiuso" 
+                "closed": "Chiuso",
+                "cancelled": "annullato" 
             }, 
             "contract": "Contratto", 
             "guarantee_amount":"Importo della garanzia", 
@@ -101,10 +109,12 @@
             "view_details": "Visualizza dettagli" 
         }, 
         "contract_detail_page": { 
+            "contract_detail":"Dettaglio contratto",
             "contract_id":"ID contratto", 
             "granted_amount": "Importo concesso", 
             "deposit_amount": "Importo del deposito",
             "annual_premium": "Premio annuale", 
+            "promo_code": "Codice promozionale",
             "firstcoin":"Firstcoin", 
             "sponsored_person":"Persona sponsorizzata", 
             "download_pdf":"Scarica PDF" , 
@@ -113,7 +123,7 @@
         "bills_page": { 
             "open-bills": { 
                 "title":"Deposito", 
-                "issue_date": "Data di emissione", 
+                "due_date": "Scadenza", 
                 "amount":"Importo", 
                 "status_title": "Stato", 
                 "pay_bill": "Paga bolletta" 
@@ -162,6 +172,27 @@
             "change_password": "Cambia password",
             "msg": "Informazioni utente aggiornate con successo!",
             "okey": "Okey"
+        }
+    },
+    "errors" : {
+        "email_already_exists": "email già esistente",
+        "invalid_email": "Email non valida",
+        "incorrect_password": "Password non corretta",
+        "email_not_verified":  "Email non verificata",
+        "user_not_found": "Utente non trovato",
+        "not_blank": "Questo campo non può essere vuoto.",
+        "should_not_be_same": "La nuova password non deve essere uguale alla vecchia_password",
+        "invalid_otp": "OTP non valida",
+        "otp_required": "OTP obbligatoria",
+        "valid_email_required": "È obbligatoria un'email valida",
+        "select_date_of_birth": "Seleziona la data di nascita",
+        "email_not_registered": "Questa email non è registrata"
+    },
+    "validation": {
+        "password": {
+            "uppercase": "1 maiuscolo",
+            "digit":"Almeno 1 cifra",
+            "minimum_characters": "Minimo 8 caratteri"
         }
     }
 }

@@ -7,23 +7,25 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axiosInstance from '../../../../lib/axiosInstance'
-import { useState } from 'react';
+import axiosInstance from "@/lib/axiosInstance";
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import {addTokens } from '../../../slices/authSlice';
 import { useRouter } from 'next/navigation';
 import { authUserToken } from "@/app/(main)/utils/auth";
 import { useTranslations } from 'next-intl';
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
 
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
-  console.log(response)
+  // //console.log(response)
   return response.data;
 };
 
 
 
 function LoginVerification() {
+  const { errorTranslate } = useGlobalMethods();
   const t = useTranslations('auth');
   const dispatch = useDispatch();
   const router = useRouter();
@@ -35,6 +37,7 @@ function LoginVerification() {
   // function to submit form
   const formSubmit = (e) => {
     e.preventDefault();
+    // otp === "" ? setErrorOtp("This field should not be blank") : mutation.mutate({ email, otp});
     mutation.mutate({ email, otp});  
   }
 
@@ -49,8 +52,18 @@ function LoginVerification() {
     },
     onError: (error) => {
       // This function runs if the mutation fails
-      error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
-      console.log( error.response.data.otp);
+      // error.response.data.otp !== ""  && setErrorOtp(error.response.data.otp);
+      // error.response.data.length !== 0 && setErrorOtp(error.response.data.otp[0]);
+      // error.response.data.otp === "" && error.response.data.length === 0 && setErrorOtp("")
+
+
+      if(error.response.data.otp === "Invalid OTP" ) {
+        setErrorOtp(error.response.data.otp);
+      } else if(error.response.data.otp[0]) {
+        setErrorOtp(error.response.data.otp[0]);
+      } else {
+        setErrorOtp("")
+      }
         
     },
   });
@@ -84,7 +97,8 @@ function LoginVerification() {
                     </InputOTPGroup>
                   </InputOTP>
                 </div>
-                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorOtp}</p>}
+                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(errorOtp)}</p>}
+                
                 <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">{t('verify')}</button>
               </form>
           </div>

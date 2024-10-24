@@ -41,7 +41,7 @@ function Bills() {
   //     status: "Open"
   //   },
   // ]
-  const openBillsData = invoicesData.filter((invoice) => invoice.Status !== "Closed")
+  const openBillsData = invoicesData.filter((invoice) => invoice.status !== "Closed")
   // const paidBillsData = [
   //     {
   //         name: "John Duo",
@@ -52,15 +52,16 @@ function Bills() {
   //         link: "billDetail"
   //     }
   // ];
-  const paidBillsData = invoicesData.filter((invoice) => invoice.Status === "Closed")
+  const paidBillsData = invoicesData.filter((invoice) => invoice.status === "Closed")
   useEffect(()=> {
     mutation.mutate();
   },[]);
   const mutation = useMutation({
     mutationFn: billsdata,
     onSuccess: (response) => {
-      console.log(response.invoices)
-      setInvoicesData(response.invoices)
+      console.log(response)
+      response.length !== 0 && setInvoicesData(response)
+      // response && setInvoicesData(response)
     },
     onError: (error) => {
 
@@ -104,11 +105,11 @@ function Bills() {
                                 width={60}
                                 height={60}
                               /> 
-                              <h4 className="text-base leading-[19px] text-content font-semibold mxl:mb-[30px] sm:text-sm">{obd['Invoice Type']}</h4>
+                              <h4 className="text-base leading-[19px] text-content font-semibold mxl:mb-[30px] sm:text-sm">{obd['invoiceType']}</h4>
                           </div>
                           <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
-                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.issue_date')}:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{format(obd['Due Date'], 'do MMM, yyyy')}</p>
+                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.due_date')}:</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{obd['dueDate'] && format(obd['dueDate'], 'do MMM, yyyy')}</p>
                           </div>
                           <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.amount')}:</p>
@@ -160,9 +161,9 @@ function Bills() {
                     return (
                       <div className="flex justify-between items-center gap-[5px] py-5 px-8 border-b border-[#E6EFF5] bg-bgc-3 last:border-b-0 mxl:block mxl:relative sm:px-4" key={index}>
                           <div className="block flex-[0_0_20%] xxl:flex-auto  mxl:flex mxl:gap-2 mxl:flex-col-reverse">
-                              <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d['Payer Name']}</h4>
+                              <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d['payerName']}</h4>
                               {console.log(d['Payer Name'])}
-                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] mxl:text-[18px] mxl:font-medium mxl:mb-5 mxl:text-content sm:text-sm">{format(d['Due Date'], 'do MMM, yyyy')}</h4>
+                              <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] mxl:text-[18px] mxl:font-medium mxl:mb-5 mxl:text-content sm:text-sm">{d['dueDate'] && format(d['dueDate'], 'do MMM, yyyy')}</h4>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2">{t('paid_bills.paid_to')}:</p>
@@ -181,8 +182,8 @@ function Bills() {
                           </div>
                           <div onClick={() => 
                             {
-                                dispatch(addInvoiceId(d['InvoiceId']));
-                                router.push('/billDetail');
+                                dispatch(addInvoiceId(d['invoiceId']));
+                                router.push('/bills/billDetail');
                             }
                           }>
                           <Link 

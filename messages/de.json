@@ -15,7 +15,9 @@
             "welcome_back": "Willkommen zurück", 
             "sub_title": "Melden Sie sich bei Ihrem Konto an", 
             "recover_password":"Passwort wiederherstellen", 
-            "dont_have": "Sie haben noch kein Konto? " 
+            "dont_have": "Sie haben noch kein Konto? ",
+            "user_not_verified" : "Benutzer ist nicht verifiziert",
+            "verify_now": "Jetzt bestätigen" 
         }, 
         "forget_password_page" : { 
             "forget_password": "Passwort vergessen?", 
@@ -41,8 +43,15 @@
             "last_name": "Ihr Nachname", 
             "password": "Sicheres Passwort erstellen", 
             "dob": "Geburtsdatum hinzufügen", 
-            "have_account":"Sie haben bereits ein Konto?" 
-        } 
+            "have_account":"Sie haben bereits ein Konto?"
+        },
+        "communication_Failed": {
+            "title": "Kommunikation mit externem Dienst fehlgeschlagen!",
+            "sub_title_1":"Es scheint, als gäbe es ein Problem mit Ihrer Verbindung zum externen Server, das möglicherweise die Unterstützung Ihres Salesforce-Teams erfordert.",
+            "sub_title_2": "Es ist ratsam, sich an sie zu wenden, da sie möglicherweise die Verbindungsprobleme lösen oder weitere Schritte zur Fehlerbehebung bereitstellen können.",
+            "contact_with_team": "Kontakt mit dem Team",
+            "go_back": "Zurück"
+        }
     }, 
     "main": { 
         "sidebar_and_header": { 
@@ -53,7 +62,7 @@
             "settings": "Einstellungen", 
             "logout": "Abmelden", 
             "overview":"Übersicht", 
-            "Firstmoove": "Firstmoove" 
+            "Firstmoove": "Erster Schritt" 
         }, 
         "buttons": {  
             "view_more":"Mehr anzeigen",
@@ -64,9 +73,7 @@
                 "my_dashboard": "Mein Dashboard", 
                 "current_contracts": "Aktuelle Verträge", 
                 "current_contracts_sub_title": "Verträge im Blick behalten", 
-                "show_all":"Alle anzeigen", 
-                "address": "36 Ranchview Richardson", 
-                "city":"Schweiz" 
+                "show_all":"Alle anzeigen"
             }, 
             "granted_amount":"Bewilligter Betrag", 
             "deposit_amount":"Einzahlungsbetrag", 
@@ -75,7 +82,7 @@
             "open_bills":"Offene Rechnungen", 
             "paid_bills":"Bezahlte Rechnungen", 
             "id":"Ausweis", 
-            "firstmoove": "Firstmoove", 
+            "firstmoove": "Erster Schritt", 
             "passport":"Reisepass", 
             "debt":"Betreibungsbescheinigung", 
             "my_firstcoins": "Meine Firstcoins", 
@@ -92,7 +99,8 @@
                 "all": "Alle", 
                 "active": "Aktiv", 
                 "pending": "Ausstehend", 
-                "closed": "Geschlossen" 
+                "closed": "Geschlossen",
+                "cancelled": "abgesagt" 
             }, 
             "contract": "Vertrag", 
             "guarantee_amount":"Garantiebetrag", 
@@ -101,10 +109,12 @@
             "view_details": "Details anzeigen" 
         }, 
         "contract_detail_page": { 
+            "contract_detail": "Vertragsdetails",
             "contract_id":"Vertrags-ID", 
             "granted_amount": "Gewährter Betrag", 
             "deposit_amount": "Einzahlungsbetrag",
             "annual_premium": "Jahresprämie", 
+            "promo_code": "Promo-Code",
             "firstcoin": "Firstcoin", 
             "sponsored_person": "Gesponserte Person", 
             "download_pdf": "PDF herunterladen" , 
@@ -113,7 +123,7 @@
         "bills_page": { 
             "open-bills": { 
                 "title": "Anzahlung", 
-                "issue_date": "Ausgabedatum", 
+                "due_date": "Fälligkeitsdatum", 
                 "amount": "Betrag", 
                 "status_title": "Status", 
                 "pay_bill": "Rechnung bezahlen" 
@@ -164,6 +174,26 @@
             "okey": "Okey"
         }
 
-    } 
+    },
+    "errors" : {
+        "email_already_exists": "E-Mail existiert bereits",
+        "invalid_email": "Ungültige E-Mail",
+        "incorrect_password": "Falsches Passwort",
+        "email_not_verified":  "E-Mail nicht verifiziert",
+        "user_not_found": "Benutzer nicht gefunden",
+        "not_blank": "Dieses Feld darf nicht leer sein.",
+        "should_not_be_same": "Neues Passwort darf nicht mit altem Passwort identisch sein",
+        "invalid_otp": "Ungültiges OTP",
+        "otp_required": "OTP ist erforderlich",
+        "valid_email_required": "Gültige E-Mail ist erforderlich",
+        "select_date_of_birth": "Geburtsdatum auswählen",
+        "email_not_registered": "Diese E-Mail ist nicht registriert"
+    },    "validation": {
+        "password": {
+            "uppercase": "1 Großbuchstabe",
+            "digit":"Mindestens 1 Ziffer",
+            "minimum_characters": "Mindestens 8 Zeichen"
+        }
+    }
 
 }

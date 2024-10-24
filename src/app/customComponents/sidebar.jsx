@@ -24,11 +24,6 @@ function Sidebar( {logout}) {
             menuIcon:"/images/icons/my-bills.svg", 
             menuTitle:t('my_bills'),
             path: "/bills"
-        },
-        {
-            menuIcon:"/images/icons/my-deposit.svg", 
-            menuTitle:t('my_deposit'),
-            path: "/deposit"
         }
     ]
     // const menuListData = [
@@ -82,8 +77,8 @@ function Sidebar( {logout}) {
     ]
 
   return (
-    <aside className="w-[250px] h-screen overflow-auto border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-10 lg:overflow-hidden lg:p-0 lg:h-auto lg:top-[92px] lg:border-r-0">
-        <div className="h-full">
+    <aside className="w-[250px] h-screen overflow-auto border-r border-[#E6EFF5] fixed z-[1] bg-white pt-24px pr-37px pb-133px pl-37px lg:w-10 lg:overflow-hidden lg:p-0 sidebar-height lg:top-[92px] tablet:top-[76px] lg:border-r-0">
+        <div className="h-full lg:overflow-x-auto">
             <Link href='/home'>
                 <Image
                     src="/images/logos/logo.png"

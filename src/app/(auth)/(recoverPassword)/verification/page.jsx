@@ -12,14 +12,16 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { useGlobalMethods } from '@/hooks/useGlobalMethods';
   
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
-  console.log(response)
+  //console.log(response)
   return response.data;
 };
 
 function Verification() {
+  const { errorTranslate } = useGlobalMethods();
   const t = useTranslations('auth');
   const router = useRouter();
   const [otp, setOtp] = useState("");
@@ -39,8 +41,16 @@ function Verification() {
     },
     onError: (error) => {
       // This function runs if the mutation fails
-      error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
-      console.log( error.response.data.otp);
+      // error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
+      // console.log( error.response.data.otp);
+
+      if(error.response.data.otp === "Invalid OTP" ) {
+        setErrorOtp(error.response.data.otp);
+      } else if(error.response.data.otp[0]) {
+        setErrorOtp(error.response.data.otp[0]);
+      } else {
+        setErrorOtp("")
+      }
     },
   });
   return (
@@ -73,7 +83,7 @@ function Verification() {
                   </InputOTPGroup>
                 </InputOTP> 
                 </div>
-                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorOtp}</p>}
+                {errorOtp && <p className="mb-3 -mt-3 text-red-600 text-xs">{errorTranslate(errorOtp)}</p>}
                 <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full">{t('verify')}</button>
             </form>
         </div>

@@ -2,7 +2,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import DatePicker from "react-multi-date-picker";
+import DatePicker , {DateObject} from "react-multi-date-picker";
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from '@/lib/axiosInstance';
 import { useSelector, useDispatch } from 'react-redux';
@@ -15,24 +15,38 @@ import {
     DialogTitle,
     DialogTrigger,
 } from "@/components/ui/dialog";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
 
 const profiledata = async (otp) => {
     const response = await axiosInstance.get('/api/profile/', otp);
-    // console.log(response);
+    // //console.log(response);
     return response.data;
 };
 const profiledataupdate = async (otp) => {
     const response = await axiosInstance.put('/api/profile/', otp);
-    // console.log(response);
+    // //console.log(response);
     return response.data;
 };
 const passwordupdate = async (otp) => {
     const response = await axiosInstance.post('/api/change/password/', otp);
-    // console.log(response);
+    // //console.log(response);
     return response.data;
 };
 
 function Settings() {
+    const [showPassword, setShowPassword] = useState(false);
+    const [showNewPassword,setShowNewPassword] = useState(false)
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+    const togglePassword = () => {
+      setShowPassword(!showPassword);
+    };
+    const toggleNewPassword = () => {
+        setShowNewPassword(!showNewPassword);
+      };
+      const toggleConfirmPassword = () => {
+        setShowConfirmPassword(!showConfirmPassword);
+      };
     const [isOpen, setIsOpen] = useState(false);
 
     const openDialog = () => {
@@ -49,7 +63,10 @@ function Settings() {
     lname: "",
     email: ""
   });
-  const [date, setDate] = useState("");
+  const today = new DateObject();
+  const maxDob = new DateObject();
+  maxDob.setYear(today.year - 16)
+  const [date, setDate] = useState(null);
   const [formDataSecurity, setFormDataSecurity] = useState({
     password: "",
     newPassword: "",
@@ -223,7 +240,10 @@ function Settings() {
                                         <DatePicker
                                             value={date}
                                             onChange={setDate}
-                                            placeholder="Add Date of Birth"
+                                            placeholder={t('dob')}
+                                            minDate="1940/01/01"
+                                            maxDate={maxDob}
+                                            currentDate={maxDob}
                                         >
                                         </DatePicker>
                                     </div>
@@ -244,38 +264,53 @@ function Settings() {
                             <div className="w-2/5 xxl:w-1/2 tablet:w-full">
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('password')}</label>
-                                    <input 
-                                        type="password" 
-                                        name="password"
-                                        className={`leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full`}
-                                        onChange={handleInputSecurity}
-                                        value={formDataSecurity.password}
-                                        required
-                                    />
+                                    <div className="relative">
+                                        <input 
+                                            type={showPassword ? 'text' : 'password'}  
+                                            name="password"
+                                            className={`leading-[48px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full`}
+                                            onChange={handleInputSecurity}
+                                            value={formDataSecurity.password}
+                                            required
+                                        />
+                                        <button type="button" onClick={togglePassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                                            {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                        </button>
+                                    </div>
                                 </div>
 
                                 <p className={`${errorOldPassword ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >{errorOldPassword} </p>
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('new_password')}</label>
-                                    <input 
-                                        type="password" 
-                                        name="newPassword"
-                                        className={`leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
-                                        onChange={handleInputSecurity}
-                                        value={formDataSecurity.newPassword}
-                                        required
-                                    />
+                                    <div className="relative">
+                                        <input 
+                                            type={showNewPassword ? 'text' : 'password'} 
+                                            name="newPassword"
+                                            className={`leading-[48px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
+                                            onChange={handleInputSecurity}
+                                            value={formDataSecurity.newPassword}
+                                            required
+                                        />
+                                        <button type="button" onClick={toggleNewPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                                            {showNewPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                        </button>
+                                    </div>
                                 </div>
                                 <div className="rounded-6 relative w-full mb-6">
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('confirm_password')}</label>
-                                    <input 
-                                        type="password" 
-                                        name="confirmPassword"
-                                        className={`leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
-                                        onChange={handleInputSecurity}
-                                        value={formDataSecurity.confirmPassword}
-                                        required
-                                    />
+                                    <div className="relative">
+                                        <input 
+                                            type={showConfirmPassword ? 'text' : 'password'}  
+                                            name="confirmPassword"
+                                            className={`leading-[48px] py-0 px-5 pr-[30px] xs:pr-[5px] text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 w-full ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}
+                                            onChange={handleInputSecurity}
+                                            value={formDataSecurity.confirmPassword}
+                                            required
+                                        />
+                                        <button type="button" onClick={toggleConfirmPassword} className="absolute right-[10px] bg-none border-0 cursor-pointer top-1/2 -translate-y-1/2 text-sm text-[#909090]">
+                                            {showConfirmPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
+                                        </button>
+                                    </div>
                                 </div>
                 <p className={`${isDiffPassword ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >Password and Confirm Password are not same </p>
                 <p className={`${errorNewPassword ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >{errorNewPassword} </p>
@@ -291,28 +326,28 @@ function Settings() {
                 </TabsContent>
             </Tabs>
             <div className="w-2/3 pl-3">
-                    <div className="flex flex-col justify-end h-full">
-                        <div>
-                            <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
-                                {/* <DialogTrigger className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 ml-auto block leading-4 mt-12">            
-                                        Submit
-                                </DialogTrigger> */}
-                                <DialogContent>
-                                    <div className="text-center pt-[50px]">
-                                        
-                                        <h3 className="text-h3 font-medium text-[#8B8D97]">{t('msg')}</h3>
-                                        <button 
-                                            onClick={closeDialog}
-                                            className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
-                                        >
-                                            {t('okey')}
-                                        </button>
-                                    </div>
-                                </DialogContent>
-                            </Dialog>
-                        </div>
+                <div className="flex flex-col justify-end h-full">
+                    <div>
+                        <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
+                            {/* <DialogTrigger className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 ml-auto block leading-4 mt-12">            
+                                    Submit
+                            </DialogTrigger> */}
+                            <DialogContent>
+                                <div className="text-center pt-[50px]">
+                                    
+                                    <h3 className="text-h3 font-medium text-[#8B8D97]">{t('msg')}</h3>
+                                    <button 
+                                        onClick={closeDialog}
+                                        className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mb-4 mt-12"
+                                    >
+                                        {t('okey')}
+                                    </button>
+                                </div>
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
+            </div>
         </div>
     </div>
   )
