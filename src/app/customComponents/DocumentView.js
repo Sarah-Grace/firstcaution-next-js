@@ -10,7 +10,6 @@ function DocumentView({link}) {
     <div>
       <div className="mt-9 mb-[19px]">
         <iframe
-            //src={`https://docs.google.com/gview?url=${link}&embedded=true`}
             src={link}
             width="600"
             height="400"

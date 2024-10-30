@@ -16,7 +16,7 @@ import itMessages from '../../messages/it.json';
 import Cookies from 'js-cookie';
 import Preloader from "@/app/customComponents/Preloader";
 import {getLanguage} from "@/app/(main)/utils/language";
-import {userLanguage} from "@/app/(main)/utils/language";
+import { userLanguage } from "@/app/(main)/utils/language";
 
 config.autoAddCss = false;
 
@@ -36,9 +36,10 @@ export default function RootLayout({ children }) {
   const [messages, setMessages] = useState(frMessages);
   const handleLocale = (lang) => {
     userLanguage(lang); //updating language in cookie
-    setLocale(lang)
+    setLocale(lang) 
   }
     // Context value with multiple states and setters
+    // passing lanuage selection
     const contextValue = {
       locale, 
       handleLocale,

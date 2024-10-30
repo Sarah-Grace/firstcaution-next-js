@@ -67,7 +67,7 @@ export default function MainLayout({children}) {
       console.log("Loged out", response)
       dispatch(resetAll());
       removeToken();
-      removeLanguage();
+      // removeLanguage();
 
       // Manipulate history to prevent back navigation
       if (typeof window !== 'undefined') {
