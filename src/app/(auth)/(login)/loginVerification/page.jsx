@@ -15,6 +15,9 @@ import { useRouter } from 'next/navigation';
 import { authUserToken } from "@/app/(main)/utils/auth";
 import { useTranslations } from 'next-intl';
 import { useGlobalMethods } from '@/hooks/useGlobalMethods';
+import { userLanguage } from "@/app/(main)/utils/language";
+import { useContext } from 'react';
+import { LayoutContext } from "@/app/layout";
 
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
@@ -32,6 +35,7 @@ function LoginVerification() {
   const [otp, setOtp] = useState("");
   const email = useSelector((state) => state.userEmail);
   const [errorOtp, setErrorOtp] =useState("");
+  const {locale,handleLocale} = useContext(LayoutContext);
 
 
   // function to submit form
@@ -47,6 +51,8 @@ function LoginVerification() {
     onSuccess: (response) => {
       dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}));
       authUserToken(response.access_token);
+      userLanguage(response.lang);
+      handleLocale(response.lang);
       router.push('/home');
       console.log("Response",response.refresh_token);
     },

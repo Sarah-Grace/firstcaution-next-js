@@ -4,7 +4,7 @@ import { store } from '@/app/store'; // Import your Redux store
 
 // Create an Axios instance
 const axiosInstance = axios.create({
- // baseURL: 'http://192.168.1.25:8000/', // Local API base URL
+  // baseURL: 'http://192.168.1.25:8000/', // Local API base URL
   baseURL: 'https://api.firstcaution.ch/', //API base URL for vercel
   headers: {
     'X-Frame-Options': 'SAMEORIGIN', // or 'DENY', depending on your needs

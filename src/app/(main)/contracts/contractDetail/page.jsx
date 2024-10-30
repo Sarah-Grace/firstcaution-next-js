@@ -23,8 +23,8 @@ const contractDetail = async ({ contractId, otp }) => {
 const contractFile =  async (queryParams) => {
     console.log(queryParams.contract_id)
     
-    // const response = await axiosInstance.get(`/api/contract/file/?contract_id=${queryParams.contract_id}`, {responseType: 'blob'});
-    const response = await axiosInstance.get(`/api/contract/file/?contract_id=a03FS0000050FvTYAU`, {responseType: 'blob'});
+    const response = await axiosInstance.get(`/api/contract/file/?contract_id=${queryParams.contract_id}`, {responseType: 'blob'});
+    // const response = await axiosInstance.get(`/api/contract/file/?contract_id=a03FS0000050FvTYAU`, {responseType: 'blob'});
     //console.log(response);
     return response.data;
 };
@@ -220,14 +220,30 @@ function ContractDetail() {
                         // After 10 seconds, display either the PDF or the error message
                         pdfError === false ? (
                             
+                               <>
                                 <DocumentView link={blobUrl} />
+                                <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
+                                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={blobUrl} download  target="_blank">
+                                        {t('download_pdf')}
+                                    </a>
+                                </div>
+                               </>
                             
                         ) : (
-                            <h2 className="text-content">No PDF Found</h2>
+                            <div className="h-[600px] flex justify-center flex-col items-center">
+                                <Image
+                                    src="/images/file-not-found.png"
+                                    alt=""
+                                    className="mb-3"
+                                    width={134}
+                                    height={134}
+                                />
+                                <h2 className="text-content">{t('file_not_found')}</h2>
+                            </div>
                         )
                     )}
                 </div>
-                {!loading &&
+                {/* {!loading &&
                 (
                     <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
                         <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={blobUrl} download  target="_blank">
@@ -235,7 +251,7 @@ function ContractDetail() {
                         </a>
                     </div>
                 )
-                }
+                } */}
             </div>
         </div>
     </div>

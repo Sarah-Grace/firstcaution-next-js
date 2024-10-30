@@ -19,6 +19,9 @@ import {addTokens } from '../../../slices/authSlice';
 import { authUserToken } from "@/app/(main)/utils/auth";
 import { useTranslations } from 'next-intl';
 import { useGlobalMethods } from '@/hooks/useGlobalMethods';
+import { userLanguage } from "@/app/(main)/utils/language";
+import { useContext } from 'react';
+import { LayoutContext } from "@/app/layout";
 
 const verifyOtp = async (otp) => {
   const response = await axiosInstance.post('/api/confirm/otp/', otp);
@@ -36,6 +39,8 @@ function RegisterVerification() {
   const [isDialogOpen, setDialogOpen] = useState(false);
   const email = useSelector((state) => state.userEmail);
   const [errorOtp, setErrorOtp] =useState("");
+  
+  const {locale,handleLocale} = useContext(LayoutContext);
 
 
   // Function to open the dialog
@@ -55,6 +60,8 @@ function RegisterVerification() {
     onSuccess: (response) => {
       dispatch(addTokens({accessToken: response.access_token, refreshToken: response.refresh_token}));
       authUserToken(response.access_token);
+      userLanguage(response.lang);
+      handleLocale(response.lang);
       openDialog();
       console.log("Response",response.refresh_token);
     },

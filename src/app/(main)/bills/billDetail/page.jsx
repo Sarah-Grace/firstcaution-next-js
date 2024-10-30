@@ -14,19 +14,29 @@ import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 import DocumentView from "@/app/customComponents/DocumentView";
 import Preloader from "@/app/customComponents/Preloader";
 
-const billDetail = async ({ contractId, otp }) => {
-    console.log(contractId)
-    const response = await axiosInstance.get(`/api/client/invoice-detail/${contractId}/`, otp);
+const billDetail = async ({ invoiceId, otp }) => {
+    console.log(invoiceId)
+    const response = await axiosInstance.get(`/api/client/invoice-detail/${invoiceId}/`, otp);
     //console.log(response);
+    return response.data;
+};
+const billFile =  async (queryParams) => {
+    console.log(queryParams.invoiceId)
+    
+    const response = await axiosInstance.get(`/api/invoice/file/?invoice_id=${queryParams.invoiceId}`, {responseType: 'blob'});
+    // const response = await axiosInstance.get(`/api/invoice/file/?invoice_id=a0FFS000000FRuL2AW`, {responseType: 'blob'});
+    // console.log(response.data);
     return response.data;
 };
 
 function BillDetail() {
     const t = useTranslations('main.bill_detail_page');
-    const contractId = useSelector((state) => state.invoiceId);
+    const invoiceId = useSelector((state) => state.invoiceId);
     const [payerName, setPayerName] = useState();
-    const [amount, setAmount] = useState();
-    const [paymentMethod, setpaymentMethod] = useState();
+    const [amount, setAmount] = useState(0.00);
+    const [paymentMethod, setpaymentMethod] = useState("");
+    const [pdfError, setpdfError] = useState(false)
+    const [blobUrl, setBlobUrl] = useState(null);
     const [date, setDate] = useState();
     const [pdfLink, setPdfLink] = useState("");
     const [loading, setLoading] = useState(true);
@@ -57,21 +67,23 @@ function BillDetail() {
         },
     ]
     useEffect(() => {
-        mutation.mutate({ contractId, otp: {} }); // Passing contractId and optional otp when mutating
+        mutation.mutate({ invoiceId, otp: {} }); // Passing invoiceId and optional otp when mutating
+
+        mutationBillFile.mutate({ invoiceId: invoiceId});
         const timer = setTimeout(() => {
             setLoading(false); // Stop loading and show content
         }, 10000);
 
         // Cleanup the timer when the component unmounts
         return () => clearTimeout(timer);
-    }, [contractId]);
+    }, [invoiceId]);
     // Mutation hook 
     const mutation = useMutation({
         mutationFn: billDetail,
         onSuccess: (response) => {
             setPayerName(response.invoice_detail['Payer Name'])
-            setAmount(response.invoice_detail.Amount)
-            setpaymentMethod(response.invoice_detail['Payment method'])
+            response.invoice_detail.amount === null ? setAmount(0.00) : setAmount(response.invoice_detail.amount) 
+            response.invoice_detail.paymentMethod === null ? setpaymentMethod("Visa") : setpaymentMethod(response.invoice_detail.paymentMethod)
             setDate(format(response.invoice_detail['dueDate'], 'do MMM, yyyy'))
             setPdfLink(response.file)
 
@@ -81,6 +93,19 @@ function BillDetail() {
         // error.response.data.otp !== undefined ? setErrorOtp(error.response.data.otp): setErrorOtp("");
         // console.log( error.response.data.otp);
             
+        },
+    });
+    const mutationBillFile = useMutation({
+        mutationFn: billFile,
+        onSuccess: (response) => {
+            const url = URL.createObjectURL(response);
+            setBlobUrl(url);
+            console.log(response)
+            setpdfError(false)
+        },
+        onError: (error) => {
+            console.log(error.response.statusText);
+            error.response.statusText === "Not Found" && setpdfError(true)
         },
     });
   return (
@@ -107,7 +132,7 @@ function BillDetail() {
                 </div>
             </div>
             <div className="w-1/2 pl-6 xxl:w-full xxl:pl-0">
-            <div className="bg-bgc-3 px-[30px] py-5 md1:px-3">
+                <div className="bg-bgc-3 px-[30px] py-5 md1:px-3">
                     <div className="flex items-center justify-between">
                         <h3 className="text-h3 font-medium text-grey-2 mb-2">{t('document_preview')}</h3>
                         {/* <div className="bg-primary text-xs font-semibold leading-[19px] w-[53px] text-center rounded-8 text-white">100%</div> */}
@@ -117,16 +142,34 @@ function BillDetail() {
                         <Preloader />
                     ) : (
                         // After 10 seconds, display either the PDF or the error message
-                        <h2 className="text-content">No PDF Found</h2>
+                        pdfError === false ? (
+                            <>
+                                <DocumentView link={blobUrl} />
+                                <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
+                                    <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={blobUrl} download  target="_blank">
+                                        {t('download_pdf')}
+                                    </a>
+                                </div>
+                            </>
+                               
+                            
+                        ) : (
+                            <div className="h-[600px] flex justify-center flex-col items-center">
+                                <Image
+                                    src="/images/file-not-found.png"
+                                    alt=""
+                                    className="mb-3"
+                                    width={134}
+                                    height={134}
+                                />
+                                <h2 className="text-content">{t('file_not_found')}</h2>
+                            </div>
+                        )
                     )}
                 </div>
                 {/* {!loading &&
                 (
-                    <div className="mt-14 flex justify-center items-center gap-3 flex-wrap">
-                        <a className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 block leading-4" href={blobUrl} download  target="_blank">
-                            {t('download_pdf')}
-                        </a>
-                    </div>
+                    
                 )
                 } */}
             </div>

@@ -11,11 +11,13 @@ import {
   } from "@/components/ui/select"
 import { useContext } from 'react';
 import { LayoutContext } from '../layout';
+import Cookies from 'js-cookie';
 import { MainLayoutContext } from '@/app/(main)/layout'; // Ensure correct import path
 
 function SiteHeader() {
     const {locale,handleLocale} = useContext(LayoutContext);
-    const [selectedValue, setSelectedValue] = useState(locale);
+    const [selectedValue, setSelectedValue] = useState(Cookies.get('language'));
+    // const [lang, setLang] = useState();
     const { title, handleTitleChange} = useContext(MainLayoutContext);
     const langList = [
         { code: "fr", name: "(FR) French" },

@@ -118,7 +118,8 @@
             "firstcoin": "Première pièce", 
             "sponsored_person": "Personne parrainée", 
             "download_pdf": "Télécharger le PDF" , 
-            "document_preview": "Aperçu du document" 
+            "document_preview": "Aperçu du document",
+            "file_not_found": "Fichier introuvable" 
         }, 
         "bills_page": { 
             "open-bills": { 
@@ -149,7 +150,8 @@
             "payment_method": "Mode de paiement", 
             "note": "Veuillez garder à l'esprit que ces paiements ne concernent que Firstcaution.", 
             "download_pdf": "Télécharger le PDF", 
-            "document_preview": "Aperçu du document" 
+            "document_preview": "Aperçu du document",
+            "file_not_found": "Fichier introuvable" 
         }, 
         "deposit_page": { 
             "deposit_detail": "Détail du dépôt", 

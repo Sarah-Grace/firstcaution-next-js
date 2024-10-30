@@ -118,7 +118,8 @@
             "firstcoin":"Firstcoin", 
             "sponsored_person":"Persona sponsorizzata", 
             "download_pdf":"Scarica PDF" , 
-            "document_preview": "Anteprima del documento"
+            "document_preview": "Anteprima del documento",
+            "file_not_found": "File non trovato"
         }, 
         "bills_page": { 
             "open-bills": { 
@@ -149,7 +150,8 @@
             "payment_method": "Metodo di pagamento", 
             "note": "Tieni presente che questi pagamenti sono solo per Firstcaution.", 
             "download_pdf":"Scarica PDF" , 
-            "document_preview": "Anteprima del documento"
+            "document_preview": "Anteprima del documento",
+            "file_not_found": "File non trovato"
         }, 
         "deposit_page": { 
             "deposit_detail": "Dettaglio deposito", 
