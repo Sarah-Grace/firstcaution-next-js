@@ -143,7 +143,7 @@ function Home() {
               <div className="flex justify-between gap-2 flex-wrap">
 
               <div className="flex justify-start items-center gap-2">
-                  {  (address.country === "" && address.city==="" && address.street==="") &&
+                  {  !(address.country === "" && address.city==="" && address.street==="") &&
                     <> 
                     <Image 
                       src="/images/icons/location-dot.png" 
