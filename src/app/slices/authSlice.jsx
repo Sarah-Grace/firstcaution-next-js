@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { removeLanguage } from "../(main)/utils/language";
  const authSlice = createSlice({
     name: "auth",
     initialState: {
@@ -10,7 +11,8 @@ import { createSlice } from "@reduxjs/toolkit";
       refreshToken: "",
       otp: "",
       contractId: "",
-      invoiceId: ""
+      invoiceId: "",
+      language: ""
     },
     reducers:{
       addUserInfo: (state, action) => {
@@ -33,6 +35,12 @@ import { createSlice } from "@reduxjs/toolkit";
       addInvoiceId: (state, action) => {
          state.invoiceId = action.payload
       },
+      addLanguage: (state, action) => {
+         state.language = action.payload
+      },
+      resetLanguage: (state, action) => {
+         state.language = ""
+      },
       resetAll: (state, action) => {
          state.userEmail= ""
          state.userName= ""
@@ -45,5 +53,5 @@ import { createSlice } from "@reduxjs/toolkit";
     }
  })
 
- export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, resetAll } = authSlice.actions;
+ export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, addLanguage,  resetAll , resetLanguage, } = authSlice.actions;
  export default authSlice.reducer; // for store configurations 

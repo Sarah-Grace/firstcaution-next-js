@@ -15,6 +15,8 @@ import Cookies from 'js-cookie';
 import { MainLayoutContext } from '@/app/(main)/layout'; // Ensure correct import path
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axiosInstance from "@/lib/axiosInstance";
+import { useSelector, useDispatch } from 'react-redux';
+import { resetLanguage } from '../slices/authSlice'
 
 const langupdate = async (lang) => {
     const response = await axiosInstance.put('/api/update-language/', lang);
@@ -23,6 +25,8 @@ const langupdate = async (lang) => {
   };
 function SiteHeader() {
     const {locale,handleLocale} = useContext(LayoutContext);
+    const dispatch = useDispatch();
+    const langFormRedux = useSelector((state) => state.language)
     const [selectedValue, setSelectedValue] = useState(Cookies.get('language'));
     // const [lang, setLang] = useState();
     const { title, handleTitleChange} = useContext(MainLayoutContext);
@@ -32,12 +36,15 @@ function SiteHeader() {
         { code: "de", name: "(DE) German" },
         { code: "en", name: "(EN) English" }
     ]
-    const setLanguage=  (value) => {
+    const setLanguage =  (value) => {
         handleLocale(value); // handling locale value using context hook
         handleTitleChange();
         setSelectedValue(value);
+        langApiCall(value)
+    }
+    const langApiCall = (langCode) =>  {
         let lang = ""
-        switch(value) {
+        switch(langCode) {
             case "de":
                 lang = "German"
                 break;
@@ -51,10 +58,9 @@ function SiteHeader() {
                 lang ="Italian"
                 break;
         }
-        
-        console.log(lang)
         mutation.mutate({ language: lang});
     }
+
       // Mutation hook 
   const mutation = useMutation({
     mutationFn: langupdate,
@@ -65,6 +71,14 @@ function SiteHeader() {
         
     },
   });
+  useEffect(()=>{
+    if(langFormRedux !== "" ){
+        setLanguage(langFormRedux)
+        dispatch(resetLanguage())
+        
+    }
+    
+  },[])
   return (
     <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 tablet:px-[12px] tablet:h-[76px]">
         <Link href='/home' className='lg:block hidden '>

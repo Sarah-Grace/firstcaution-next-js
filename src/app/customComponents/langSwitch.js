@@ -9,8 +9,11 @@ import {userLanguage} from "@/app/(main)/utils/language";
 import Cookies from 'js-cookie';
 import  { useState, useContext } from 'react'
 import { LayoutContext } from '../layout';
+import { addLanguage } from "../slices/authSlice";
+import { useDispatch } from 'react-redux';
 
 function LangSwitch() {
+    const dispatch = useDispatch();
     const {handleLocale} = useContext(LayoutContext);
     const [selectedValue, setSelectedValue] = useState(Cookies.get('language') || 'fr');
     const langList = [
@@ -25,6 +28,7 @@ function LangSwitch() {
         userLanguage(value);
         handleLocale(value);
         setSelectedValue(value);
+        dispatch(addLanguage(value));
     }
     console.log(selectedValue)
   return (
