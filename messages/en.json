@@ -42,7 +42,7 @@
             "first_name": "Your First Name",
             "last_name": "Your Last Name",
             "password": "Create Strong Password",
-            "dob": "14.10.2008",
+            "dob": "Add Date of Birth (e.g 14.10.2008)",
             "have_account": "Already have an account?"
         },
         "communication_Failed": {

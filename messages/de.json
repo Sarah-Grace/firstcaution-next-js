@@ -42,7 +42,7 @@
             "first_name": "Ihr Vorname", 
             "last_name": "Ihr Nachname", 
             "password": "Sicheres Passwort erstellen", 
-            "dob": "14.10.2008", 
+            "dob": "Geburtsdatum hinzufügen (z. B. 14.10.2008)", 
             "have_account":"Sie haben bereits ein Konto?"
         },
         "communication_Failed": {

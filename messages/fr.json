@@ -42,7 +42,7 @@
             "first_name": "Votre prénom",
             "last_name": "Votre nom de famille",
             "password": "Créer un mot de passe fort",
-            "dob": "14.10.2008",
+            "dob": "Ajouter la date de naissance (e.g 14.10.2008)",
             "have_account": "Vous avez déjà un compte ?"
         },
         "communication_Failed": {
