@@ -141,7 +141,10 @@ function Home() {
                 <p className="text-5xl font-medium leading-9 text-content lgs:text-7xl mid-xxl:text-7xl">{currentContracts}</p>
               </div>
               <div className="flex justify-between gap-2 flex-wrap">
-                <div className="flex justify-start items-center gap-2">
+
+              <div className="flex justify-start items-center gap-2">
+                  {  (address.country === "" && address.city==="" && address.street==="") &&
+                    <> 
                     <Image 
                       src="/images/icons/location-dot.png" 
                       alt="" 
@@ -150,10 +153,14 @@ function Home() {
                       className="flex-[0_0_16px] h-6"
                     />
                     <div>
-                      <h3 className="text-[13px] leading-[13px] font-medium text-heading lgs:text-[15px] lgs:leading-[15px] lgs:font-medium mid-xxl:text-[15px] mid-xxl:leading-[15px] mid-xxl:font-medium">{`${address.street} ${address.city}`}</h3>
+                      <h3 className="text-[13px] leading-[13px] font-medium text-heading lgs:text-[15px] lgs:leading-[15px] lgs:font-medium mid-xxl:text-[15px] mid-xxl:leading-[15px] mid-xxl:font-medium">{`${address.street && address.street} ${address.city && address.city}`}</h3>
                       <p className="text-[10px] leading-[10px] text-grey-1 lgs:text-xs lgs:font-normal mid-xxl:text-xs mid-xxl:font-normal">{address.country}</p>
                     </div>
-                </div>
+                  </>
+                  }
+              </div>
+
+
                 <Link href="/contracts" className="text-h5 text-grey-2 border border-[#CCCCCC] rounded-8 leading-[25px] px-5 block h-[25px] md1:px-2">
                 {t('home.dashboard.show_all')}
                 </Link>

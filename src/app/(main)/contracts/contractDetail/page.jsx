@@ -56,15 +56,15 @@ function ContractDetail() {
     const contractInfoList = [
         {
             title: t('granted_amount'),
-            detail: `CHF ${GuarantedAmount}`
+            detail: `CHF ${GuarantedAmount === null ? 0.00 : GuarantedAmount }`
         },
         {
             title: t('deposit_amount'),
-            detail: `CHF ${contractDeposit}`
+            detail: `CHF ${contractDeposit === null ? 0.00 : contractDeposit}`
         },
         {
             title: t('annual_premium'),
-            detail: `CHF ${annualPremium}`
+            detail: `CHF ${annualPremium  === null ? 0.00 : annualPremium}`
         },
         {
             title: t('promo_code'),
