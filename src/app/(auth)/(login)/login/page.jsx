@@ -58,6 +58,7 @@ function Login() {
     const [errorEmail, setErrorEmail] =useState("");
     const [errorPassword, setErrorPassword] =useState("");
     const [errorUser, setErrorUser] =useState("");
+    const [isProcessing, setIsProcessing] =useState(false);
 
     useEffect(() => {
         dispatch(resetAll());
@@ -94,10 +95,12 @@ function Login() {
             // console.log( error.response.data.Password);
             // console.log( error.response.data.user);
             // console.log(errorPassword);
+            setIsProcessing(false)
         },
     });
     const formSubmit = (e) => {
         e.preventDefault();
+        setIsProcessing(true)
         mutation.mutate({ email: formData.email, password: formData.password});
     }
   return (
@@ -180,7 +183,13 @@ function Login() {
                             {t('signup')}
                         </Link>
                     </h4>
-                    <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">{t('login')}</button>
+                    <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
+                    { isProcessing ?   
+                        t('Loading.....')
+                        :
+                        t('login')
+                        }
+                    </button>
                     
                 </form>
             </div>

@@ -42,7 +42,7 @@
             "first_name": "Il tuo nome", 
             "last_name": "Il tuo cognome", 
             "password": "Crea una password complessa", 
-            "dob": "Aggiungi data di nascita", 
+            "dob": "14.10.2008", 
             "have_account":"Hai già un account?"
         },
         "communication_Failed": {
