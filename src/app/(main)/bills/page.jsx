@@ -113,7 +113,7 @@ function Bills() {
                           </div>
                           <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.amount')}:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['Amount']}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['Amount'] ===null ? 0.00 : obd['Amount']}</p>
                           </div>
                           <div className="flex-[0_0_10%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.status_title')}:</p>
