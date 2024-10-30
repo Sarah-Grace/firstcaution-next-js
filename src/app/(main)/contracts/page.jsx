@@ -102,7 +102,7 @@ function Contracts() {
                                             </div>
                                             <div className="flex-[0_0_20%] mxl:flex mxl:items-center mxl:gap-1 mxl:mb-3">
                                                 <p className="text-base leading-[19px] font-normal text-grey-2 mb-2 mxl:mb-0 mxl:text-sm mxl:font-medium">{t('annual_premium')}:</p>
-                                                <p className="text-[15px] leading-4 font-medium text-content mxl:text-sm mxl:font-medium">{`CHF ${d.clientContractAnnualPremium}`}</p>
+                                                <p className="text-[15px] leading-4 font-medium text-content mxl:text-sm mxl:font-medium">{`CHF ${d.clientContractAnnualPremium===null ? 0.00 : d.clientContractAnnualPremium}`}</p>
                                             </div>
                                             <div className="flex-[0_0_12%] mxl:flex mxl:items-center">
                                                     <p className="text-base leading-[19px] font-normal text-grey-2 mb-1 mxl:hidden">{t('status_title')}:</p>

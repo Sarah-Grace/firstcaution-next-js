@@ -13,7 +13,14 @@ import { useContext } from 'react';
 import { LayoutContext } from '../layout';
 import Cookies from 'js-cookie';
 import { MainLayoutContext } from '@/app/(main)/layout'; // Ensure correct import path
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import axiosInstance from "@/lib/axiosInstance";
 
+const langupdate = async (lang) => {
+    const response = await axiosInstance.put('/api/update-language/', lang);
+    // //console.log(response)
+    return response.data;
+  };
 function SiteHeader() {
     const {locale,handleLocale} = useContext(LayoutContext);
     const [selectedValue, setSelectedValue] = useState(Cookies.get('language'));
@@ -29,7 +36,35 @@ function SiteHeader() {
         handleLocale(value); // handling locale value using context hook
         handleTitleChange();
         setSelectedValue(value);
+        let lang = ""
+        switch(value) {
+            case "de":
+                lang = "German"
+                break;
+            case "fr":
+                lang ="French"
+                break;
+            case "en":
+                lang = "English"
+                break;
+            case "it":
+                lang ="Italian"
+                break;
+        }
+        
+        console.log(lang)
+        mutation.mutate({ language: lang});
     }
+      // Mutation hook 
+  const mutation = useMutation({
+    mutationFn: langupdate,
+    onSuccess: (response) => {
+        console.log("success",response)
+    },
+    onError: (error) => {
+        
+    },
+  });
   return (
     <div className="h-[102px] w-full bg-white border-b border-[#E6EFF5] flex items-center justify-between px-10 tablet:px-[12px] tablet:h-[76px]">
         <Link href='/home' className='lg:block hidden '>

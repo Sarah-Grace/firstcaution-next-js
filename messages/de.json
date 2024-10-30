@@ -42,7 +42,7 @@
             "first_name": "Ihr Vorname", 
             "last_name": "Ihr Nachname", 
             "password": "Sicheres Passwort erstellen", 
-            "dob": "Geburtsdatum hinzufügen", 
+            "dob": "14.10.2008", 
             "have_account":"Sie haben bereits ein Konto?"
         },
         "communication_Failed": {
@@ -62,7 +62,7 @@
             "settings": "Einstellungen", 
             "logout": "Abmelden", 
             "overview":"Übersicht", 
-            "Firstmoove": "Erster Schritt" 
+            "Firstmoove": "Firstmoove" 
         }, 
         "buttons": {  
             "view_more":"Mehr anzeigen",
@@ -82,7 +82,7 @@
             "open_bills":"Offene Rechnungen", 
             "paid_bills":"Bezahlte Rechnungen", 
             "id":"Ausweis", 
-            "firstmoove": "Erster Schritt", 
+            "firstmoove": "Firstmoove", 
             "passport":"Reisepass", 
             "debt":"Betreibungsbescheinigung", 
             "my_firstcoins": "Meine Firstcoins", 

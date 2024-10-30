@@ -42,7 +42,7 @@
             "first_name": "Votre prénom",
             "last_name": "Votre nom de famille",
             "password": "Créer un mot de passe fort",
-            "dob": "Ajouter la date de naissance",
+            "dob": "14.10.2008",
             "have_account": "Vous avez déjà un compte ?"
         },
         "communication_Failed": {
@@ -62,7 +62,7 @@
             "settings": "Paramètre", 
             "logout": "Déconnexion", 
             "overview": "Aperçu", 
-            "Firstmoove":"Premier mouvement" 
+            "Firstmoove":"Firstmoove" 
         }, 
         "buttons": { 
             "view_more": "Voir plus", 
@@ -78,14 +78,14 @@
             "granted_amount": "Montant accordé", 
             "deposit_amount": "Montant du dépôt", 
             "annual _premium": "Prime annuelle", 
-            "firstcoin": "Première pièce", 
+            "firstcoin": "Firstcoin", 
             "open_bills": "Factures ouvertes", 
             "paid_bills": "Factures payées", 
             "id": "ID", 
-            "firstmoove": "premier mouvement", 
+            "firstmoove": "Firstmoove", 
             "passport": "Passeport", 
             "debt": "Certificat d'exécution de dette", 
-            "my_firstcoins": "Mes premières pièces", 
+            "my_firstcoins": "Mes Firstcoin", 
             "next_invoice": "Économisé sur la prochaine facture : -1 CHF", 
             "sponsored": { 
                 "you_get": "Vous obtenez ", 
@@ -115,7 +115,7 @@
             "deposit_amount": "Montant du dépôt", 
             "annual_premium": "Prime annuelle", 
             "promo_code": "Code promotionnel" ,
-            "firstcoin": "Première pièce", 
+            "firstcoin": "Firstcoin", 
             "sponsored_person": "Personne parrainée", 
             "download_pdf": "Télécharger le PDF" , 
             "document_preview": "Aperçu du document",

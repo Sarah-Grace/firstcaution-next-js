@@ -330,6 +330,7 @@ function Register() {
                         >
                         </DatePicker> */}
                         <DatePicker
+                          format="DD.MM.YYYY"
                           value={date}
                           onChange={setDate}
                           placeholder={t('register_page.dob')}
