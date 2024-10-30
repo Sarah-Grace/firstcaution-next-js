@@ -238,7 +238,6 @@ function Settings() {
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('dob')}</label>
                                     <div className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 ">
                                         <DatePicker
-                                            format="DD.MM.YYYY"
                                             value={date}
                                             onChange={setDate}
                                             placeholder={t('dob')}

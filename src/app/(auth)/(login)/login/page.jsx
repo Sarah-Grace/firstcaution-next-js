@@ -185,7 +185,7 @@ function Login() {
                     </h4>
                     <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
                     { isProcessing ?   
-                        t('Loading.....')
+                        'Loading.....'
                         :
                         t('login')
                         }
