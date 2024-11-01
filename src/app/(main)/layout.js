@@ -12,7 +12,7 @@ import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
 import axiosInstance from "@/lib/axiosInstance";
 import { useMutation } from '@tanstack/react-query';
-
+import Cookies from 'js-cookie';
 const logoutapi = async () => {
   const response = await axiosInstance.post('/api/logout/');
   // //console.log(response)
@@ -23,19 +23,48 @@ const logoutapi = async () => {
 export const MainLayoutContext = createContext();
 export default function MainLayout({children}) {
 
-    
-    const [title, setTitle] = useState('');
-
-    // it will update title on lanuage switch
-    const handleTitleChange = () => {
-      setTitle();
-    };
-  
+        
     const pathname = usePathname()
     const t = useTranslations('main.sidebar_and_header');
     const dispatch = useDispatch();
     const timeoutRef = useRef(null);
     const router = useRouter(); // Get the router instance
+
+    const [title, setTitle] = useState('');
+
+    // it will update title on lanuage switch
+    const handleTitleChange = () => {
+      switch(pathname) {
+        case '/home':
+            setTitle(t('overview'))
+            break;
+        case '/contracts':
+        case '/contracts/contractDetail':
+            setTitle(t('my_contracts'))
+            break;
+        case '/bills':
+        case '/bills/billDetail':
+        case '/bills/payBill':
+        case '/bills/paymentPlan':
+        case '/bills/paymentTerm':
+        case '/bills/monthlyPayment':
+            setTitle(t('my_bills'))
+            break;     
+        case '/deposit':
+        case '/adjustDeposit':
+            setTitle(t('my_deposit'))
+            break; 
+        case '/firstmoove':
+            setTitle(FIRSTMOOVE_HEADER)
+            break;
+        case '/firstees':
+            setTitle(t('Firstmoove'))
+            break;
+        case '/settings':
+            setTitle(t('settings'))
+            break;
+    }       
+    };
 
     const resetTimeout = () => {
       if (timeoutRef.current) {
@@ -57,8 +86,8 @@ export default function MainLayout({children}) {
     };
     const logout= () => {
       mutation.mutate(); 
+      console.log("Logout function")
       router.push('/login');  // Navigate to login page or another route
-
     }
           // Mutation hook 
   const mutation = useMutation({
@@ -67,6 +96,7 @@ export default function MainLayout({children}) {
       console.log("Loged out", response)
       dispatch(resetAll());
       removeToken();
+
       // removeLanguage();
 
       // Manipulate history to prevent back navigation
@@ -79,6 +109,7 @@ export default function MainLayout({children}) {
           window.history.go(1); // Stay on the current page
         };
       }
+      
     },
     onError: (error) => { 
       console.log("Loged out", response)  

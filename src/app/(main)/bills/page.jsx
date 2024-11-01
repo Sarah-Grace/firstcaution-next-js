@@ -13,6 +13,7 @@ import { addInvoiceId } from "@/app/slices/authSlice";
 import { useRouter } from 'next/navigation';
 import { format } from "date-fns"
 import { useTranslations } from 'next-intl';
+import Preloader from "@/app/customComponents/Preloader";
 
 const billsdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/invoices/', otp);
@@ -20,6 +21,7 @@ const billsdata = async (otp) => {
 };
 
 function Bills() {
+  const [isLoading, setIsLoading] =useState(true);
   const t = useTranslations('main.bills_page');
   const dispatch = useDispatch();
   const router = useRouter();
@@ -62,6 +64,7 @@ function Bills() {
       console.log(response)
       response.length !== 0 && setInvoicesData(response)
       // response && setInvoicesData(response)
+      setIsLoading(false)
     },
     onError: (error) => {
 
@@ -78,7 +81,8 @@ function Bills() {
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
-          <Tabs defaultValue={tabNames[0]} className="">
+      {isLoading ? <Preloader /> :
+          (<Tabs defaultValue={tabNames[0]} className="">
               <TabsList className="border-b border-[#E6EFF5] w-full justify-start">
                   {tabNames.map((tab, index) => {
                       return (
@@ -198,7 +202,7 @@ function Bills() {
                   })
                 }
               </TabsContent>
-          </Tabs>
+          </Tabs>)}
           {/* <div className="flex items-center gap-3 absolute top-10 right-[51px] md1:top-2 mxl:gap-[2px]">
             <Image
               src="/images/icons/ph_timer.png"

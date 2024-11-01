@@ -66,6 +66,9 @@ function SiteHeader() {
     mutationFn: langupdate,
     onSuccess: (response) => {
         console.log("success",response)
+        handleTitleChange();
+        setSelectedValue(langFormRedux);
+        dispatch(resetLanguage())
     },
     onError: (error) => {
         
@@ -73,8 +76,11 @@ function SiteHeader() {
   });
   useEffect(()=>{
     if(langFormRedux !== "" ){
-        setLanguage(langFormRedux)
-        dispatch(resetLanguage())
+        // setLanguage(langFormRedux)
+        handleLocale(langFormRedux); // handling locale value using context hook
+        // handleTitleChange();
+        // setSelectedValue(langFormRedux);
+        langApiCall(langFormRedux)
         
     }
     

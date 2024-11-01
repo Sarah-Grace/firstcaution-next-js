@@ -2,6 +2,7 @@
     "auth": { 
         "login": "Anmelden", 
         "signup": "Registrieren", 
+        "loading": "Laden...",
         "email": "E-Mail-Adresse", 
         "password": "Passwort", 
         "verification": "Bestätigung", 

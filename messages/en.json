@@ -2,6 +2,7 @@
     "auth": {
         "login": "Log In" ,
         "signup": "Sign Up",
+        "loading": "Loading...",
         "email": "Email Address",
         "password": "Password",
         "verification":"Verification",

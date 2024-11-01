@@ -3,7 +3,7 @@ import { removeLanguage } from "../(main)/utils/language";
  const authSlice = createSlice({
     name: "auth",
     initialState: {
-      // apiKey: "Api-Key wGwvTc4n.7ySCt0XNqNn8gYpP19GGOCiQbDoApP5i", // local API key
+      //  apiKey: "Api-Key wGwvTc4n.7ySCt0XNqNn8gYpP19GGOCiQbDoApP5i", // local API key
         apiKey: "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW", // Vercel API Key
       userEmail: "",
       userName: "",
@@ -48,7 +48,6 @@ import { removeLanguage } from "../(main)/utils/language";
          state.refreshToken= ""
          state.contractId= ""
          state.invoiceId= ""
-         state.apiKey= "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW"
       }
     }
  })

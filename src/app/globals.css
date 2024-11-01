@@ -86,6 +86,21 @@ body {
 .rmdp-input:focus {
   box-shadow: none !important;
 }
+/* calendar style start */
+.custom-calendar .rmdp-calendar {
+  height: 300px !important; 
+}
+.settings-page-calendar .rmdp-calendar {
+  height: 330px !important; 
+} 
+.custom-calendar .rmdp-arrow-container
+{
+  align-items: center !important;
+}
+.custom-calendar .rmdp-arrow {
+  margin-top: 0 !important;
+}
+ /* calendar style end */
 @media screen and (max-width: 992px) {
   .sidebar-height {
     height: calc(100vh - 102px);
@@ -95,6 +110,16 @@ body {
   .sidebar-height {
     height: calc(100vh - 76px);
   }
+}
+@media screen and (max-width: 450px) {
+   /* calendar style start */
+  .custom-calendar .rmdp-calendar {
+    height: 210px !important; 
+  }
+  .settings-page-calendar .rmdp-calendar {
+    height: 265px !important; 
+  } 
+   /* calendar style end */
 }
 @layer base {
   :root {

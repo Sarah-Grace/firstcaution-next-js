@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import { addContractId } from "@/app/slices/authSlice";
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import Loading from "@/app/loading";
+import Preloader from "@/app/customComponents/Preloader";
 
 
 const contractdata = async (otp) => {
@@ -16,6 +18,7 @@ const contractdata = async (otp) => {
     return response.data;
 };
 function Contracts() {
+    const [isLoading, setIsLoading] =useState(true);
     const t = useTranslations('main.contract_page');
     const dispatch = useDispatch();
     const router = useRouter();
@@ -37,14 +40,16 @@ function Contracts() {
     console.log(filteredData);
     useEffect(()=> {
         mutation.mutate();
+        mutation.isLoading ? console.log("Loading"): console.log("Loaded")
     },[]);
-      // Mutation hook 
+    // Mutation hook 
     const mutation = useMutation({
         mutationFn: contractdata,
         onSuccess: (response) => {
             Object.entries(response).length !== 0 && setAllContracts(response) 
            // setAllContracts(response)
             console.log(response)
+            setIsLoading(false)
         },
         onError: (error) => {
 
@@ -67,7 +72,8 @@ function Contracts() {
     return (
         <div className="pt-[30px] mb-14">
             <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] sm:pr-3 sm:pl-3">
-                <Tabs defaultValue="All" onValueChange={(t) => { setFilterStatus(t) }} className="">
+                {isLoading ? <Preloader /> :
+                (<Tabs defaultValue="All" onValueChange={(t) => { setFilterStatus(t) }} className="">
                     <TabsList className= "border-b border-[#E6EFF5] w-full justify-start flex-wrap">
                         {status.map((status, index) => {
                             console.log(status);
@@ -82,7 +88,8 @@ function Contracts() {
                             )
                         })}
                     </TabsList>
-                    {status.map((status, index) => {
+                    {
+                    status.map((status, index) => {
                         return <TabsContent key={index} value={status} >
                             {
                                 
@@ -135,7 +142,7 @@ function Contracts() {
                                 })
                             }
                     </TabsContent>})}
-                </Tabs>
+                </Tabs>)}
             </div>
         </div>
     )
