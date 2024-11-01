@@ -90,7 +90,8 @@ function Settings() {
             lname: response.last_name,
             email: response.email
         }));
-        setDate(response.date_of_birth)
+        const dateObject = new DateObject(response.date_of_birth);
+        setDate(dateObject)
     },
     onError: (error) => {
       setApiError(error.message);
@@ -238,12 +239,14 @@ function Settings() {
                                     <label className="text-base font-normal text-content leading-5 mb-3 block">{t('dob')}</label>
                                     <div className="leading-[48px] py-0 px-5 text-[15px] font-normal text-[#909090] bg-transparent border border-[#DFEAF2] focus-visible:outline-none rounded-8 ">
                                         <DatePicker
+                                            format="DD.MM.YYYY"
                                             value={date}
                                             onChange={setDate}
                                             placeholder={t('dob')}
                                             minDate="1940/01/01"
                                             maxDate={maxDob}
                                             currentDate={maxDob}
+                                            className="custom-calendar settings-page-calendar"
                                         >
                                         </DatePicker>
                                     </div>

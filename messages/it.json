@@ -1,7 +1,8 @@
 { 
     "auth": { 
         "login": "Accedi" , 
-        "signup": "Registrati", 
+        "signup": "Registrati",
+        "loading": "Caricamento in corso...", 
         "email": "Indirizzo email", 
         "password": "Password", 
         "verification":"Verifica", 
