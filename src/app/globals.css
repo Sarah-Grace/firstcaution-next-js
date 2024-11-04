@@ -114,7 +114,7 @@ body {
 @media screen and (max-width: 450px) {
    /* calendar style start */
   .custom-calendar .rmdp-calendar {
-    height: 210px !important; 
+    height: 235px !important; 
   }
   .settings-page-calendar .rmdp-calendar {
     height: 265px !important; 
