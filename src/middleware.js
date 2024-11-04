@@ -12,22 +12,26 @@ export function middleware(request) {
   [ 
     '/home',
     '/adjustDeposit', 
-    '/billDetail', 
+    '/bills/billDetail', 
     '/bills', 
-    '/contractDetail', 
+    '/contracts/contractDetail', 
     '/contracts', 
-    '/deposit', 
+    '/deposit',  
     '/firstmoove', 
     '/monthlyPayment', 
     '/payBill', 
     '/paymentPlan', 
-    '/paymentTerm'
+    '/paymentTerm',
+    '/settings'
   ];
 
   // Check if the current pathname is a protected route
   if (protectedRoutes.includes(pathname)) {
     // If there's no token, redirect to the login page
+    console.log("Point 1")
+    console.log(token)
     if (!token) {
+      console.log("Point 2")
       return NextResponse.redirect(new URL('/login', request.url));
     }
   }
@@ -43,16 +47,17 @@ export const config = {
     [
       '/home',
       '/adjustDeposit', 
-      '/billDetail', 
+      '/bills/billDetail', 
       '/bills', 
-      '/contractDetail', 
+      '/contracts/contractDetail', 
       '/contracts', 
       '/deposit',  
       '/firstmoove', 
       '/monthlyPayment', 
       '/payBill', 
       '/paymentPlan', 
-      '/paymentTerm'
+      '/paymentTerm',
+      '/settings'
     ], // Paths to protect
 
 };

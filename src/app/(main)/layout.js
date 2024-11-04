@@ -87,7 +87,7 @@ export default function MainLayout({children}) {
     const logout= () => {
       mutation.mutate(); 
       console.log("Logout function")
-      router.push('/login');  // Navigate to login page or another route
+      //router.push('/login');  // Navigate to login page or another route
     }
           // Mutation hook 
   const mutation = useMutation({
@@ -96,19 +96,9 @@ export default function MainLayout({children}) {
       console.log("Loged out", response)
       dispatch(resetAll());
       removeToken();
-
+      // here we are using window.location.href = '/login' instead of router.push('/login');  because we want to clear client states 
+      window.location.href = '/login'; 
       // removeLanguage();
-
-      // Manipulate history to prevent back navigation
-      if (typeof window !== 'undefined') {
-        // Push a new state to prevent back navigation
-        window.history.pushState(null, null, window.location.href);
-
-        // Override the back button behavior
-        window.onpopstate = function () {
-          window.history.go(1); // Stay on the current page
-        };
-      }
       
     },
     onError: (error) => { 
