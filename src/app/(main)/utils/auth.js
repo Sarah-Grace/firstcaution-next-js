@@ -15,5 +15,6 @@ export const authUserToken =  (token) => {// Your API call
 };
 // Remove token by removing the cookie
 export const removeToken = () => {
+  console.log("Remove Token")
     Cookies.remove('token');
 };

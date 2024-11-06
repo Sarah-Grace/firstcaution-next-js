@@ -12,26 +12,31 @@ export function middleware(request) {
   [ 
     '/home',
     '/adjustDeposit', 
-    '/billDetail', 
+    '/bills/billDetail', 
     '/bills', 
-    '/contractDetail', 
+    '/contracts/contractDetail', 
     '/contracts', 
-    '/deposit', 
+    '/deposit',  
     '/firstmoove', 
     '/monthlyPayment', 
     '/payBill', 
     '/paymentPlan', 
-    '/paymentTerm'
+    '/paymentTerm',
+    '/settings'
   ];
+    // Defining auth routes that should be inaccessible if a token is present
+    const authRoutes = ['/login', '/loginVerification', '/register', '/registerVerification','/forgetPassword', '/newPassword', '/verification', '/passwordChanged'];
 
   // Check if the current pathname is a protected route
-  if (protectedRoutes.includes(pathname)) {
-    // If there's no token, redirect to the login page
-    if (!token) {
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
+  if (protectedRoutes.includes(pathname) && !token) {
+
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
+    // Check if user is trying to access an auth route with a token
+    if (authRoutes.includes(pathname) && token) {
+      return NextResponse.redirect(new URL('/home', request.url));
+    }
   // If the route is accessible, proceed to the next middleware or request handler
   return NextResponse.next();
 }
@@ -43,16 +48,25 @@ export const config = {
     [
       '/home',
       '/adjustDeposit', 
-      '/billDetail', 
+      '/bills/billDetail', 
       '/bills', 
-      '/contractDetail', 
+      '/contracts/contractDetail', 
       '/contracts', 
       '/deposit',  
       '/firstmoove', 
       '/monthlyPayment', 
       '/payBill', 
       '/paymentPlan', 
-      '/paymentTerm'
+      '/paymentTerm',
+      '/settings',
+      '/login', 
+      '/loginVerification', 
+      '/register', 
+      '/registerVerification',
+      '/forgetPassword', 
+      '/newPassword', 
+      '/verification', 
+      '/passwordChanged'
     ], // Paths to protect
 
 };

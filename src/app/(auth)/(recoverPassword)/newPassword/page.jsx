@@ -8,15 +8,16 @@ import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faEyeSlash, faEye} from '@fortawesome/free-solid-svg-icons';
-
+import {faEyeSlash, faEye,faCheck} from '@fortawesome/free-solid-svg-icons';
+import { z } from 'zod';
 // Function for reset password
 const newPassword = async (Password) => {
   const response = await axiosInstance.post('/api/reset/password/complete/', Password);
   //console.log(response)
   return response.data;
 };
-
+const passwordSchema = 
+z.string().min(8, { message: "characters" }).regex(/[A-Z]/, { message: "uppercase" }).regex(/\d/, { message: "digit" });
 function NewPassword() {
   const [isProcessing, setIsProcessing] =useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -30,6 +31,7 @@ function NewPassword() {
   const [showpasswordIcon, setShowPasswordIcon] = useState(false);
   const [showConfirmPasswordIcon, setShowConfirmPasswordIcon] = useState(false);
   const t = useTranslations('auth');
+  const vt = useTranslations('validation')
     const router = useRouter();
     const email = useSelector((state) => state.userEmail);
     const [formData, setFormData] = useState({
@@ -40,6 +42,31 @@ function NewPassword() {
     const handleInput = (e) => {
         const fieldName = e.target.name;
         const fieldValue = e.target.value;
+        
+    if(fieldName === "password") {
+      const resultPassword = passwordSchema.safeParse(fieldValue);
+      if (!resultPassword.success) {
+        // Handle validation errors
+        const errors = resultPassword.error.format();
+        setPasswordError(errors._errors);
+        console.log(errors._errors)
+        passwordValidationState(errors._errors)
+      } else {
+        console.log(passwordError.uppercase);
+        setPasswordError([])
+        setIsMissing({
+          uppercase: false,
+          characters: false,
+          digit: false
+        })
+        setPasswordStatus((prevData) => ({
+          ...prevData,
+          characters: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+          uppercase: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25",
+          digit: "text-[#0BA212] bg-[#ACFFDC] bg-opacity-25"
+        }));
+      }
+    }
   
         setFormData((prev) => ({
             ...prev,
@@ -47,6 +74,55 @@ function NewPassword() {
         }));
 
     }
+
+  //   password validation 
+
+  const [passwordError, setPasswordError] = useState(['characters', 'uppercase', 'digit'])
+  const [isMissing, setIsMissing] = useState({
+      uppercase: false,
+      characters: false,
+      digit: false
+  })
+  const [passwordStatus, setPasswordStatus] = useState({
+    uppercase: "text-grey-2 bg-[#F8F6F6]",
+    characters: "text-grey-2 bg-[#F8F6F6]",
+    digit: "text-grey-2 bg-[#F8F6F6]"
+  })
+  const setPasswordStatusValue = (value, prop) => {
+    setPasswordStatus((prevData) => ({
+      ...prevData,
+      [prop]: value
+    }))
+    setIsMissing((prev) => ({
+      ...prev,
+      [prop]: false
+    }))
+  }
+  const passwordValidationState = (errorArray ) => {
+    if (errorArray && errorArray.length > 0) {
+      // style for minimum characters 
+      errorArray.includes('characters') 
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "characters")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "characters")
+      // style for uppercase
+      errorArray.includes('uppercase')
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "uppercase")
+      :
+          setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "uppercase")
+      // style for digit
+      errorArray.includes('digit')
+      ?
+        setPasswordStatusValue("text-grey-2 bg-[#F8F6F6]", "digit")
+      :
+        setPasswordStatusValue("text-[#0BA212] bg-[#ACFFDC] bg-opacity-25" , "digit")
+    } else {
+      
+    }
+
+  } 
     useEffect(()=> {
       formData.password === "" ? setShowPasswordIcon(false) : setShowPasswordIcon(true)
       formData.confirmPassword === "" ? setShowConfirmPasswordIcon(false) : setShowConfirmPasswordIcon(true)
@@ -65,10 +141,22 @@ function NewPassword() {
     });
     const formSubmit = (e) => {
         e.preventDefault();
+        
+        setIsMissing({
+          uppercase: false,
+          characters: false,
+          digit: false
+        })
+        passwordError.includes("uppercase") && setIsMissing((prev) => ({ ...prev, uppercase: true  }))
+        passwordError.includes("characters") &&setIsMissing((prev) => ({ ...prev, characters: true }))
+        passwordError.includes("digit") && setIsMissing((prev) => ({ ...prev, digit: true }))
         if(formData.password === formData.confirmPassword) {
           setIsSamePassword(false);
+          if( !passwordError.includes("uppercase") && !passwordError.includes("characters") &&  !passwordError.includes("digit")) {
+            mutation.mutate({ email: email, password: formData.password});
+            
           setIsProcessing(true)
-          mutation.mutate({ email: email, password: formData.password});
+          }
         } else {
           setIsSamePassword(true);
         }
@@ -106,7 +194,28 @@ function NewPassword() {
                         {showPassword ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
                       </button>
                     }
-                </div>   
+                </div> 
+                
+                <div className="flex flex-wrap gap-3 my-3">
+                    <p className={`text-xs ${passwordStatus.characters}  px-2 leading-[18px] rounded-2xl ${isMissing.characters && 'text-red-600 bg-red-200'}`}>
+                        <span className="pr-[5px]">
+                        <FontAwesomeIcon icon={faCheck} />
+                        </span>
+                        {vt('password.minimum_characters')}
+                    </p>
+                    <p className={`text-xs  ${passwordStatus.uppercase} px-2 leading-[18px] rounded-2xl ${isMissing.uppercase && 'text-red-600 bg-red-200'}`}>
+                        <span className="pr-[5px]">
+                        <FontAwesomeIcon icon={faCheck} />
+                        </span>
+                        {vt('password.uppercase')}
+                    </p>
+                    <p className={`text-xs ${passwordStatus.digit} px-2 leading-[18px] rounded-2xl ${isMissing.digit && 'text-red-600 bg-red-200'}`}>
+                        <span className="pr-[5px]">
+                        <FontAwesomeIcon icon={faCheck} />
+                        </span>
+                        {vt('password.digit')}
+                    </p>
+                </div>  
                 <div className={`bg-[#f6f6f6] rounded-6 relative flex w-full mb-6  ${isDiffPassword && "bg-[#FFF4F4] border border-[#F73737]"}`}>
                     <input 
                       type={showConfirmPassword ? 'text' : 'password'}  
