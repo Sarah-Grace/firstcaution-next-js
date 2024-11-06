@@ -24,18 +24,19 @@ export function middleware(request) {
     '/paymentTerm',
     '/settings'
   ];
+    // Defining auth routes that should be inaccessible if a token is present
+    const authRoutes = ['/login', '/loginVerification', '/register', '/registerVerification','/forgetPassword', '/newPassword', '/verification', '/passwordChanged'];
 
   // Check if the current pathname is a protected route
-  if (protectedRoutes.includes(pathname)) {
-    // If there's no token, redirect to the login page
-    console.log("Point 1")
-    console.log(token)
-    if (!token) {
-      console.log("Point 2")
-      return NextResponse.redirect(new URL('/login', request.url));
-    }
+  if (protectedRoutes.includes(pathname) && !token) {
+
+    return NextResponse.redirect(new URL('/login', request.url));
   }
 
+    // Check if user is trying to access an auth route with a token
+    if (authRoutes.includes(pathname) && token) {
+      return NextResponse.redirect(new URL('/home', request.url));
+    }
   // If the route is accessible, proceed to the next middleware or request handler
   return NextResponse.next();
 }
@@ -57,7 +58,15 @@ export const config = {
       '/payBill', 
       '/paymentPlan', 
       '/paymentTerm',
-      '/settings'
+      '/settings',
+      '/login', 
+      '/loginVerification', 
+      '/register', 
+      '/registerVerification',
+      '/forgetPassword', 
+      '/newPassword', 
+      '/verification', 
+      '/passwordChanged'
     ], // Paths to protect
 
 };
