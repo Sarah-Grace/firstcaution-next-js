@@ -43,7 +43,8 @@ function Bills() {
   //     status: "Open"
   //   },
   // ]
-  const openBillsData = invoicesData.filter((invoice) => invoice.status !== "Closed")
+  const openBillsData = invoicesData.filter((invoice) => invoice.status === "Waiting for payment" || invoice.status === "Processing")
+  
   // const paidBillsData = [
   //     {
   //         name: "John Duo",
@@ -117,7 +118,7 @@ function Bills() {
                           </div>
                           <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.amount')}:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['amount'] ===null ? 0.00 : obd['amount']}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['balanceAmount'] ===null ? 0.00 : obd['balanceAmount']}</p>
                           </div>
                           <div className="flex-[0_0_10%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.status_title')}:</p>
@@ -166,7 +167,6 @@ function Bills() {
                       <div className="flex justify-between items-center gap-[5px] py-5 px-8 border-b border-[#E6EFF5] bg-bgc-3 last:border-b-0 mxl:block mxl:relative sm:px-4" key={index}>
                           <div className="block flex-[0_0_20%] xxl:flex-auto  mxl:flex mxl:gap-2 mxl:flex-col-reverse">
                               <h4 className="text-base leading-[19px] font-medium text-content mb-2">{d['payerName']}</h4>
-                              {console.log(d['Payer Name'])}
                               <h4 className="text-[15px] leading-[18px] font-normal text-[#868686] mxl:text-[18px] mxl:font-medium mxl:mb-5 mxl:text-content sm:text-sm">{d['dueDate'] && format(d['dueDate'], 'do MMM, yyyy')}</h4>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">

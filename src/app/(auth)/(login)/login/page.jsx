@@ -90,7 +90,7 @@ function Login() {
             }
             error.response.data.email !== undefined ? setErrorEmail(error.response.data.email) : setErrorEmail("");
             error.response.data.password !== undefined ? setErrorPassword(error.response.data.password): setErrorPassword("");
-            error.response.data.user !== undefined ? setErrorUser(error.response.data.use): setErrorUser("");
+            error.response.data.user !== undefined ? setErrorUser(error.response.data.user): setErrorUser("");
             // console.log( error.response.data.email);
             // console.log( error.response.data.Password);
             // console.log( error.response.data.user);

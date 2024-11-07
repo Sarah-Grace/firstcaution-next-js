@@ -179,7 +179,9 @@ function Register() {
       onError: (error) => {
         // This function runs if the mutation fails
         setEmailError("")
-        error.response.data.msg === "Failed to communicate with external service." && router.push('../communicationFailed');
+        if(error.response.data.msg === "Failed to communicate with external service.") {
+           router.push('../communicationFailed');
+          }
         console.log(error.response.data.email[0])
         setEmailError(error.response.data.email[0]);
         setIsProcessing(false)
