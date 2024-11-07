@@ -81,7 +81,7 @@ function BillDetail() {
     const mutation = useMutation({
         mutationFn: billDetail,
         onSuccess: (response) => {
-            setPayerName(response.invoice_detail['Payer Name'])
+            setPayerName(response.invoice_detail.payerName)
             response.invoice_detail.amount === null ? setAmount(0.00) : setAmount(response.invoice_detail.amount) 
             response.invoice_detail.paymentMethod === null ? setpaymentMethod("Visa") : setpaymentMethod(response.invoice_detail.paymentMethod)
             setDate(format(response.invoice_detail['dueDate'], 'do MMM, yyyy'))

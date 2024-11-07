@@ -41,16 +41,17 @@ function ContractDetail() {
     const [pdfLink, setPdfLink] = useState("");
     const [pdfError, setpdfError] = useState(false)
     const [blobUrl, setBlobUrl] = useState(null);
-    const [stausColor, setStatusColor] = useState({  
-        colorText:"" , 
-        bgColor:"" ,
-        borderColor:""
-    })
+    const [statusClasses, setStatusClasses] = useState("")
+    const [statusBorder, setStatusBorder] = useState("")
 
-    // const statusColor = [
-    //     {status:"Active",  colorText:"text-[#34C759]" , bgColor:"before:bg-[#34C759]" , borderColor:"border-[#34C759]"},
-    //     {status:"Pending", colorText:"text-[#EEC23E]", bgColor:"before:bg-[#EEC23E]" , borderColor:"border-[#EEC23E]" },
-    //     {status:"Closing with Claim",  colorText:"text-[#F73737]", bgColor:"before:bg-[#F73737]" , borderColor:"border-[#F73737]" }]
+    const statusColor = [
+        {status:"Active",  colorClass:"text-[#34C759]" , bgColor:"before:bg-[#34C759]" , borderColor:"border-[#34C759]"},
+        {status:"Pending", colorClass:"text-[#EEC23E]", bgColor:"before:bg-[#EEC23E]" , borderColor:"border-[#EEC23E]" },
+        {status:"On release",  colorClass:"text-[#13A4FF]", bgColor:"before:bg-[#13A4FF]" , borderColor:"border-[#13A4FF]" },
+        {status:"Closing with Claim",  colorClass:"text-[#F73737]", bgColor:"before:bg-[#F73737]" , borderColor:"border-[#F73737]" },  
+        {status:"Closing without Claim",  colorClass:"text-[#F73737]", bgColor:"before:bg-[#F73737]" , borderColor:"border-[#F73737]" },
+        {status:"Canceled",  colorClass:"text-[#F73737]", bgColor:"before:bg-[#F73737]" , borderColor:"border-[#F73737]" }]
+        
     //     let listStatusColor;
 
     const contractInfoList = [
@@ -93,29 +94,37 @@ function ContractDetail() {
             setAnnualPremium(response.contract_detail.clientContractAnnualPremium);
             setGuarantedAmount(response.contract_detail.clientContractGuarantedAmount);
             console.log(response.contract_detail.clientContractStage)
-            switch(response.contract_detail.clientContractStage) {
-                case "Active":
-                    setStatusColor({
-                        colorText:"text-[#34C759]" , 
-                        bgColor:"before:bg-[#34C759]" , 
-                        borderColor:"border-[#34C759]"
-                    })
-                    break;
-                case "Pending": 
-                    setStatusColor({ 
-                        colorText:"text-[#EEC23E]", 
-                        bgColor:"before:bg-[#EEC23E]" , 
-                        borderColor:"border-[#EEC23E]" 
-                    })
-                    break;
-                case "Closing with Claim":
-                    setStatusColor({
-                        colorText:"text-[#F73737]", 
-                        bgColor:"before:bg-[#F73737]" , 
-                        borderColor:"border-[#F73737]" 
-                    })
-                    break;
-            }
+
+            // fetching background and text color classes from an array of objects baces on status
+            const listStatusColor = statusColor.filter(color =>  color.status === response.contract_detail.clientContractStage)
+            console.log()
+             if(listStatusColor.length > 0 ) {
+                setStatusBorder(`${listStatusColor[0].borderColor}`) 
+                setStatusClasses(`${listStatusColor[0].colorClass} ${listStatusColor[0].bgColor}` )
+             }
+            // switch(response.contract_detail.clientContractStage) {
+            //     case "Active":
+            //         setStatusColor({
+            //             colorText:"text-[#34C759]" , 
+            //             bgColor:"before:bg-[#34C759]" , 
+            //             borderColor:"border-[#34C759]"
+            //         })
+            //         break;
+            //     case "Pending": 
+            //         setStatusColor({ 
+            //             colorText:"text-[#EEC23E]", 
+            //             bgColor:"before:bg-[#EEC23E]" , 
+            //             borderColor:"border-[#EEC23E]" 
+            //         })
+            //         break;
+            //     case "Closing with Claim":
+            //         setStatusColor({
+            //             colorText:"text-[#F73737]", 
+            //             bgColor:"before:bg-[#F73737]" , 
+            //             borderColor:"border-[#F73737]" 
+            //         })
+            //         break;
+            // }
             setPdfLink(response.file);
 
         },
@@ -146,6 +155,7 @@ function ContractDetail() {
         {
             
             
+            
         }
         <BackArrowBtn link="../contracts" title={t('contract_detail')} />
         <div className="flex xxl:flex-wrap">
@@ -165,12 +175,14 @@ function ContractDetail() {
                             <h3 className="text-h3 font-normal text-grey-2 mb-2 xs:mb-0">{contractNumber}</h3>
                          </div>
                     </div>
-                    <div className={`border ${stausColor.borderColor} py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
-                        <p className={`leading-[25px] ${stausColor.colorText} text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 ${stausColor.bgColor} text-content`} >{status !== "Closing with Claim" ? status: "Closed"}</p>
+                    <div className={`border ${statusBorder} py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
+                        <p className={`leading-[25px] text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 ${statusClasses} `} >
+                        {(status === "Closing with Claim" || status === "Closing without Claim") ? "Closed" : status }
+                        </p>
                     </div>
                     {/* <div className={`py-0 px-5 h-[25px] rounded-8 xs:px-2`}>
                         <p 
-                            className={`leading-[25px] text-content text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 border  ${stausColor.bgColor} ${stausColor.bgColor} `}>
+                            className={`leading-[25px] text-content text-[15px] font-medium relative pl-[10px] before:content-[''] before:w-2 before:h-2 before:rounded-full before:block before:absolute before:top-1/2 before:left-0 before:-translate-y-1/2 border  ${statusColor.bgColor} ${statusColor.bgColor} `}>
                                 {status !== "Closing with Claim" ? status: "Closed"}
                         </p>
                     </div> */}

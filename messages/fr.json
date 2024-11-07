@@ -100,6 +100,7 @@
                 "all": "Tous", 
                 "active": "Actif", 
                 "pending": "En attente", 
+                "on_release": "À la sortie",
                 "closed": "Fermé" ,
                 "cancelled": "annulé"
             }, 
