@@ -53,6 +53,7 @@ function ForgetPassword() {
     const formSubmit = (e) => {
         e.preventDefault();
         setIsProcessing(true)
+        console.log("click")
         mutation.mutate({ email: formData.email});
     }
   return (
@@ -85,7 +86,7 @@ function ForgetPassword() {
                       />
                   </div>
                   <p className={`${invalidEmail !== "" ? "block" : "hidden"} text-[#F73737] text-xs font-medium -mt-4 mb-4`} >{errorTranslate(invalidEmail)}</p>
-                  <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full text-center">
+                  <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 w-full text-center"  disabled={isProcessing}>
                     {
                       isProcessing 
                       ?      
