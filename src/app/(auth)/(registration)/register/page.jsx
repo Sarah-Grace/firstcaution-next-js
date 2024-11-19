@@ -163,6 +163,8 @@ function Register() {
       setDateError("")
       if( !passwordError.includes("uppercase") && !passwordError.includes("characters") &&  !passwordError.includes("digit")) {
         setIsProcessing(true)
+        
+        console.log("click")
         mutation.mutate({ email: formData.email, password: formData.password, first_name: formData.fname, last_name: formData.lname, date_of_birth: date.format("YYYY-MM-DD"), "platform": "internal_user"})
       }
     } 
@@ -355,7 +357,7 @@ function Register() {
                             {t('login')} 
                         </Link>
                     </h4>
-                    <button className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
+                    <button className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4" disabled={isProcessing}>
                     {
                       isProcessing 
                       ?  

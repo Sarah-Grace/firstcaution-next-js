@@ -101,6 +101,7 @@ function Login() {
     const formSubmit = (e) => {
         e.preventDefault();
         setIsProcessing(true)
+        console.log("click")
         mutation.mutate({ email: formData.email, password: formData.password});
     }
   return (
@@ -183,7 +184,7 @@ function Login() {
                             {t('signup')}
                         </Link>
                     </h4>
-                    <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4">
+                    <button href="submit" className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4" disabled={isProcessing}>
                     {
                         isProcessing 
                         ?  
