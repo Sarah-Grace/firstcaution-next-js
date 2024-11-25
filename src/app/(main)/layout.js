@@ -55,10 +55,10 @@ export default function MainLayout({children}) {
             setTitle(t('my_deposit'))
             break; 
         case '/firstmoove':
-            setTitle(FIRSTMOOVE_HEADER)
+            setTitle(t('Firstmoove'))
             break;
         case '/firstees':
-            setTitle(t('Firstmoove'))
+            setTitle(t('firstees'))
             break;
         case '/settings':
             setTitle(t('settings'))
@@ -135,10 +135,10 @@ export default function MainLayout({children}) {
             setTitle(t('my_deposit'))
             break; 
         case '/firstmoove':
-            setTitle(FIRSTMOOVE_HEADER)
+          setTitle(t('Firstmoove'))
             break;
         case '/firstees':
-            setTitle(t('Firstmoove'))
+            setTitle(t('firstees'))
             break;
         case '/settings':
             setTitle(t('settings'))

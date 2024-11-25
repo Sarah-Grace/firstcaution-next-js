@@ -24,6 +24,11 @@ function Sidebar( {logout}) {
             menuIcon:"/images/icons/my-bills.svg", 
             menuTitle:t('my_bills'),
             path: "/bills"
+        },
+        {
+            menuIcon:"/images/icons/firstmoove.svg", 
+            menuTitle:"Firstmoove",
+            path: "/firstmoove"
         }
     ]
     // const menuListData = [

@@ -63,7 +63,8 @@
             "settings": "Settings",
             "logout": "Logout",
             "overview":"Overview",
-            "Firstmoove": "Firstmoove"
+            "Firstmoove": "Firstmoove",
+            "firstees": "Firstees"
         },
         "buttons": {
             "view_more":"View More",

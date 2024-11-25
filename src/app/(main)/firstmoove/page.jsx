@@ -8,7 +8,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Image from "next/image";
 
 function Firstmoove() {
-  const tabNames = ["Access My Documents", "Notify Population Office"];
+  const tabNames = ["My Tenant Documents", "Request Debt Enforcement Certificate", "Notify Population Office"];
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative tablet:pr-1 tablet:pl-1">
@@ -57,9 +57,37 @@ function Firstmoove() {
                       </AccordionItem>
                     </Accordion>
                   </div> */}
+                 <div className="flex items-center gap-6 xs:gap-2">
+                  <Image
+                      src="/images/icons/tenant-doc.png"
+                      alt=""
+                      className="xs:w-10 xs:h-10"
+                      width={55}
+                      height={55}
+                    />
+                    <div>
+                      <h2 className="text-h2 font-medium mb-2 text-content xs:mb-0 xs:text-base">Your documents, all in one place.</h2>
+                      <h3 className="text-h3 font-medium text-grey-2 mb-2 xs:mb-0">This area lists all uploaded documents with intuitive features like downloading, sharing, and uploading.</h3>
+                    </div>
+                </div>
               </TabsContent>
               <TabsContent key={tabNames[1]} value={tabNames[1]}>
 
+              </TabsContent>
+              <TabsContent key={tabNames[2]} value={tabNames[2]}>
+                <div className="flex items-center gap-6 xs:gap-2">
+                  <Image
+                      src="/images/icons/contract-detail-img.png"
+                      alt=""
+                      className="xs:w-10 xs:h-10"
+                      width={60}
+                      height={60}
+                    />
+                    <div>
+                      <h2 className="text-h2 mb-2 text-content xs:mb-0 xs:text-base">Your documents, all in one place.</h2>
+                      <h3 className="text-h3 font-normal text-grey-2 mb-2 xs:mb-0">This area lists all uploaded documents with intuitive features like downloading, sharing, and uploading.</h3>
+                    </div>
+                </div>
               </TabsContent>
           </Tabs>
       </div>
