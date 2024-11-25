@@ -129,7 +129,11 @@
                 "due_date": "Due Date",
                 "amount":"Amount",
                 "status_title": "Status",
-                "pay_bill": "Pay Bill"
+                "pay_bill": "Pay Bill",
+                "payment": "Payment",
+                "detail_information" : "Detail Information",
+                "bill_amount": "Bill Amount",
+                "proceed_to_pay" : "Proceed to pay"
             },
             "paid_bills": {
                 "paid_to": "Paid To",
