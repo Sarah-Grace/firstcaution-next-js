@@ -4,7 +4,7 @@ import { removeLanguage } from "../(main)/utils/language";
     name: "auth",
     initialState: {
       // apiKey: "Api-Key wGwvTc4n.7ySCt0XNqNn8gYpP19GGOCiQbDoApP5i", // local API key
-       apiKey: "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW", // Vercel API Key
+      apiKey: "Api-Key WR9qQQh3.W31cnyEbG3zKSpD9XFPrwXAzQQemkbLW", // Vercel API Key
       userEmail: "",
       userName: "",
       accessToken: "",
@@ -12,7 +12,8 @@ import { removeLanguage } from "../(main)/utils/language";
       otp: "",
       contractId: "",
       invoiceId: "",
-      language: ""
+      language: "",
+      paymentURl: ""
     },
     reducers:{
       addUserInfo: (state, action) => {
@@ -41,6 +42,12 @@ import { removeLanguage } from "../(main)/utils/language";
       resetLanguage: (state, action) => {
          state.language = ""
       },
+      addPaymentUrl: (state, action) => {
+         state.paymentURl = action.payload
+      },
+      resetPaymentUrl: (state, action) => {
+         state.paymentURl = ""
+      },
       resetAll: (state, action) => {
          state.userEmail= ""
          state.userName= ""
@@ -52,5 +59,5 @@ import { removeLanguage } from "../(main)/utils/language";
     }
  })
 
- export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, addLanguage,  resetAll , resetLanguage, } = authSlice.actions;
+ export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, addLanguage,  resetAll , resetLanguage, resetPaymentUrl, addPaymentUrl } = authSlice.actions;
  export default authSlice.reducer; // for store configurations 

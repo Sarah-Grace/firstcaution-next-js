@@ -23,9 +23,38 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CustomList from "@/app/customComponents/CustomList";
+import { addPaymentUrl } from '@/app/slices/authSlice';
 
 const billsdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/invoices/', otp);
+  return response.data;
+};
+
+const paybill = async () => {
+  // const payload = {
+  //   RequestHeader: {
+  //     requestId: 'unique-request-id', // Customize as needed
+  //     // Add other necessary headers here
+  //   },
+  //   TerminalId: 'your-terminal-id',
+  //   Payment: {
+  //     amount: 100, // Replace with actual payment details
+  //     currency: 'USD',
+  //     // Other payment-related details
+  //   },
+  //   ReturnUrls: {
+  //     Success: 'https://your-site.com/success',
+  //     Fail: 'https://your-site.com/fail',
+  //     Abort: 'https://your-site.com/cancel'
+  //   }
+  // };
+    const payload = {
+    ReturnUrls: {
+      Success: '/bills',
+      Abort: '/bills'
+    },
+  };
+  const response = await axiosInstance.post('/api/saferpay/payment/');
   return response.data;
 };
 
@@ -99,6 +128,21 @@ function Bills() {
 
     },  
   });
+
+  const paybillmutation = useMutation({
+    mutationFn: paybill,
+    onSuccess: (response) => {
+      console.log(response.RedirectUrl)
+      dispatch(addPaymentUrl(response.RedirectUrl))
+    },
+    onError: (error) => {
+
+    },  
+  });
+  const payment = () => {
+    paybillmutation.mutate();
+    router.push('/payment')
+  }
   const tabsTranslation = (tab) => {
     switch(tab){
       case "Open Bills":
@@ -107,6 +151,9 @@ function Bills() {
           return t('status.paid_bills')
   }
   }
+  window.parent.postMessage({ status: 'success' }, 'http://localhost:3000'); 
+  window.parent.postMessage({ status: 'fail' }, 'http://localhost:3000');
+window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
@@ -265,7 +312,7 @@ function Bills() {
                             })}
                         </div>
                         <button 
-                            onClick="#"
+                            onClick={payment}
                             className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mt-14"
                         >
                             {t('open-bills.proceed_to_pay')}
