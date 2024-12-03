@@ -11,6 +11,14 @@ import DatePicker , { DateObject } from "react-multi-date-picker";
 import { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import { faEye } from "@fortawesome/free-regular-svg-icons";
+// import { Table } from "@/components/ui"
+import {
+  flexRender,
+  getCoreRowModel,
+  useReactTable,
+} from "@tanstack/react-table"
+
 
 function Firstmoove() {
   const tabNames = ["My Tenant Documents", "Request Debt Enforcement Certificate", "Notify Population Office"];
@@ -27,6 +35,61 @@ function Firstmoove() {
         [fieldName]: fieldValue
     }));
 }
+
+
+    // Sample Data
+    const [data] = useState([
+      { id: "1", document: "ID/Passport", uploaded:"20 Nov 2024", status: "Completed"},
+      { id: "2", document: "Debt Enforcement Certificate", uploaded:"20 Nov 2024", status: "Completed"},
+      { id: "3", document: "Guarantee Certificate", uploaded:"20 Nov 2024", status: "Completed" },
+    ])
+  
+    // Define Columns
+    const columns = [
+      {
+        header: "Document",
+        accessorKey: "document",
+      },
+      {
+        header: "Uploaded",
+        accessorKey: "uploaded",
+      },
+      {
+        header: "Status",
+        accessorKey: "status",
+        cell: ({ row }) => {
+          const status = row.getValue("status");
+          return (
+            <div className={`px-4 leading-5 rounded text-white inline-block text-center text-xs font-medium ${
+              status === "Completed" ? "border border-[#6FCC66] rounded-[19px] text-[#6FCC66]" : "bg-yellow-500"
+            }`}>
+              {status}
+            </div>
+          );
+        },
+      },
+      {
+        header: "Action",
+        cell: ({ row }) => (
+          <button
+            onClick={() => handleButtonClick(row.original.id)}
+            className="bg-transparent text-[#013C5D]"
+          >
+            <FontAwesomeIcon icon={faEye} />
+          </button>
+        ),
+      },
+    ]
+  
+    const handleButtonClick = (id) => {
+      alert(`Button clicked for ID: ${id}`);
+    };
+    // Create the table instance
+    const table = useReactTable({
+      data,
+      columns,
+      getCoreRowModel: getCoreRowModel(),
+    })
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative tablet:pr-1 tablet:pl-1">
@@ -44,38 +107,8 @@ function Firstmoove() {
                   })}
               </TabsList>
               <TabsContent key={tabNames[0]} value={tabNames[0]}>
-                  {/* <div>
-                    <Accordion type="single" collapsible className="flex gap-6">
-                      <AccordionItem value="item-1"  className="flex[0_1_283px] w-[283px] bg-bgc-3">
-                        <AccordionTrigger>
-                          <Image
-                            src="/images/icons/id.png"
-                            alt=""
-                            className=""
-                            width={20}
-                            height={20}
-                          />
-                          <span>ID</span>
-                        </AccordionTrigger>
-                        <AccordionContent>
-                          ........................
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="item-2" className="flex[0_1_283px] w-[283px]">
-                        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                        <AccordionContent>
-                          Yes. It adheres to the WAI-ARIA design pattern.
-                        </AccordionContent>
-                      </AccordionItem>
-                      <AccordionItem value="item-3"  className="flex[0_1_283px] w-[283px]">
-                        <AccordionTrigger>Is it accessible?</AccordionTrigger>
-                        <AccordionContent>
-                          Yes. It adheres to the WAI-ARIA design pattern.
-                        </AccordionContent>
-                      </AccordionItem>
-                    </Accordion>
-                  </div> */}
-                <div>
+                  
+                <div className="pl-3">
                   <div className="flex items-center gap-6 xs:gap-2">
                     <Image
                         src="/images/icons/tenant-doc.png"
@@ -99,6 +132,32 @@ function Firstmoove() {
                         Upload Document
                         </span>
                       </button>
+                    </div>
+                    <div className="overflow-x-auto mt-[10px] border rounded-[9px]">
+                      <table className="min-w-full ">
+                        <thead className="bg-[#EDF3FC]">
+                          {table.getHeaderGroups().map((headerGroup) => (
+                            <tr key={headerGroup.id}>
+                              {headerGroup.headers.map((header) => (
+                                <th key={header.id} className="px-4 py-2 text-start text-sm font-medium">
+                                  {flexRender(header.column.columnDef.header, header.getContext())}
+                                </th>
+                              ))}
+                            </tr>
+                          ))}
+                        </thead>
+                        <tbody className="rounded-[9px]">
+                          {table.getRowModel().rows.map((row) => (
+                            <tr key={row.id}  className="">
+                              {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id} className="border-t px-4 py-2">
+                                  {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
                     </div>
                   </div>
                 </div>
@@ -148,7 +207,7 @@ function Firstmoove() {
                 </div>
               </TabsContent>
               <TabsContent key={tabNames[2]} value={tabNames[2]}>
-                <div>
+                <div className="pl-3">
                   <div className="flex items-center gap-6 xs:gap-2">
                     <Image
                         src="/images/icons/contract-detail-img.png"
