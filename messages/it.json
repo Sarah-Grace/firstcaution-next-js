@@ -126,19 +126,28 @@
         "bills_page": { 
             "open-bills": { 
                 "title":"Deposito", 
+                "invoice_type": {
+                    "yearly_cost": "Costo annuale",
+                    "entrance_cost": "Costo d'ingresso"
+                },
                 "due_date": "Scadenza", 
                 "amount":"Importo", 
+                "year": "Anno",
                 "status_title": "Stato", 
                 "pay_bill": "Paga bolletta",
                 "payment": "Pagamento",
                 "detail_information" : "Informazioni dettagliate",
                 "bill_amount": "Importo della fattura",
-                "proceed_to_pay" : "Procedi al pagamento" 
+                "proceed_to_pay" : "Procedi al pagamento",
+                "status": {
+                    "open": "Aperto"
+                } 
             }, 
             "paid_bills": {
                 "paid_to": "Pagato a",
                 "payment_method": "Metodo di pagamento", 
-                "status_title": "Stato", 
+                "status_title": "Stato",
+                "paid": "Pagato",
                 "view_details": "Visualizza dettagli" 
             }, 
             "status": { 

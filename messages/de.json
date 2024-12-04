@@ -126,19 +126,28 @@
         "bills_page": { 
             "open-bills": { 
                 "title": "Anzahlung", 
+                "invoice_type": {
+                    "yearly_cost": "Jährliche Kosten",
+                    "entrance_cost": "Eintrittspreis"
+                },
                 "due_date": "Fälligkeitsdatum", 
                 "amount": "Betrag", 
+                "year": "Jahr",
                 "status_title": "Status", 
                 "pay_bill": "Rechnung bezahlen",
                 "payment": "Zahlung",
                 "detail_information" : "Detailinformationen",
                 "bill_amount": "Rechnungsbetrag",
-                "proceed_to_pay" : "Mit der Zahlung fortfahren"
+                "proceed_to_pay" : "Mit der Zahlung fortfahren",
+                "status": {
+                    "open": "Offen"
+                }
             },  
             "paid_bills": {
                 "paid_to": "Bezahlt an",
                 "payment_method": "Zahlungsmethode", 
                 "status_title": "Status", 
+                "paid": "Bezahlt",
                 "view_details": "Details anzeigen" 
             }, 
             "status": { 
