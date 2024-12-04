@@ -14,9 +14,47 @@ import { useRouter } from 'next/navigation';
 import { format } from "date-fns"
 import { useTranslations } from 'next-intl';
 import Preloader from "@/app/customComponents/Preloader";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import CustomList from "@/app/customComponents/CustomList";
+import { addPaymentUrl } from '@/app/slices/authSlice';
 
 const billsdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/invoices/', otp);
+  return response.data;
+};
+
+const paybill = async () => {
+  // const payload = {
+  //   RequestHeader: {
+  //     requestId: 'unique-request-id', // Customize as needed
+  //     // Add other necessary headers here
+  //   },
+  //   TerminalId: 'your-terminal-id',
+  //   Payment: {
+  //     amount: 100, // Replace with actual payment details
+  //     currency: 'USD',
+  //     // Other payment-related details
+  //   },
+  //   ReturnUrls: {
+  //     Success: 'https://your-site.com/success',
+  //     Fail: 'https://your-site.com/fail',
+  //     Abort: 'https://your-site.com/cancel'
+  //   }
+  // };
+    const payload = {
+    ReturnUrls: {
+      Success: '/bills',
+      Abort: '/bills'
+    },
+  };
+  const response = await axiosInstance.post('/api/saferpay/payment/');
   return response.data;
 };
 
@@ -27,6 +65,25 @@ function Bills() {
   const router = useRouter();
   const tabNames = ["Open Bills", "Paid Bills"];
   const [invoicesData , setInvoicesData ] = useState([])
+  const [isOpen, setIsOpen] = useState(false); // to hold state for dialog box open and close 
+  // function to open dialog box
+  const openDialog = () => {
+    setIsOpen(true);
+  };
+  // function to close dialog box
+  const closeDialog = () => {
+    setIsOpen(false);
+  };
+  const BillDetailList = [
+    {
+        title: t('open-bills.bill_amount'),
+        detail: "CHF 450.00"
+    },
+    {
+        title: t('open-bills.due_date'),
+        detail: "April 8,2024"
+    }
+]
   // const openBillsData = [
   //   {
   //       category: "Annual Premium",
@@ -71,6 +128,21 @@ function Bills() {
 
     },  
   });
+
+  const paybillmutation = useMutation({
+    mutationFn: paybill,
+    onSuccess: (response) => {
+      console.log(response.RedirectUrl)
+      dispatch(addPaymentUrl(response.RedirectUrl))
+    },
+    onError: (error) => {
+
+    },  
+  });
+  const payment = () => {
+    paybillmutation.mutate();
+    router.push('/payment')
+  }
   const tabsTranslation = (tab) => {
     switch(tab){
       case "Open Bills":
@@ -79,6 +151,9 @@ function Bills() {
           return t('status.paid_bills')
   }
   }
+  window.parent.postMessage({ status: 'success' }, 'http://localhost:3000'); 
+  window.parent.postMessage({ status: 'fail' }, 'http://localhost:3000');
+window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
@@ -126,12 +201,12 @@ function Bills() {
                                 Open
                               </p>
                           </div>
-                          <Link 
-                              href="#"
+                          <button 
+                              onClick={() => openDialog()}
                               className="rounded-8 bg-secondary text-white py-4 lgs:px-[30px] mlgs:px-[10px] mgls:w-[300px] text-center mlgs:py-3 xxl:px-4 xxl:py-2 border-0 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-8 xs:px-2 md:relative md:mb-2 "
                           >
                               {t('open-bills.pay_bill')}
-                          </Link>
+                          </button>
                       </div>
                     )
                   })
@@ -213,6 +288,40 @@ function Bills() {
             />
             <h3 className="text-h3 font-normal text-grey-2 mxl:text-xs">Last Bill: <span className="text-content">CHF 1,170.00</span></h3>
           </div> */}
+      </div>
+      <div className="w-2/3 pl-3">
+        <div className="flex flex-col justify-end h-full">
+            <div>
+                <Dialog className="rounded-6" open={isOpen} onClose={closeDialog}>
+                    <DialogContent>
+                      <DialogHeader>
+                          <DialogTitle className="text-start text-5 leading-[30px] font-medium text-content">{t('open-bills.payment')}</DialogTitle>
+                      </DialogHeader>
+                      <div className="">
+                        <button 
+                            onClick={ closeDialog }
+                            className="absolute w-10 right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none disabled:pointer-events-none p-2 bg-[#F1F3F9] text-content">
+                        X
+                        </button>
+                        <h3 className="text-h3 font-medium text-[#8B8D97] mt-14 mb-5">{t('open-bills.detail_information')}</h3>
+                        <div className="">
+                            {BillDetailList.map((list, index) => {
+                                return (
+                                    <CustomList key={index} title={list.title} info={list.detail} />
+                                )
+                            })}
+                        </div>
+                        <button 
+                            onClick={payment}
+                            className="rounded-8 bg-secondary text-white py-4 px-[60px] border-0 mx-auto block leading-4 mt-14"
+                        >
+                            {t('open-bills.proceed_to_pay')}
+                        </button>
+                      </div>
+                    </DialogContent>
+                </Dialog>
+            </div>
+        </div>
       </div>
     </div>
   )

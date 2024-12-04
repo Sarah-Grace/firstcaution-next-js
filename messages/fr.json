@@ -129,7 +129,11 @@
                 "due_date": "Date d'échéance", 
                 "amount":"Montant", 
                 "status_title": "Statut ", 
-                "pay_bill": "Payer la facture" 
+                "pay_bill": "Payer la facture",
+                "payment": "Paiement",
+                "detail_information" : "Informations détaillées",
+                "bill_amount": "Montant de la facture",
+                "proceed_to_pay" : "Procéder au paiement"
             }, 
             "paid_bills": { 
                 "paid_to": "Payé à", 

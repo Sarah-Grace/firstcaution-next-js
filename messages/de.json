@@ -129,7 +129,11 @@
                 "due_date": "Fälligkeitsdatum", 
                 "amount": "Betrag", 
                 "status_title": "Status", 
-                "pay_bill": "Rechnung bezahlen" 
+                "pay_bill": "Rechnung bezahlen",
+                "payment": "Zahlung",
+                "detail_information" : "Detailinformationen",
+                "bill_amount": "Rechnungsbetrag",
+                "proceed_to_pay" : "Mit der Zahlung fortfahren"
             },  
             "paid_bills": {
                 "paid_to": "Bezahlt an",
