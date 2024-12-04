@@ -126,19 +126,28 @@
         "bills_page": {
             "open-bills": {
                 "title":"Deposit",
+                "invoice_type": {
+                    "yearly_cost": "Yearly cost",
+                    "entrance_cost": "Entrance cost"
+                },
                 "due_date": "Due Date",
                 "amount":"Amount",
+                "year": "Year",
                 "status_title": "Status",
                 "pay_bill": "Pay Bill",
                 "payment": "Payment",
                 "detail_information" : "Detail Information",
                 "bill_amount": "Bill Amount",
-                "proceed_to_pay" : "Proceed to pay"
+                "proceed_to_pay" : "Proceed to pay",
+                "status": {
+                    "open": "Open"
+                }
             },
             "paid_bills": {
                 "paid_to": "Paid To",
                 "payment_method": "Payment Method",
                 "status_title": "Status",
+                "paid": "Paid",
                 "view_details": "View Details"
             },
             "status": {

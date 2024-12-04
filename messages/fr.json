@@ -126,19 +126,28 @@
         "bills_page": { 
             "open-bills": { 
                 "title": "Dépôt", 
+                "invoice_type": {
+                    "yearly_cost": "Prime annuelle",
+                    "entrance_cost": "Prime d’entrée"
+                },
                 "due_date": "Date d'échéance", 
-                "amount":"Montant", 
+                "amount":"Montant ouvert",
+                "year": "Année", 
                 "status_title": "Statut ", 
                 "pay_bill": "Payer la facture",
                 "payment": "Paiement",
                 "detail_information" : "Informations détaillées",
                 "bill_amount": "Montant de la facture",
-                "proceed_to_pay" : "Procéder au paiement"
+                "proceed_to_pay" : "Procéder au paiement",
+                "status": {
+                    "open": "Ouvert"
+                }
             }, 
             "paid_bills": { 
                 "paid_to": "Payé à", 
                 "payment_method": "Mode de paiement", 
-                "status_title": "Statut", 
+                "status_title": "Statut",
+                "paid": "Payée", 
                 "view_details": "Afficher les détails" 
             }, 
             "status": { 

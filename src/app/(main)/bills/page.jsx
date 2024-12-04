@@ -11,7 +11,7 @@ import { useDispatch } from "react-redux";
 
 import { addInvoiceId } from "@/app/slices/authSlice";
 import { useRouter } from 'next/navigation';
-import { format } from "date-fns"
+import { format, getYear } from "date-fns"
 import { useTranslations } from 'next-intl';
 import Preloader from "@/app/customComponents/Preloader";
 import {
@@ -151,6 +151,14 @@ function Bills() {
           return t('status.paid_bills')
   }
   }
+  const invoiceTypeTanslation = (invoiceType) => {
+    switch(invoiceType){
+      case "Entrance cost":
+          return t('open-bills.invoice_type.entrance_cost') 
+      case "Yearly cost":
+          return t('open-bills.invoice_type.yearly_cost')
+  }
+  }
   window.parent.postMessage({ status: 'success' }, 'http://localhost:3000'); 
   window.parent.postMessage({ status: 'fail' }, 'http://localhost:3000');
 window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
@@ -174,7 +182,9 @@ window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
               </TabsList>
               <TabsContent key={tabNames[0]} value={tabNames[0]}>
               {
-                  openBillsData.map((obd, index) => {
+                  openBillsData
+                  .filter((obd) => obd.invoiceType === 'Entrance cost' || obd.invoiceType === 'Yearly cost')
+                  .map((obd, index) => {
                     return (
                       <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 mxl:block mxl:relative" key={index}>
                           <div className="flex-[1_1_30%] flex items-center gap-3">
@@ -185,20 +195,24 @@ window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
                                 width={60}
                                 height={60}
                               /> 
-                              <h4 className="text-base leading-[19px] text-content font-semibold mxl:mb-[30px] sm:text-sm">{obd['invoiceType']}</h4>
+                              <h4 className="text-base leading-[19px] text-content font-semibold mxl:mb-[30px] sm:text-sm">{invoiceTypeTanslation(obd.invoiceType)}</h4>
                           </div>
-                          <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
+                          <div className="flex-[0_0_10%] mxl:flex mxl:gap-2">
+                              <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.year')}:</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-grey-2">{obd.dueDate && getYear(obd.dueDate) + 1}</p>
+                          </div>
+                          <div className="flex-[0_0_15%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.due_date')}:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-grey-2">{obd['dueDate'] && format(obd['dueDate'], 'do MMM, yyyy')}</p>
                           </div>
-                          <div className="flex-[0_0_20%] mxl:flex mxl:gap-2">
+                          <div className="flex-[0_0_15%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.amount')}:</p>
                               <p className="text-[15px] leading-[18px] font-normal text-[#868686]">CHF {obd['balanceAmount'] ===null ? 0.00 : obd['balanceAmount']}</p>
                           </div>
                           <div className="flex-[0_0_10%] mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 xxl:mb-1">{t('open-bills.status_title')}:</p>
                               <p className="text-[15px] leading-[18px] font-medium relative pl-[10px] after:content[''] after:w-[5px] after:h-[5px] after:block after:rounded-full after:absolute after:top-1/2 after:left-0 after:-translate-y-2/4 after:bg-[#34C759] text-[#34C759]">
-                                Open
+                              {t('open-bills.status.open')}
                               </p>
                           </div>
                           <button 
@@ -254,9 +268,9 @@ window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 mxl:mb-0">{t('paid_bills.status_title')}:</p>
-                              <p className="w-[57px] text-white bg-[#34C759] text-center text-xs font-medium rounded-8 leading-4">
-                                <span><FontAwesomeIcon icon={faCheck} /></span>
-                                <span className="pl-1">Paid</span>
+                              <p className="min-w-[57px] inline-block px-2 text-white bg-[#34C759] text-center text-xs font-medium rounded-8 leading-4">
+                                <span className="leading-[19px]"><FontAwesomeIcon icon={faCheck} /></span>
+                                <span className="pl-1 leading-[19px]">{t('paid_bills.paid')}</span>
                               </p>
                           </div>
                           <div onClick={() => 
