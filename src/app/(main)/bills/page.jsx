@@ -30,7 +30,7 @@ const billsdata = async (otp) => {
   return response.data;
 };
 
-const paybill = async () => {
+const paybill = async (data) => {
   // const payload = {
   //   RequestHeader: {
   //     requestId: 'unique-request-id', // Customize as needed
@@ -54,7 +54,7 @@ const paybill = async () => {
       Abort: '/bills'
     },
   };
-  const response = await axiosInstance.post('/api/saferpay/payment/');
+  const response = await axiosInstance.post('/api/saferpay/payment/',data);
   return response.data;
 };
 
@@ -74,44 +74,25 @@ function Bills() {
   const closeDialog = () => {
     setIsOpen(false);
   };
+  const [payBillInfo , setPayBillInfo ] = useState({
+    amount: 0.00,
+    date:""
+  })
   const BillDetailList = [
     {
         title: t('open-bills.bill_amount'),
-        detail: "CHF 450.00"
+        detail: `CHF ${payBillInfo.amount}`
     },
     {
         title: t('open-bills.due_date'),
-        detail: "April 8,2024"
+        detail: payBillInfo.date
     }
 ]
-  // const openBillsData = [
-  //   {
-  //       category: "Annual Premium",
-  //       icon: "/images/icons/bill-1.png",
-  //       date: "April 8,2024",
-  //       amount: "CHF 540.00",
-  //       status: "Open"
-  //   },
-  //   {
-  //     category: "Claim",
-  //     icon: "/images/icons/bill-2.png",
-  //     date: "April 8,2024",
-  //     amount: "CHF 540.00",
-  //     status: "Open"
-  //   },
-  // ]
+
   const openBillsData = invoicesData.filter((invoice) => invoice.status === "Waiting for payment" || invoice.status === "Processing")
-  
-  // const paidBillsData = [
-  //     {
-  //         name: "John Duo",
-  //         date: "April 8,2024",
-  //         paidTo: "PG&E",
-  //         paymentMethod: "E-Bill",
-  //         status: "Paid",
-  //         link: "billDetail"
-  //     }
-  // ];
+  const openBillsFiltered = openBillsData
+  .filter((obd) => obd.invoiceType === 'Entrance cost' || obd.invoiceType === 'Yearly cost')
+
   const paidBillsData = invoicesData.filter((invoice) => invoice.status === "Closed")
   useEffect(()=> {
     mutation.mutate();
@@ -139,8 +120,22 @@ function Bills() {
 
     },  
   });
+  const showPaymentInfo = (invoiceId) => {
+    openBillsFiltered
+    .filter((obf) => obf.invoiceId === invoiceId)
+      .map((obj) => 
+        { 
+          setPayBillInfo({
+            amount: obj.balanceAmount === null ? 0.00 : parseFloat(obj.balanceAmount),
+            date: obj.dueDate === null ? "" : format(obj.dueDate, 'do MMM, yyyy')
+          })
+        })
+    openDialog()
+  }
   const payment = () => {
-    paybillmutation.mutate();
+    console.log(payBillInfo.amount.toFixed(2))
+    const amount = payBillInfo.amount.toFixed(2)
+    paybillmutation.mutate({ amount: amount , currency: "CHF"});
     router.push('/payment')
   }
   const tabsTranslation = (tab) => {
@@ -166,7 +161,8 @@ window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
       {isLoading ? <Preloader /> :
-          (<Tabs defaultValue={tabNames[0]} className="">
+          (
+          <Tabs defaultValue={tabNames[0]} className="">
               <TabsList className="border-b border-[#E6EFF5] w-full justify-start">
                   {tabNames.map((tab, index) => {
                       return (
@@ -182,11 +178,10 @@ window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
               </TabsList>
               <TabsContent key={tabNames[0]} value={tabNames[0]}>
               {
-                  openBillsData
-                  .filter((obd) => obd.invoiceType === 'Entrance cost' || obd.invoiceType === 'Yearly cost')
-                  .map((obd, index) => {
+                  openBillsFiltered 
+                  .map((obd) => {
                     return (
-                      <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 mxl:block mxl:relative" key={index}>
+                      <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 mxl:block mxl:relative" key={obd.invoiceId}>
                           <div className="flex-[1_1_30%] flex items-center gap-3">
                               <Image
                                 src="/images/icons/bill-1.png"
@@ -216,7 +211,7 @@ window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
                               </p>
                           </div>
                           <button 
-                              onClick={() => openDialog()}
+                              onClick={() => showPaymentInfo(obd.invoiceId)}
                               className="rounded-8 bg-secondary text-white py-4 lgs:px-[30px] mlgs:px-[10px] mgls:w-[300px] text-center mlgs:py-3 xxl:px-4 xxl:py-2 border-0 inline-block mxl:absolute mxl:top-[10px] mxl:right-[10px] mxl:py-1 mxl:px-8 xs:px-2 md:relative md:mb-2 "
                           >
                               {t('open-bills.pay_bill')}
