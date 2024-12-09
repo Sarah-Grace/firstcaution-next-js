@@ -144,7 +144,7 @@ function Bills() {
           return t('status.open_bills') 
       case "Paid Bills":
           return t('status.paid_bills')
-  }
+    }
   }
   const invoiceTypeTanslation = (invoiceType) => {
     switch(invoiceType){
@@ -152,11 +152,11 @@ function Bills() {
           return t('open-bills.invoice_type.entrance_cost') 
       case "Yearly cost":
           return t('open-bills.invoice_type.yearly_cost')
+    }
   }
-  }
-  window.parent.postMessage({ status: 'success' }, 'http://localhost:3000'); 
-  window.parent.postMessage({ status: 'fail' }, 'http://localhost:3000');
-window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
+  // window.parent.postMessage({ status: 'success' }, 'http://localhost:3000'); 
+  // window.parent.postMessage({ status: 'fail' }, 'http://localhost:3000');
+  // window.parent.postMessage({ status: 'cancel' }, 'http://localhost:3000');
   return (
     <div className="pt-[30px] mb-14">
       <div className="bg-white border border-[#E6EFF5] rounded-6 pt-[37px] pr-[21px] pb-[50px] pl-[21px] relative">
