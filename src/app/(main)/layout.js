@@ -48,6 +48,7 @@ export default function MainLayout({children}) {
         case '/bills/paymentPlan':
         case '/bills/paymentTerm':
         case '/bills/monthlyPayment':
+        case '/payment':
             setTitle(t('my_bills'))
             break;     
         case '/deposit':
@@ -128,6 +129,7 @@ export default function MainLayout({children}) {
         case '/bills/paymentPlan':
         case '/bills/paymentTerm':
         case '/bills/monthlyPayment':
+          case '/payment':
             setTitle(t('my_bills'))
             break;     
         case '/deposit':
