@@ -89,10 +89,12 @@ function Bills() {
     }
 ]
 
-  const openBillsData = invoicesData.filter((invoice) => invoice.status === "Waiting for payment" || invoice.status === "Processing")
+  const openBillsData = invoicesData.filter((invoice) => invoice.status === "Waiting for payment" || invoice.status === "Processing" )
   const openBillsFiltered = openBillsData
   .filter((obd) => obd.invoiceType === 'Entrance cost' || obd.invoiceType === 'Yearly cost')
-
+  const amountFilter = openBillsFiltered.filter((obd) => obd.balanceAmount !== null )
+  console.log("Not Null")
+  console.log(amountFilter)
   const paidBillsData = invoicesData.filter((invoice) => invoice.status === "Closed")
   useEffect(()=> {
     mutation.mutate();
@@ -178,7 +180,7 @@ function Bills() {
               </TabsList>
               <TabsContent key={tabNames[0]} value={tabNames[0]}>
               {
-                  openBillsFiltered 
+                  amountFilter
                   .map((obd) => {
                     return (
                       <div className="flex justify-between items-center gap-[5px] py-5 px-8 bg-bgc-3 rounded-6 mb-5 xxl:py-4 xl:px-4 mxl:block mxl:relative" key={obd.invoiceId}>
