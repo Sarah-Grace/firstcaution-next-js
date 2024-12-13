@@ -261,7 +261,7 @@ function Bills() {
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2">{t('paid_bills.payment_method')}:</p>
-                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{d['Payment method']}</p>
+                              <p className="text-[15px] leading-[18px] font-normal text-[#868686]">{d.paymentMethod === null ? "Visa" : d.paymentMethod}</p>
                           </div>
                           <div className="flex-[0_0_20%] xxl:flex-auto mxl:flex mxl:gap-2">
                               <p className="text-base leading-[19px] font-medium text-content mb-2 mxl:mb-0">{t('paid_bills.status_title')}:</p>
