@@ -220,7 +220,8 @@ function Home() {
             })}
           </div>
         </div> */}
-        <div className="bg-white p-5 rounded-10 border border-[#E6EFF5] tablet:order-2">
+        {/* for now removing firstmoove and firstcoin */}
+        {/* <div className="bg-white p-5 rounded-10 border border-[#E6EFF5] tablet:order-2">
           <CardHeader textColor="" link="#" title={t('home.firstmoove')} />
           <div className="flex gap-3 flex-wrap">
             <div className="flex items-center flex-auto gap-[14px] py-[11px] pl-[18px] pr-[60px] bg-[#F7F6F6] rounded-8">
@@ -239,7 +240,7 @@ function Home() {
         </div>
         <div className="tablet:order-3">
           <FirstCoinBannerHome />
-        </div>
+        </div> */}
       </div>
     </div>
   )
