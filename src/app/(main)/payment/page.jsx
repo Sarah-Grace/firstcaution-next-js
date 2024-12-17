@@ -11,13 +11,8 @@ function Payment() {
   const iframeRef = useRef(null);
   const router = useRouter();
 
-  const handleIframeLoad = () => {
-    const currentUrl = iframeRef.current?.contentWindow?.location.href;
-    console.log(currentUrl)
-    if (currentUrl === "https://api.firstcaution.ch/api/payment-abort/") {
-      router.push('/bills');
-    }
-  };
+
+
 
   return (
     <div className='pt-[30px] px-10 pb-[65px] mb-14 border border-[#E6EFF5] bg-white sm:px-2'>
@@ -30,7 +25,6 @@ function Payment() {
           height="400"
           title="Embedded Website"
           className="w-full h-[600px] md1:h-[400px]"
-          onLoad={handleIframeLoad}
         />
       </div>
     </div>
