@@ -117,6 +117,7 @@ function Bills() {
     onSuccess: (response) => {
       console.log(response.RedirectUrl)
       dispatch(addPaymentUrl(response.RedirectUrl))
+      // response.RedirectUrl && window.open(response.RedirectUrl, "_blank");
     },
     onError: (error) => {
 

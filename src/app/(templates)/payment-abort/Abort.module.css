@@ -1,0 +1,88 @@
+
+.main{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+}
+.messageBlock {
+    width: 70%;
+    flex:  0 1 auto;
+    border-radius: 10px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 64px;
+    border: 1px dashed #909090;
+}
+.xMark {
+    width: 55px;
+    height: 55px;
+    font-size: 30px;
+    color: white;
+    background-color: #FF4444;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 22px rgba(255, 68, 68, 0.2);
+    margin-bottom: 40px;
+}
+.h1 {
+    color: #253B6A;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 38px;
+    margin-bottom: 22px;
+    text-align: center;
+}
+.p {
+    font-size: 16px;
+    font-weight: 500;
+    color: #8B8D97;
+    line-height: 20px;
+    text-align: center;
+    margin-bottom: 26px;
+    width: 80%;
+}
+.button {
+    border-radius: 8px;
+    background-color: #F8A81A; 
+    color: white;
+    padding: 16px 60px; 
+    border: 0;
+    margin: 0 auto; 
+    display: block;
+    line-height: 1rem;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    text-decoration: none;
+}
+@media only screen and (max-width: 768px) {
+    .h1 {
+        font-size: 28px;
+        line-height: 33px;
+    }
+    .messageBlock {
+        padding: 64px 14px;
+    }
+    .button {
+        padding: 16px 20px;
+    }
+}
+@media only screen and (max-width: 575px) {
+    .h1 {
+        font-size: 23px;
+        line-height: 28px;
+    }
+    .p {
+        font-size: 14px;
+    }
+    .button {
+        font-size: 16px;
+    }
+}
