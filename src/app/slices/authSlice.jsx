@@ -13,7 +13,8 @@ import { removeLanguage } from "../(main)/utils/language";
       contractId: "",
       invoiceId: "",
       language: "",
-      paymentURl: ""
+      paymentURl: "",
+      paymentToken: ""
     },
     reducers:{
       addUserInfo: (state, action) => {
@@ -48,6 +49,12 @@ import { removeLanguage } from "../(main)/utils/language";
       resetPaymentUrl: (state, action) => {
          state.paymentURl = ""
       },
+      addPaymentToken: (state, action) => {
+         state.paymentToken = action.payload
+      },
+      resetPaymentToken: (state, action) => {
+         state.paymentToken = ""
+      },
       resetAll: (state, action) => {
          state.userEmail= ""
          state.userName= ""
@@ -55,9 +62,12 @@ import { removeLanguage } from "../(main)/utils/language";
          state.refreshToken= ""
          state.contractId= ""
          state.invoiceId= ""
+         state.language= ""
+         state.paymentURl= ""
+         state.paymentToken= ""
       }
     }
  })
 
- export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, addLanguage,  resetAll , resetLanguage, resetPaymentUrl, addPaymentUrl } = authSlice.actions;
+ export const { addUserInfo, addEmail, addOtp, addTokens, addContractId, addInvoiceId, addLanguage,  resetAll , resetLanguage, resetPaymentUrl, addPaymentUrl, addPaymentToken, resetPaymentToken } = authSlice.actions;
  export default authSlice.reducer; // for store configurations 

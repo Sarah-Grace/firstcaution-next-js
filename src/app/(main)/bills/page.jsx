@@ -23,7 +23,8 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import CustomList from "@/app/customComponents/CustomList";
-import { addPaymentUrl } from '@/app/slices/authSlice';
+import { addPaymentUrl, addPaymentToken,  resetPaymentUrl } from '@/app/slices/authSlice';
+
 
 const billsdata = async (otp) => {
   const response = await axiosInstance.get('/api/client/invoices/', otp);
@@ -62,6 +63,7 @@ function Bills() {
   const [isLoading, setIsLoading] =useState(true);
   const t = useTranslations('main.bills_page');
   const dispatch = useDispatch();
+  dispatch(resetPaymentUrl())
   const router = useRouter();
   const tabNames = ["Open Bills", "Paid Bills"];
   const [invoicesData , setInvoicesData ] = useState([])
@@ -76,7 +78,8 @@ function Bills() {
   };
   const [payBillInfo , setPayBillInfo ] = useState({
     amount: 0.00,
-    date:""
+    date:"",
+    invoiceId: ""
   })
   const BillDetailList = [
     {
@@ -98,6 +101,7 @@ function Bills() {
   const paidBillsData = invoicesData.filter((invoice) => invoice.status === "Closed")
   useEffect(()=> {
     mutation.mutate();
+    dispatch(addInvoiceId(""))
   },[]);
   const mutation = useMutation({
     mutationFn: billsdata,
@@ -117,6 +121,7 @@ function Bills() {
     onSuccess: (response) => {
       console.log(response.RedirectUrl)
       dispatch(addPaymentUrl(response.RedirectUrl))
+      dispatch(addPaymentToken(response.Token))
       // response.RedirectUrl && window.open(response.RedirectUrl, "_blank");
     },
     onError: (error) => {
@@ -130,8 +135,10 @@ function Bills() {
         { 
           setPayBillInfo({
             amount: obj.balanceAmount === null ? 0.00 : parseFloat(obj.balanceAmount),
-            date: obj.dueDate === null ? "" : format(obj.dueDate, 'do MMM, yyyy')
+            date: obj.dueDate === null ? "" : format(obj.dueDate, 'do MMM, yyyy'),
+            invoiceId: obj.clientContractId
           })
+          dispatch(addInvoiceId(obj.clientContractId))
         })
     openDialog()
   }
