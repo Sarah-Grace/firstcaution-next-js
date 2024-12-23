@@ -8,7 +8,7 @@ function Success() {
     const notifyParent = () => {
       const currentPath = window.location.pathname;
 
-      let status = 'abort';
+      let status = 'fail';
       // Post the message to the parent
       window.parent.postMessage({ status, path: currentPath }, '*');
     };
