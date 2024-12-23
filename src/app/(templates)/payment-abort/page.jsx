@@ -8,14 +8,14 @@ function Success() {
     const notifyParent = () => {
       const currentPath = window.location.pathname;
 
-      let status = 'success';
+      let status = 'abort';
       // Post the message to the parent
       window.parent.postMessage({ status, path: currentPath }, '*');
     };
 
     // Detect URL changes (SPA or regular navigation)
     window.addEventListener('popstate', notifyParent); // Back/forward navigation
-    notifyParent('abort')
+    notifyParent()
   }, [])
   return (
     <div className={styles.main}>
