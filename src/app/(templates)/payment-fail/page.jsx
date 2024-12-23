@@ -1,6 +1,22 @@
+'use client'
+import { useEffect } from 'react';
 import styles from './Fail.module.css';
 
 function Success() {
+  useEffect(() => {
+    // Notify parent about the URL change
+    const notifyParent = () => {
+      const currentPath = window.location.pathname;
+
+      let status = 'fail';
+      // Post the message to the parent
+      window.parent.postMessage({ status, path: currentPath }, '*');
+    };
+
+    // Detect URL changes (SPA or regular navigation)
+    window.addEventListener('popstate', notifyParent); // Back/forward navigation
+    notifyParent()
+  }, [])
   return (
     <div className={styles.main}>
       <div className={styles.messageBlock}>
